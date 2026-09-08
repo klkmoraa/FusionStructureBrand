@@ -2,69 +2,93 @@
 
 Updated: 2026-09-08
 
-This is the handoff index for the editable Figma file. IDs are recorded here
-so a future pass can inspect or update a node without guessing. By explicit
-product direction, the file was consolidated and rebuilt as one continuous
-page; the legacy pages were removed after their coverage was reconstructed.
+Canonical handoff for the editable, continuous brandbook. The legacy web
+capture and detached component-kit frames were removed after their useful
+coverage was rebuilt inside the single master.
 
 ## File
 
 - File key: `fItlN7p0jk8AtvPSRaIcAq`
 - URL: <https://www.figma.com/design/fItlN7p0jk8AtvPSRaIcAq>
-- Name: `FusionStructure · Brandbook 2026 — Clay Minimal`
-- Team: `team::1631916999167126267`
+- Page: `116:56` — `FusionStructure · Brandbook 2026 / Single Page`
+- Canonical master: `131:62` — `FusionStructure Brandbook 2026 · Single Page / Canonical`
+- Master size: 1440 × 19490 px
 
-## Pages and boards
+## Continuous sections
 
-| Page | Page ID | Primary frames |
-| --- | --- | --- |
-| `FusionStructure · Brandbook 2026 / Single Page` | `116:56` | `108:2` editable continuous web; `110:2` Clay System 2026 component kit |
+1. `135:62` — Norte / Clay Hero
+2. `139:73` — Identidad / Structural Mark
+3. `153:71` — Familias / Six Product Brands
+4. `148:156` — Color / Semantic Signal Lab
+5. `150:156` — Typography / Technical Voice
+6. `151:156` — Motion / Structural Choreography
+7. `154:71` — Material / Clay Component Lab
+8. `155:71` — Iconography / Family Glyphs
+9. `156:71` — Patterns / Product Shells
+10. `157:71` — References / Editable Mockups
+11. `158:71` — Voice / Engineering Copy
+12. `159:71` — Handoff / Source of Truth
 
-## Editable identity
+## Identity
 
-- `126:101` — `BrandMark / Rebuilt` set: Signal, Mono and Inverse.
-- `126:103` — horizontal lockup; `126:111` — signature lockup.
-- `126:86` — rebuilt identity, typography and spacing section.
 - Canonical geometry: `M8 5h9v38H8z M17 5h24v5.5L17 14z` plus
   `M17 21h17v5L17 30z`.
-- Body: `#14171A`; signal arm: `#63C5FF`; wordmark: `FusionStructure`.
-- Slogan lockup: `Make complexity legible.` is a fixed English signature in the
-  Figma lockup and in every web mode (including the Spanish North-star intro,
-  hero and footer); explanatory copy remains bilingual.
+- The structural F body remains graphite `#14171A` in every day/family
+  variant. Only the lower arm changes color. Inverse uses a white body.
+- `172:105` — `BrandMark / Mother + Families`, 9 variants:
+  mother, analysis, model, civil, project, connections, learning, mono and
+  inverse.
+- Mother accent: mint `#1AA57A`; night mint: `#53E0B2`.
 
-## Variables and styles
+## Six-family architecture
 
-- `VariableCollectionId:3:8` — `FS / Color`, modes `Día` / `Noche`, 22
-  variables (`VariableID:3:12`–`VariableID:3:33`).
-- `VariableCollectionId:3:9` — `FS / Space`, mode `Base`, 8 variables
-  (`VariableID:3:34`–`VariableID:3:41`).
-- `VariableCollectionId:3:10` — `FS / Shape`, mode `Base`, 4 variables
-  (`VariableID:3:42`–`VariableID:3:45`).
-- `VariableCollectionId:3:11` — `FS / Motion`, mode `Base`, 3 variables
-  (`VariableID:3:46`–`VariableID:3:48`).
-- 37 variables total, 22 paint styles and 11 local text styles. The five
-  `FS / Type / ...` text styles are Space Grotesk, Inter and IBM Plex Mono.
-- All 20 visual top-level board frames bind their background paint to
-  `FS / Color → neutral/paper` (`VariableID:3:12`).
-- Code syntax uses the matching `--fs-*` variables from the web source,
-  including `--fs-neutral-*`, `--fs-radius-*` and `--fs-motion-*` aliases.
+| Family | Product reference | Accent |
+| --- | --- | --- |
+| Mother | FusionStructure | `#1AA57A` |
+| Analysis | FStructure | `#ED4B46` |
+| Model | Space 3D | `#7657D5` |
+| Civil | Civil | `#468C09` |
+| Project | Project | `#D9720A` |
+| Connections | Connections | `#3A72E3` |
+| Learning | Learning | `#C94A8F` |
 
-## Component inventory
+The former 25-surface architecture is retired and appears only in governance
+copy documenting the migration.
 
-- Single-page clay kit: `112:45` Action / Clay (8 variants), `113:51`
-  Card / Clay (3 variants), `114:102` Color Token / FS (15 variants) and six
-  editable vector icon components inside `110:2`.
-- Rebuilt identity: `126:101` BrandMark (3 variants) plus two lockup
-  components. The continuous web frame contains all 12 anchors, five chapters,
-  proprietary clay mockups and the full bilingual brand guidance.
+## Variables and components
+
+- `VariableCollectionId:3:8` — `FS / Color`, day/night modes. Family
+  variables are `brand/mint`, `family/analysis`, `family/model`,
+  `family/civil`, `family/project`, `family/connections` and
+  `family/learning`.
+- Technical signals use StructureCo CRI-12C sources: axial `#0F95D1`,
+  moment `#ED4B46`, shear `#468C09`, deformed `#8B5CF6`, influence
+  `#D85AC9` and warning `#D9720A`.
+- `154:137` — Button system, 12 editable variants.
+- `155:121` — FamilyGlyph system, 6 editable variants.
+- Six family cards in `153:71` are editable components.
+- Final master inventory: 38 components, 3 component sets, 0 external
+  instances.
+
+## Product evidence
+
+Four raster fills are intentional, declared real product captures:
+
+- `166:69` — FStructure · day
+- `166:72` — FStructure · night
+- `166:75` — Space 3D · real editor
+- `166:78` — FusionStructure web reference
+
+Section `157:71` also contains ten fully editable vector product mockups.
+There is no stock photography.
 
 ## Validation record
 
-- Final API audit: exactly one page, two top-level frames and zero IMAGE fills.
-- The web capture is 1280 × 34163 px; the editable kit is 1440 × 3451 px.
-- Screenshots reviewed after buttons, cards, tokens, modes and rebuilt identity.
-- All former pages were removed only after their required coverage had been
-  rebuilt in the continuous web and component kit.
-- Web smoke evidence is recorded in
-  `brandbook-site/output/playwright/final-audit.json` (390, 768, 1280 and
-  1440 px; ES → EN, night theme and mobile index included).
+- Exactly one Figma page and one top-level canonical master.
+- Twelve continuous sections, day/night guidance and clay depth hierarchy.
+- Four intentional IMAGE fills only; all correspond to the declared captures.
+- Legacy frames `108:2` and `110:2` removed.
+- No remaining instances depend on deleted legacy components.
+- Section screenshots reviewed at high resolution after final consolidation.
+- Web smoke evidence remains in
+  `brandbook-site/output/playwright/final-audit.json`.
