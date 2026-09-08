@@ -5,13 +5,22 @@ import { ArrowRight, Search, X } from 'lucide-react';
 import { StatusPill, ToolTile } from '../brand/marks';
 import {
   FAMILY_META,
-  STATUS_META,
   TOOLS,
   type StatusId,
   type Tool,
 } from '../brand/catalog';
 import type { FamilyId } from '../brand/generated/palette';
-import { RuleStrip, SectionIntro } from '../brand/ui';
+import {
+  FAMILY_COPY,
+  RULE_LABEL,
+  STATUS_COPY,
+  STATUS_MEANING_COPY,
+  STATUS_RULE_COPY,
+  TOOLS_COPY,
+  TOOL_CODE_COPY,
+  TOOL_COPY,
+} from '../brand/copy';
+import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 type FamilyFilter = FamilyId | 'todas';
 type StatusFilter = StatusId | 'todos';
@@ -23,8 +32,18 @@ const STATUS_ORDER: readonly StatusId[] = [
   'no-comprometido',
 ];
 
-const ToolDetail = ({ tool, onClose }: { tool: Tool; onClose: () => void }) => {
+const ToolDetail = ({
+  tool,
+  onClose,
+  language,
+}: {
+  tool: Tool;
+  onClose: () => void;
+  language: 'es' | 'en';
+}) => {
   const panel = useRef<HTMLElement | null>(null);
+  const toolCopy = TOOL_COPY[tool.id];
+  const copy = TOOLS_COPY[language];
 
   useEffect(() => {
     panel.current?.focus();
@@ -35,61 +54,62 @@ const ToolDetail = ({ tool, onClose }: { tool: Tool; onClose: () => void }) => {
       ref={panel}
       tabIndex={-1}
       className={`tool-detail family--${tool.family}`}
-      aria-label={`Detalle de ${tool.name}`}
+      aria-label={`${copy.detail} ${toolCopy.name[language]}`}
     >
       <div className="tool-detail__head">
         <ToolTile glyph={tool.glyph} family={tool.family} size={54} />
         <div>
-          <code>{tool.code}</code>
-          <h3>{tool.name}</h3>
-          <p>{tool.summary}</p>
+          <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
+          <h3>{toolCopy.name[language]}</h3>
+          <p>{toolCopy.summary[language]}</p>
         </div>
         <button
           type="button"
           className="icon-button"
           onClick={onClose}
-          aria-label="Cerrar detalle"
+          aria-label={copy.close}
         >
           <X size={16} />
         </button>
       </div>
       <dl className="tool-detail__body">
         <div>
-          <dt>Hoy</dt>
-          <dd>{tool.today}</dd>
+          <dt>{copy.today}</dt>
+          <dd>{toolCopy.today[language]}</dd>
         </div>
         <div>
-          <dt>Debe crecer</dt>
-          <dd>{tool.next}</dd>
+          <dt>{copy.next}</dt>
+          <dd>{toolCopy.next[language]}</dd>
         </div>
         <div>
-          <dt>Puerta mínima</dt>
-          <dd>{tool.gate}</dd>
+          <dt>{copy.gate}</dt>
+          <dd>{toolCopy.gate[language]}</dd>
         </div>
         <div>
-          <dt>Categoría estudiada</dt>
+          <dt>{copy.category}</dt>
           <dd>
-            {tool.reference}
+            {toolCopy.reference[language]}
             <small>
-              Referencia de categoría para investigar el problema. No implica
-              equivalencia, compatibilidad ni reemplazo.
+              {copy.note}
             </small>
           </dd>
         </div>
       </dl>
       <footer className="tool-detail__foot">
-        <StatusPill status={tool.status} />
-        <span>{STATUS_META[tool.status].rule}</span>
+        <StatusPill status={tool.status} language={language} />
+        <span>{STATUS_RULE_COPY[tool.status][language]}</span>
       </footer>
     </aside>
   );
 };
 
 export const Tools = () => {
+  const { language } = useBrandbook();
   const [family, setFamily] = useState<FamilyFilter>('todas');
   const [status, setStatus] = useState<StatusFilter>('todos');
   const [query, setQuery] = useState('');
   const [openTool, setOpenTool] = useState<string | null>(null);
+  const copy = TOOLS_COPY[language];
 
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -97,12 +117,23 @@ export const Tools = () => {
       if (family !== 'todas' && tool.family !== family) return false;
       if (status !== 'todos' && tool.status !== status) return false;
       if (!needle) return true;
-      return [tool.name, tool.code, tool.role, tool.summary, tool.reference]
+      const localized = TOOL_COPY[tool.id];
+      return [
+        tool.name,
+        tool.code,
+        tool.role,
+        tool.summary,
+        tool.reference,
+        localized.name[language],
+        localized.role[language],
+        localized.summary[language],
+        localized.reference[language],
+      ]
         .join(' ')
         .toLowerCase()
         .includes(needle);
     });
-  }, [family, status, query]);
+  }, [family, language, status, query]);
 
   const selected = visible.find((tool) => tool.id === openTool) ?? null;
 
@@ -126,13 +157,13 @@ export const Tools = () => {
 
       <div className="tools__controls">
         <fieldset className="filter-row">
-          <legend className="visually-hidden">Filtrar por familia</legend>
+          <legend className="visually-hidden">{copy.familyFilter}</legend>
           <button
             type="button"
             className={`chip ${family === 'todas' ? 'is-active' : ''}`}
             onClick={() => setFamily('todas')}
           >
-            Todas <span>{TOOLS.length}</span>
+            {copy.all} <span>{TOOLS.length}</span>
           </button>
           {(Object.keys(FAMILY_META) as FamilyId[]).map((id) => (
             <button
@@ -142,7 +173,7 @@ export const Tools = () => {
               onClick={() => setFamily(id)}
             >
               <span className="chip__swatch" aria-hidden="true" />
-              {FAMILY_META[id].label}
+              {FAMILY_COPY[id].label[language]}
               <span>{TOOLS.filter((tool) => tool.family === id).length}</span>
             </button>
           ))}
@@ -150,13 +181,13 @@ export const Tools = () => {
 
         <div className="tools__controls-row">
           <fieldset className="filter-row filter-row--status">
-            <legend className="visually-hidden">Filtrar por estado</legend>
+            <legend className="visually-hidden">{copy.statusFilter}</legend>
             <button
               type="button"
               className={`chip chip--quiet ${status === 'todos' ? 'is-active' : ''}`}
               onClick={() => setStatus('todos')}
             >
-              Cualquier estado
+              {copy.anyStatus}
             </button>
             {STATUS_ORDER.map((id) => {
               const count = TOOLS.filter((tool) => tool.status === id).length;
@@ -169,7 +200,7 @@ export const Tools = () => {
                   onClick={() => setStatus(id)}
                 >
                   <span className="status__dot" aria-hidden="true" />
-                  {STATUS_META[id].label} <span>{count}</span>
+                  {STATUS_COPY[id][language]} <span>{count}</span>
                 </button>
               );
             })}
@@ -180,22 +211,24 @@ export const Tools = () => {
             <input
               type="search"
               value={query}
-              placeholder="Buscar superficie, código o categoría"
+              placeholder={copy.search}
               onChange={(event) => setQuery(event.target.value)}
             />
-            <span className="visually-hidden">Buscar en el catálogo</span>
+            <span className="visually-hidden">{copy.searchLabel}</span>
           </label>
         </div>
       </div>
 
       <p className="tools__count" aria-live="polite">
         {visible.length === TOOLS.length
-          ? `${TOOLS.length} superficies`
-          : `${visible.length} de ${TOOLS.length} superficies`}
+          ? `${TOOLS.length} ${copy.surfaces}`
+          : `${visible.length} ${copy.of} ${TOOLS.length} ${copy.surfaces}`}
       </p>
 
       <ul className="tool-grid">
-        {visible.map((tool) => (
+        {visible.map((tool) => {
+          const toolCopy = TOOL_COPY[tool.id];
+          return (
           <Fragment key={tool.id}>
             <li>
               <button
@@ -208,61 +241,59 @@ export const Tools = () => {
               >
                 <span className="tool-card__top">
                   <ToolTile glyph={tool.glyph} family={tool.family} size={48} />
-                  <code>{tool.code}</code>
+                  <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
                 </span>
                 <span className="tool-card__name">
-                  <strong>{tool.name}</strong>
-                  <small>{tool.role}</small>
+                  <strong>{toolCopy.name[language]}</strong>
+                  <small>{toolCopy.role[language]}</small>
                 </span>
-                <span className="tool-card__summary">{tool.summary}</span>
+                <span className="tool-card__summary">{toolCopy.summary[language]}</span>
                 <span className="tool-card__reference">
-                  <small>categoría estudiada</small>
-                  {tool.reference}
+                  <small>{copy.category}</small>
+                  {toolCopy.reference[language]}
                 </span>
                 <span className="tool-card__foot">
-                  <StatusPill status={tool.status} compact />
-                  <span className="tool-card__more">Ver puerta mínima</span>
+                  <StatusPill status={tool.status} language={language} compact />
+                  <span className="tool-card__more">{copy.viewGate}</span>
                   <ArrowRight size={14} aria-hidden="true" />
                 </span>
               </button>
             </li>
             {selected?.id === tool.id ? (
               <li className="tool-grid__detail">
-                <ToolDetail tool={selected} onClose={() => setOpenTool(null)} />
+                <ToolDetail
+                  tool={selected}
+                  onClose={() => setOpenTool(null)}
+                  language={language}
+                />
               </li>
             ) : null}
           </Fragment>
-        ))}
+          );
+        })}
       </ul>
 
       {visible.length === 0 ? (
         <p className="empty-state">
-          Ninguna superficie coincide con ese filtro. Prueba con otra familia o
-          borra la búsqueda.
+          {copy.empty}
         </p>
       ) : null}
 
       <div className="status-board">
         <div className="status-board__head">
-          <span className="tag">Vocabulario de estado</span>
-          <p>
-            Cuatro palabras. Se usan igual en la interfaz, en la documentación y
-            aquí.
-          </p>
+          <span className="tag">{copy.vocabulary}</span>
+          <p>{copy.vocabularyBody}</p>
         </div>
         {STATUS_ORDER.map((id) => (
           <div key={id} className="status-board__row">
-            <StatusPill status={id} />
-            <p>{STATUS_META[id].meaning}</p>
-            <small>{STATUS_META[id].rule}</small>
+            <StatusPill status={id} language={language} />
+            <p>{STATUS_MEANING_COPY[id][language]}</p>
+            <small>{STATUS_RULE_COPY[id][language]}</small>
           </div>
         ))}
       </div>
 
-      <RuleStrip index="Regla 03">
-        Una tarjeta puede dibujar una intención. No puede escribirla en
-        presente.
-      </RuleStrip>
+      <RuleStrip index={`${RULE_LABEL[language]} 03`}>{copy.rule}</RuleStrip>
     </section>
   );
 };

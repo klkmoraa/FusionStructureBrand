@@ -8,14 +8,22 @@ import {
   MOTION_TOKENS,
   type MotionDemoId,
 } from '../brand/system';
+import {
+  EASING_COPY,
+  MOTION_COPY,
+  MOTION_DEMO_COPY,
+  MOTION_TOKEN_COPY,
+  RULE_LABEL,
+} from '../brand/copy';
+import { publicAsset } from '../brand/paths';
 import { CopyChip, RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 export const Motion = () => {
-  const { motionMode } = useBrandbook();
+  const { motionMode, language } = useBrandbook();
   const [demo, setDemo] = useState<MotionDemoId>('llegar');
   const [replay, setReplay] = useState(0);
-  const active =
-    MOTION_DEMOS.find((item) => item.id === demo) ?? MOTION_DEMOS[0];
+  const copy = MOTION_COPY[language];
+  const activeCopy = MOTION_DEMO_COPY[demo];
 
   return (
     <section id="movimiento" className="section motion">
@@ -34,14 +42,14 @@ export const Motion = () => {
           <div className="motion-screen__bar">
             <span>
               <span className="live-dot" aria-hidden="true" />
-              {motionMode === 'calma' ? 'modo calma' : 'vista activa'}
+              {motionMode === 'calma' ? copy.calm : copy.active}
             </span>
-            <code>{active.label.toLowerCase()}</code>
+            <code>{activeCopy.label[language].toLowerCase()}</code>
           </div>
 
           <div className="motion-screen__canvas">
             <div className="motion-panel motion-panel--base">
-              <span>modelo</span>
+              <span>{copy.model}</span>
               <div className="motion-panel__lines" aria-hidden="true">
                 <i />
                 <i />
@@ -49,9 +57,9 @@ export const Motion = () => {
               </div>
             </div>
             <div className="motion-panel motion-panel--incoming">
-              <span>inspector</span>
+              <span>{copy.inspector}</span>
               <strong>−148.6 kN·m</strong>
-              <small>nudo B4 · v4</small>
+              <small>{copy.joint} B4 · v4</small>
             </div>
             <svg
               className="motion-link"
@@ -62,7 +70,7 @@ export const Motion = () => {
             </svg>
             <div className="motion-confirm">
               <span aria-hidden="true">✓</span>
-              Versión local guardada
+              {copy.saved}
             </div>
             <div className="motion-compare" aria-hidden="true">
               <i className="motion-compare__a" />
@@ -73,13 +81,13 @@ export const Motion = () => {
             </div>
           </div>
 
-          <p className="motion-screen__rule">{active.rule}</p>
+          <p className="motion-screen__rule">{activeCopy.rule[language]}</p>
         </div>
 
         <div className="panel motion-controls">
           <div className="panel__label">
-            <span>Seis mensajes</span>
-            <code>uno a la vez</code>
+            <span>{copy.messages}</span>
+            <code>{copy.oneAtTime}</code>
           </div>
           <div className="motion-picker">
             {MOTION_DEMOS.map((item) => (
@@ -92,8 +100,8 @@ export const Motion = () => {
                   setReplay((value) => value + 1);
                 }}
               >
-                <strong>{item.label}</strong>
-                <small>{item.note}</small>
+                <strong>{MOTION_DEMO_COPY[item.id].label[language]}</strong>
+                <small>{MOTION_DEMO_COPY[item.id].note[language]}</small>
               </button>
             ))}
           </div>
@@ -102,7 +110,7 @@ export const Motion = () => {
             className="action action--quiet"
             onClick={() => setReplay((value) => value + 1)}
           >
-            <RotateCcw size={14} /> Repetir
+            <RotateCcw size={14} /> {copy.replay}
           </button>
         </div>
       </div>
@@ -110,9 +118,9 @@ export const Motion = () => {
       <div className="token-grid">
         {MOTION_TOKENS.map((token) => (
           <article key={token.name} className="motion-token">
-            <span>{token.name}</span>
+            <span>{MOTION_TOKEN_COPY[token.token].name[language]}</span>
             <strong>{token.value}</strong>
-            <small>{token.use}</small>
+            <small>{MOTION_TOKEN_COPY[token.token].use[language]}</small>
             <CopyChip value={token.token} />
           </article>
         ))}
@@ -124,41 +132,37 @@ export const Motion = () => {
             <div className="easing-row__track" aria-hidden="true">
               <i style={{ transitionTimingFunction: easing.value }} />
             </div>
-            <strong>{easing.name}</strong>
+            <strong>{EASING_COPY[easing.token].name[language]}</strong>
             <code>{easing.value}</code>
-            <small>{easing.use}</small>
+            <small>{EASING_COPY[easing.token].use[language]}</small>
           </article>
         ))}
       </div>
 
-      <RuleStrip index="Regla 06">
-        Con <code>prefers-reduced-motion</code> o en modo calma, toda transición
-        cae a cero y el contenido queda en su estado final. Nada se pierde.
+      <RuleStrip index={`${RULE_LABEL[language]} 06`}>
+        {copy.rule}
       </RuleStrip>
 
       <div className="brand-film">
         <div className="brand-film__copy">
-          <span className="tag">Pieza de marca</span>
-          <h3>Del modelo a una decisión legible.</h3>
-          <p>
-            Diez segundos con la misma gramática: llegar, conectar, confirmar.
-            La pieza no muestra una función que no exista.
-          </p>
+          <span className="tag">{copy.piece}</span>
+          <h3>{copy.title}</h3>
+          <p>{copy.body}</p>
           <dl>
             <div>
-              <dt>formato</dt>
+              <dt>{copy.format}</dt>
               <dd>1920 × 1080 · 30 fps</dd>
             </div>
             <div>
-              <dt>uso</dt>
-              <dd>portada, presentación, encabezado</dd>
+              <dt>{copy.use}</dt>
+              <dd>{copy.usageValue}</dd>
             </div>
           </dl>
         </div>
         <figure className="brand-film__player">
           <div className="brand-film__bar">
             <span>
-              <Play size={12} /> motion study
+              <Play size={12} /> {copy.filmLabel}
             </span>
             <code>10.8s</code>
           </div>
@@ -168,11 +172,11 @@ export const Motion = () => {
             loop
             playsInline
             preload="metadata"
-            poster="/motion/fusionstructure-brand-motion-poster.png"
-            aria-label="Animación de marca de FusionStructure"
+            poster={publicAsset('/motion/fusionstructure-brand-motion-poster.png')}
+            aria-label={copy.animation}
           >
             <source
-              src="/motion/fusionstructure-brand-motion.mp4"
+              src={publicAsset('/motion/fusionstructure-brand-motion.mp4')}
               type="video/mp4"
             />
           </video>

@@ -9,12 +9,16 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SURFACE_LEVELS } from '../brand/system';
-import { RuleStrip, SectionIntro } from '../brand/ui';
+import { MATERIAL_COPY, RULE_LABEL, SURFACE_LEVEL_COPY } from '../brand/copy';
+import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 export const Material = () => {
+  const { language } = useBrandbook();
   const [level, setLevel] = useState<string>('elevado');
   const active =
     SURFACE_LEVELS.find((item) => item.id === level) ?? SURFACE_LEVELS[0];
+  const copy = MATERIAL_COPY[language];
+  const activeCopy = SURFACE_LEVEL_COPY[active.id];
 
   return (
     <section id="materia" className="section material">
@@ -30,10 +34,10 @@ export const Material = () => {
           <div className="material-stage__mesh" aria-hidden="true" />
           <div className={`material-card material-card--${level}`}>
             <div className="material-card__head">
-              <span>proyecto · noroeste</span>
-              <span className="cell-state cell-state--ok">verificado</span>
+              <span>{copy.project}</span>
+              <span className="cell-state cell-state--ok">{copy.verified}</span>
             </div>
-            <strong>Envolvente de momento</strong>
+            <strong>{copy.envelope}</strong>
             <div className="material-card__trace" aria-hidden="true">
               <i />
               <i />
@@ -43,14 +47,14 @@ export const Material = () => {
             </div>
             <div className="material-card__foot">
               <code>Mmax −148.6 kN·m</code>
-              <span>v4 · hoy 10:15</span>
+              <span>v4 · {copy.today} 10:15</span>
             </div>
           </div>
         </div>
 
         <div className="panel material-controls">
           <div className="panel__label">
-            <span>Nivel</span>
+            <span>{copy.level}</span>
             <code>data-level</code>
           </div>
           <div className="material-picker">
@@ -61,77 +65,73 @@ export const Material = () => {
                 className={level === item.id ? 'is-active' : ''}
                 onClick={() => setLevel(item.id)}
               >
-                <strong>{item.name}</strong>
-                <small>{item.use}</small>
+                <strong>{SURFACE_LEVEL_COPY[item.id].name[language]}</strong>
+                <small>{SURFACE_LEVEL_COPY[item.id].use[language]}</small>
               </button>
             ))}
           </div>
-          <p className="material-controls__rule">{active.rule}</p>
+          <p className="material-controls__rule">{activeCopy.rule[language]}</p>
         </div>
       </div>
 
       <div className="components">
         <div className="components__head">
-          <span className="tag">Componentes</span>
-          <h3>La geometría no cambia entre temas.</h3>
-          <p>
-            Cambian el papel, la tinta y la profundidad. Nunca la altura ni el
-            trazo.
-          </p>
+          <span className="tag">{copy.components}</span>
+          <h3>{copy.geometry}</h3>
+          <p>{copy.geometryBody}</p>
         </div>
 
         <div className="components__row">
           <article className="component-block">
             <div className="component-block__label">
-              <span>01 · botones</span>
+              <span>{copy.buttons}</span>
               <code>36 px</code>
             </div>
             <div className="button-showcase">
               <button type="button" className="ui-button ui-button--primary">
-                <Sparkles size={14} /> Analizar
+                <Sparkles size={14} /> {copy.analyze}
               </button>
               <button type="button" className="ui-button">
-                Comparar revisiones
+                {copy.compare}
               </button>
               <button type="button" className="ui-button ui-button--quiet">
-                Ver detalle <ArrowUpRight size={13} />
+                {copy.detail} <ArrowUpRight size={13} />
               </button>
               <button type="button" className="ui-button ui-button--danger">
-                Eliminar 12 miembros
+                {copy.delete}
               </button>
               <button type="button" className="ui-button" disabled>
-                Sin resultados
+                {copy.noResults}
               </button>
             </div>
             <p>
-              La etiqueta anticipa el resultado. Lo destructivo cuenta cuánto
-              destruye.
+              {copy.buttonRule}
             </p>
           </article>
 
           <article className="component-block">
             <div className="component-block__label">
-              <span>02 · entradas</span>
-              <code>unidad visible</code>
+              <span>{copy.inputs}</span>
+              <code>{copy.visibleUnit}</code>
             </div>
             <div className="field-showcase">
               <label className="field">
-                <span>Carga distribuida</span>
+                <span>{copy.load}</span>
                 <span className="field__control">
                   <input type="text" defaultValue="8.00" inputMode="decimal" />
                   <code>kN/m</code>
                 </span>
               </label>
               <label className="field field--warn">
-                <span>Longitud</span>
+                <span>{copy.length}</span>
                 <span className="field__control">
                   <input type="text" defaultValue="12" inputMode="decimal" />
                   <code>?</code>
                 </span>
-                <small>Declara la unidad antes de analizar.</small>
+                <small>{copy.unitRule}</small>
               </label>
             </div>
-            <p>La unidad vive dentro del campo, no en una leyenda lejana.</p>
+            <p>{copy.fieldRule}</p>
           </article>
         </div>
 
@@ -139,38 +139,36 @@ export const Material = () => {
           <div className="feedback feedback--ok">
             <CheckCircle2 size={16} />
             <span>
-              <strong>Listo</strong>
-              <small>Equilibrio verificado con tolerancia 1e−6.</small>
+              <strong>{copy.ready}</strong>
+              <small>{copy.readyBody}</small>
             </span>
           </div>
           <div className="feedback feedback--warn">
             <AlertTriangle size={16} />
             <span>
-              <strong>Revisar</strong>
-              <small>Falta declarar la unidad de la carga en 2 miembros.</small>
+              <strong>{copy.review}</strong>
+              <small>{copy.reviewBody}</small>
             </span>
           </div>
           <div className="feedback feedback--info">
             <Info size={16} />
             <span>
-              <strong>Contexto</strong>
-              <small>
-                El resultado corresponde a la revisión v4 del modelo.
-              </small>
+              <strong>{copy.context}</strong>
+              <small>{copy.contextBody}</small>
             </span>
           </div>
         </div>
 
         <div className="table-demo">
           <div className="table-demo__head">
-            <span>03 · tablas</span>
-            <code>unidad en el encabezado</code>
+            <span>{copy.tables}</span>
+            <code>{copy.headerUnit}</code>
           </div>
           <div className="table-demo__scroll">
             <table>
               <thead>
                 <tr>
-                  <th>Miembro</th>
+                  <th>{copy.member}</th>
                   <th>
                     N <span>kN</span>
                   </th>
@@ -180,7 +178,7 @@ export const Material = () => {
                   <th>
                     M <span>kN·m</span>
                   </th>
-                  <th>Resultado</th>
+                  <th>{copy.result}</th>
                 </tr>
               </thead>
               <tbody>
@@ -191,7 +189,7 @@ export const Material = () => {
                   <td>−148.60</td>
                   <td>
                     <span className="cell-state cell-state--ok">
-                      verificado
+                      {copy.verified}
                     </span>
                   </td>
                 </tr>
@@ -201,7 +199,7 @@ export const Material = () => {
                   <td>44.10</td>
                   <td>−61.30</td>
                   <td>
-                    <span className="cell-state cell-state--warn">revisar</span>
+                    <span className="cell-state cell-state--warn">{copy.check}</span>
                   </td>
                 </tr>
                 <tr>
@@ -211,7 +209,7 @@ export const Material = () => {
                   <td>28.90</td>
                   <td>
                     <span className="cell-state cell-state--ok">
-                      verificado
+                      {copy.verified}
                     </span>
                   </td>
                 </tr>
@@ -222,16 +220,13 @@ export const Material = () => {
       </div>
 
       <p className="table-demo__note">
-        El equilibrio de un resultado no es el estado de una superficie del
-        producto:
-        <code>verificado</code> y <code>revisar</code> describen el cálculo;
-        <code>Disponible</code> y <code>Experimental</code> describen el módulo.
+        {copy.tableRule} <code>{copy.tableCalculation}</code> {copy.and}{' '}
+        <code>{copy.tableReview}</code> {copy.describeCalculation}{' '}
+        <code>{copy.moduleAvailable}</code> {copy.and} <code>{copy.moduleExperimental}</code>{' '}
+        {copy.describeModule}
       </p>
 
-      <RuleStrip index="Regla 07">
-        Toda la luz entra por arriba-izquierda y ninguna superficie tiene luz
-        propia: la profundidad es una sola, compartida, y por eso se puede leer.
-      </RuleStrip>
+      <RuleStrip index={`${RULE_LABEL[language]} 07`}>{copy.rule}</RuleStrip>
     </section>
   );
 };

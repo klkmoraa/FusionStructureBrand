@@ -2,6 +2,7 @@
    e IBM Plex Mono para datos. Si la petición falla, las pilas de respaldo
    declaradas en `--fs-font-*` conservan la jerarquía. */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400..700&family=Space+Grotesk:wght@400..700&display=swap');
+@import './atlas.css';
 
 /* ==========================================================================
    FusionStructure · Brandbook 2026
@@ -141,6 +142,23 @@ table {
   --ink-strong: var(--n-700);
   --ink-muted: var(--n-600);
   --ink-faint: var(--n-500);
+
+  /* aliases canónicos compartidos con Figma y la hoja de handoff */
+  --fs-neutral-paper: var(--n-050);
+  --fs-neutral-surface: var(--n-000);
+  --fs-neutral-soft: var(--n-100);
+  --fs-neutral-ink: var(--n-900);
+  --fs-neutral-muted: var(--n-600);
+  --fs-neutral-000: var(--n-000);
+  --fs-neutral-050: var(--n-050);
+  --fs-neutral-100: var(--n-100);
+  --fs-neutral-200: var(--n-200);
+  --fs-neutral-300: var(--n-300);
+  --fs-neutral-400: var(--n-400);
+  --fs-neutral-500: var(--n-500);
+  --fs-neutral-600: var(--n-600);
+  --fs-neutral-700: var(--n-700);
+  --fs-neutral-900: var(--n-900);
 
   /* señales de resultado */
   --fs-signal-axial: #1b75b0;

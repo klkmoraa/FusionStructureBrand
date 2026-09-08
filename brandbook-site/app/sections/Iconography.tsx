@@ -3,7 +3,16 @@
 import { Glyph, MiniDiagram } from '../brand/marks';
 import { TOOLS } from '../brand/catalog';
 import { SIGNALS } from '../brand/system';
-import { RuleStrip, SectionIntro } from '../brand/ui';
+import {
+  DRAWING_RULE_COPY,
+  ICONOGRAPHY_COPY,
+  RULE_LABEL,
+  SIGNAL_COPY,
+  SIGNAL_UNIT_COPY,
+  TOOL_CODE_COPY,
+  TOOL_COPY,
+} from '../brand/copy';
+import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 const DRAWING_RULES = [
   {
@@ -38,7 +47,10 @@ const DRAWING_RULES = [
   },
 ] as const;
 
-export const Iconography = () => (
+export const Iconography = () => {
+  const { language } = useBrandbook();
+  const copy = ICONOGRAPHY_COPY[language];
+  return (
   <section id="iconografia" className="section iconography">
     <SectionIntro
       index="08"
@@ -51,8 +63,8 @@ export const Iconography = () => (
       {TOOLS.map((tool) => (
         <li key={tool.id} className={`glyph-cell family--${tool.family}`}>
           <Glyph id={tool.glyph} size={38} />
-          <strong>{tool.name}</strong>
-          <code>{tool.code}</code>
+          <strong>{TOOL_COPY[tool.id].name[language]}</strong>
+          <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
         </li>
       ))}
     </ul>
@@ -61,41 +73,35 @@ export const Iconography = () => (
       {DRAWING_RULES.map((rule) => (
         <article key={rule.index}>
           <span>{rule.index}</span>
-          <strong>{rule.title}</strong>
-          <p>{rule.body}</p>
+          <strong>{DRAWING_RULE_COPY[rule.index].title[language]}</strong>
+          <p>{DRAWING_RULE_COPY[rule.index].body[language]}</p>
         </article>
       ))}
     </div>
 
     <div className="diagram-language">
       <div className="diagram-language__head">
-        <span className="tag">Lenguaje de diagramas</span>
-        <h3>El resultado se dibuja siempre igual.</h3>
-        <p>
-          Mismo eje, misma dirección de signo, misma relación entre trazo lleno
-          y trazo fantasma. Cambiar de módulo no debe obligar a reaprender un
-          diagrama.
-        </p>
+        <span className="tag">{copy.diagrams}</span>
+        <h3>{copy.title}</h3>
+        <p>{copy.body}</p>
       </div>
       <div className="diagram-grid">
         {SIGNALS.map((signal) => (
           <figure key={signal.id} className={`signal--${signal.id}`}>
             <figcaption>
-              <strong>{signal.name}</strong>
+              <strong>{SIGNAL_COPY[signal.id].name[language]}</strong>
               <code>
-                {signal.short} · {signal.unit}
+                {signal.short} · {SIGNAL_UNIT_COPY[signal.id][language]}
               </code>
             </figcaption>
             <MiniDiagram type={signal.id} />
-            <small>{signal.description}</small>
+            <small>{SIGNAL_COPY[signal.id].description[language]}</small>
           </figure>
         ))}
       </div>
     </div>
 
-    <RuleStrip index="Regla 08">
-      Un glifo nuevo entra al sistema cuando se puede distinguir en tinta, a 20
-      px y sin su etiqueta.
-    </RuleStrip>
+    <RuleStrip index={`${RULE_LABEL[language]} 08`}>{copy.rule}</RuleStrip>
   </section>
-);
+  );
+};

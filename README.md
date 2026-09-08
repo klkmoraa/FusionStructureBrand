@@ -10,6 +10,9 @@ El portal se publica en https://klkmoraa.github.io/fusionstructure-web/ y el
 botón **Solver 2D** abre la aplicación independiente en
 https://klkmoraa.github.io/fstructure/.
 
+El brandbook Atlas se publica en
+https://klkmoraa.github.io/fusionstructure-web/brandbook/.
+
 ## Estado
 
 `Experimental`: los estados Disponible, Experimental y Planeado del catálogo

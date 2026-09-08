@@ -2,12 +2,20 @@
 
 import { useState } from 'react';
 import { NUMBER_RULES, TYPE_SCALE } from '../brand/system';
-import { CopyChip, RuleStrip, SectionIntro } from '../brand/ui';
+import {
+  NUMBER_RULE_COPY,
+  RULE_LABEL,
+  TYPE_SCALE_COPY,
+  TYPOGRAPHY_COPY,
+} from '../brand/copy';
+import { CopyChip, RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 const WEIGHTS = [400, 500, 600, 700] as const;
 
 export const Typography = () => {
+  const { language } = useBrandbook();
   const [weight, setWeight] = useState<number>(600);
+  const copy = TYPOGRAPHY_COPY[language];
 
   return (
     <section id="tipografia" className="section typography">
@@ -27,18 +35,18 @@ export const Typography = () => {
             <em>next step.</em>
           </p>
           <div className="type-canvas__foot">
-            <span>La claridad puede tener carácter.</span>
+            <span>{copy.character}</span>
             <code>wght {weight}</code>
           </div>
         </div>
 
         <div className="panel type-panel">
           <div className="panel__label">
-            <span>Peso</span>
+            <span>{copy.weight}</span>
             <code>400—700</code>
           </div>
           <fieldset className="segmented segmented--tight">
-            <legend className="visually-hidden">Peso tipográfico</legend>
+            <legend className="visually-hidden">{copy.weightLegend}</legend>
             {WEIGHTS.map((value) => (
               <button
                 key={value}
@@ -52,21 +60,20 @@ export const Typography = () => {
           </fieldset>
           <ul className="type-stack">
             <li>
-              <strong>Display · Space Grotesk</strong>
-              <small>títulos, marca y una idea por pantalla</small>
+              <strong>{copy.displayLabel}</strong>
+              <small>{copy.display}</small>
             </li>
             <li>
-              <strong>Interfaz · Inter</strong>
-              <small>controles, listas y lectura larga</small>
+              <strong>{copy.interfaceLabel}</strong>
+              <small>{copy.interface}</small>
             </li>
             <li>
-              <strong>Dato · IBM Plex Mono</strong>
-              <small>unidad, versión, coordenada y token</small>
+              <strong>{copy.dataLabel}</strong>
+              <small>{copy.data}</small>
             </li>
           </ul>
           <p className="type-panel__note">
-            Las tres respaldan con la pila del sistema. Si la fuente no carga,
-            la jerarquía sigue en pie porque vive en el tamaño y el espacio.
+            {copy.fallback}
           </p>
         </div>
       </div>
@@ -74,32 +81,29 @@ export const Typography = () => {
       <div className="type-scale">
         {TYPE_SCALE.map((step) => (
           <article key={step.role}>
-            <span>{step.role}</span>
+            <span>{TYPE_SCALE_COPY[step.role].role[language]}</span>
             <strong>{step.size}</strong>
-            <code>línea {step.line}</code>
-            <small>{step.use}</small>
+            <code>{copy.line} {step.line}</code>
+            <small>{TYPE_SCALE_COPY[step.role].use[language]}</small>
           </article>
         ))}
       </div>
 
       <div className="numbers">
         <div className="numbers__head">
-          <span className="tag">Números</span>
-          <h3>Un dato mal escrito es un dato equivocado.</h3>
-          <p>
-            La tipografía de datos usa cifras tabulares para que las columnas se
-            puedan comparar sin leer cada renglón.
-          </p>
+          <span className="tag">{copy.numbers}</span>
+          <h3>{copy.numbersTitle}</h3>
+          <p>{copy.numbersBody}</p>
         </div>
         <ul className="numbers__list">
-          {NUMBER_RULES.map((rule) => (
+          {NUMBER_RULES.map((rule, index) => (
             <li key={rule.rule}>
-              <strong>{rule.rule}</strong>
+              <strong>{NUMBER_RULE_COPY[String(index)].rule[language]}</strong>
               <span className="numbers__good">
-                <code>{rule.good}</code> así
+                <code>{NUMBER_RULE_COPY[String(index)].good[language]}</code> {copy.yes}
               </span>
               <span className="numbers__bad">
-                <code>{rule.bad}</code> así no
+                <code>{NUMBER_RULE_COPY[String(index)].bad[language]}</code> {copy.no}
               </span>
             </li>
           ))}
@@ -110,10 +114,7 @@ export const Typography = () => {
         </div>
       </div>
 
-      <RuleStrip index="Regla 05">
-        Si el texto necesita explicarse dos veces, el problema es la jerarquía,
-        no el tamaño.
-      </RuleStrip>
+      <RuleStrip index={`${RULE_LABEL[language]} 05`}>{copy.rule}</RuleStrip>
     </section>
   );
 };

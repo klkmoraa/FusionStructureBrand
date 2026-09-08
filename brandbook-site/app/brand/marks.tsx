@@ -3,8 +3,13 @@
 import type { CSSProperties } from 'react';
 import { GLYPHS, GLYPH_MARK, type GlyphId } from './generated/glyphs';
 import { FAMILY_COLORS, type FamilyId } from './generated/palette';
-import { STATUS_META, type StatusId } from './catalog';
+import type { StatusId } from './catalog';
 import type { SignalId } from './system';
+import {
+  MARK_CONSTRUCTION_COPY,
+  STATUS_COPY,
+  type Language,
+} from './copy';
 
 /**
  * La ménsula: un miembro vertical y dos voladizos cuyo peralte decrece
@@ -33,7 +38,7 @@ export const BrandMark = ({
   </svg>
 );
 
-export const MarkConstruction = () => (
+export const MarkConstruction = ({ language = 'es' }: { language?: Language }) => (
   <svg className="mark-construction" viewBox="0 0 48 48" aria-hidden="true">
     <g className="mark-construction__grid">
       {[8, 17, 26, 34, 41].map((x) => (
@@ -56,7 +61,7 @@ export const MarkConstruction = () => (
         17u
       </text>
       <text x="1.5" y="47">
-        peralte 9u → 5u
+        {MARK_CONSTRUCTION_COPY[language]}
       </text>
     </g>
   </svg>
@@ -112,15 +117,17 @@ export const ToolTile = ({
 export const StatusPill = ({
   status,
   compact = false,
+  language = 'es',
 }: {
   status: StatusId;
   compact?: boolean;
+  language?: Language;
 }) => (
   <span
     className={`status status--${status} ${compact ? 'status--compact' : ''}`}
   >
     <span className="status__dot" aria-hidden="true" />
-    {STATUS_META[status].label}
+    {STATUS_COPY[status][language]}
   </span>
 );
 

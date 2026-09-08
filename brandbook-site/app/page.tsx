@@ -8,10 +8,28 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import { ChevronRight, Gauge, Menu, Moon, Sun, X } from 'lucide-react';
+import {
+  ChevronRight,
+  Gauge,
+  Languages,
+  Menu,
+  Moon,
+  Sun,
+  X,
+} from 'lucide-react';
 import { BrandMark } from './brand/marks';
 import { SECTIONS, type SectionId, type SignalId } from './brand/system';
-import { BrandbookContext, type MotionMode, type Theme } from './brand/ui';
+import {
+  CHAPTERS,
+  SECTION_COPY,
+  UI_COPY,
+  type Language,
+} from './brand/copy';
+import {
+  BrandbookContext,
+  type MotionMode,
+  type Theme,
+} from './brand/ui';
 import { Hero } from './sections/Hero';
 import { Identity } from './sections/Identity';
 import { Tools } from './sections/Tools';
@@ -44,9 +62,11 @@ export default function Brandbook() {
   const prefersCalm = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [themeChoice, setThemeChoice] = useState<Theme | null>(null);
   const [motionChoice, setMotionChoice] = useState<MotionMode | null>(null);
+  const [language, setLanguage] = useState<Language>('es');
   const theme: Theme = themeChoice ?? (prefersDark ? 'noche' : 'dia');
   const motionMode: MotionMode =
     motionChoice ?? (prefersCalm ? 'calma' : 'activo');
+  const copy = UI_COPY[language];
   const [activeSection, setActiveSection] = useState<SectionId>('norte');
   const [activeSignal, setActiveSignal] = useState<SignalId>('moment');
   const [copiedValue, setCopiedValue] = useState('');
@@ -55,6 +75,19 @@ export default function Brandbook() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const copyTimer = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -153,22 +186,32 @@ export default function Brandbook() {
     () => ({
       theme,
       motionMode,
+      language,
       activeSignal,
       copiedValue,
       copiedLabel,
       setActiveSignal,
+      setLanguage,
       copyValue,
     }),
-    [theme, motionMode, activeSignal, copiedValue, copiedLabel, copyValue],
+    [
+      theme,
+      motionMode,
+      language,
+      activeSignal,
+      copiedValue,
+      copiedLabel,
+      copyValue,
+    ],
   );
 
   return (
     <BrandbookContext.Provider value={contextValue}>
       <div
-        className={`brandbook brandbook--${theme} ${motionMode === 'calma' ? 'brandbook--calma' : ''}`}
+        className={`brandbook atlas brandbook--${theme} ${motionMode === 'calma' ? 'brandbook--calma' : ''}`}
       >
-        <a className="skip-link" href="#norte">
-          Ir al contenido
+          <a className="skip-link" href="#norte">
+            {copy.skip}
         </a>
 
         <header className="topbar">
@@ -185,40 +228,49 @@ export default function Brandbook() {
 
           <p className="topbar__center">
             <span className="live-dot" aria-hidden="true" />
-            edición 2026 · <code>01—12</code>
+            {copy.edition} · <code>01—12</code>
           </p>
 
           <div className="topbar__actions">
             <button
               type="button"
               className="top-control"
+              aria-label={copy.changeLanguage}
+              onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+            >
+              <Languages size={14} />
+              <span>{language.toUpperCase()}</span>
+            </button>
+            <button
+              type="button"
+              className="top-control"
               aria-pressed={motionMode === 'calma'}
               aria-label={
                 motionMode === 'calma'
-                  ? 'Activar el movimiento'
-                  : 'Reducir el movimiento'
+                  ? copy.enableMotion
+                  : copy.reduceMotion
               }
               onClick={() =>
                 setMotionChoice(motionMode === 'activo' ? 'calma' : 'activo')
               }
             >
               <Gauge size={14} />
-              <span>{motionMode === 'calma' ? 'Calma' : 'Activo'}</span>
+              <span>{motionMode === 'calma' ? copy.calm : copy.active}</span>
             </button>
             <button
               type="button"
               className="top-control"
               onClick={() => setThemeChoice(theme === 'dia' ? 'noche' : 'dia')}
-              aria-label={`Cambiar a tema ${theme === 'dia' ? 'noche' : 'día'}`}
+              aria-label={`${copy.themeToggle ?? (language === 'es' ? 'Cambiar a tema' : 'Change theme')} ${theme === 'dia' ? copy.night : copy.day}`}
             >
               {theme === 'dia' ? <Moon size={14} /> : <Sun size={14} />}
-              <span>{theme === 'dia' ? 'Día' : 'Noche'}</span>
+              <span>{theme === 'dia' ? copy.day : copy.night}</span>
             </button>
             <button
               type="button"
               className="top-control top-control--menu"
               aria-expanded={menuOpen}
-              aria-label={menuOpen ? 'Cerrar índice' : 'Abrir índice'}
+              aria-label={menuOpen ? copy.closeIndex : copy.openIndex}
               onClick={() => setMenuOpen(!menuOpen)}
             >
               {menuOpen ? <X size={16} /> : <Menu size={16} />}
@@ -234,10 +286,10 @@ export default function Brandbook() {
         <div className="frame">
           <aside className={`index-rail ${menuOpen ? 'is-open' : ''}`}>
             <div className="index-rail__head">
-              <span>Índice</span>
+              <span>{copy.index}</span>
               <code>{SECTIONS.length}</code>
             </div>
-            <nav aria-label="Secciones del brandbook">
+            <nav aria-label={copy.indexAria}>
               {SECTIONS.map((item) => (
                 <button
                   key={item.id}
@@ -250,35 +302,72 @@ export default function Brandbook() {
                 >
                   <span className="index-link__number">{item.index}</span>
                   <span className="index-link__copy">
-                    <strong>{item.label}</strong>
-                    <small>{item.detail}</small>
+                    <strong>{SECTION_COPY[item.id].label[language]}</strong>
+                    <small>{SECTION_COPY[item.id].detail[language]}</small>
                   </span>
                   <ChevronRight size={13} aria-hidden="true" />
                 </button>
               ))}
             </nav>
             <div className="index-rail__foot">
-              <p>
-                Un sistema propio para hacer legible la complejidad del trabajo
-                construido.
-              </p>
-              <span>FS · dirección 04 · experimental</span>
+              <p>{copy.indexDescription}</p>
+              <span>
+                FS · {copy.direction} 04 · {copy.experimental}
+              </span>
             </div>
           </aside>
 
           <main className="content">
-            <Hero onGoTo={goTo} />
-            <Identity />
-            <Tools />
-            <Color />
-            <Typography />
-            <Motion />
-            <Material />
-            <Iconography />
-            <Patterns />
-            <References />
-            <Voice />
-            <Handoff />
+            {CHAPTERS.map((chapter, index) => (
+              <div
+                className={`atlas-chapter atlas-chapter--${chapter.id}`}
+                data-chapter={chapter.id}
+                key={chapter.id}
+              >
+                <div className="chapter-intro">
+                  <span className="chapter-intro__index">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <p>{copy.chapter}</p>
+                    <h2>{chapter.label[language]}</h2>
+                    <span>{chapter.detail[language]}</span>
+                  </div>
+                </div>
+                {chapter.id === 'orientacion' ? (
+                  <>
+                    <Hero onGoTo={goTo} />
+                    <Identity />
+                  </>
+                ) : null}
+                {chapter.id === 'semantica' ? (
+                  <>
+                    <Tools />
+                    <Color />
+                  </>
+                ) : null}
+                {chapter.id === 'lenguaje' ? (
+                  <>
+                    <Typography />
+                    <Iconography />
+                    <Voice />
+                  </>
+                ) : null}
+                {chapter.id === 'comportamiento' ? (
+                  <>
+                    <Motion />
+                    <Material />
+                    <Patterns />
+                  </>
+                ) : null}
+                {chapter.id === 'entrega' ? (
+                  <>
+                    <References />
+                    <Handoff />
+                  </>
+                ) : null}
+              </div>
+            ))}
 
             <footer className="footer">
               <div className="footer__brand">
@@ -287,8 +376,7 @@ export default function Brandbook() {
               </div>
               <p>Make complexity legible.</p>
               <span>
-                Brandbook 2026 · sistema propio · el estado de cada superficie
-                lo define el código
+                Brandbook 2026 · {copy.footerLine}
               </span>
             </footer>
           </main>
@@ -299,12 +387,10 @@ export default function Brandbook() {
           aria-live="polite"
         >
           {copyFailed ? (
-            <span>
-              No se pudo copiar. Selecciona el valor y cópialo a mano.
-            </span>
+            <span>{copy.copyFailed}</span>
           ) : (
             <span>
-              Copiado <code>{copiedLabel}</code>
+              {copy.copied} <code>{copiedLabel}</code>
             </span>
           )}
         </output>

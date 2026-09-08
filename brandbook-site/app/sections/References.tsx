@@ -2,7 +2,53 @@
 
 import Image from 'next/image';
 import { ImageIcon } from 'lucide-react';
-import { RuleStrip, SectionIntro } from '../brand/ui';
+import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
+import {
+  CLAY_VIEWPORT_COPY,
+  MOCKUP_COPY,
+  REFERENCE_COPY,
+  RULE_LABEL,
+} from '../brand/copy';
+import { publicAsset } from '../brand/paths';
+
+const CLAY_REFERENCES = [
+  {
+    src: '/proposals/clay/cover.png',
+    label: '01 / cover',
+    title: { es: 'Portada de orientación', en: 'Orientation cover' },
+    note: {
+      es: 'La marca entra como brújula: aire, papel y un foco Clay funcional.',
+      en: 'The mark enters as a compass: air, paper, and one functional Clay focus.',
+    },
+    proof: { es: 'demuestra orientación', en: 'proves orientation' },
+    viewport: '1440 · día',
+    token: '--fs-radius-lg · --fs-shadow-elevated',
+  },
+  {
+    src: '/proposals/clay/spread.png',
+    label: '02 / spread',
+    title: { es: 'Pliego editorial', en: 'Editorial spread' },
+    note: {
+      es: 'La retícula sostiene la profundidad sin convertirla en decoración.',
+      en: 'The grid carries depth without turning it into decoration.',
+    },
+    proof: { es: 'demuestra densidad editorial', en: 'proves editorial density' },
+    viewport: '768 · día',
+    token: '--fs-space-4 · --fs-color-neutral-paper',
+  },
+  {
+    src: '/proposals/clay/landing.png',
+    label: '03 / landing',
+    title: { es: 'Atlas en producto', en: 'Atlas in product' },
+    note: {
+      es: 'La superficie funcional cambia de modo sin perder semántica.',
+      en: 'The functional surface changes mode without losing semantics.',
+    },
+    proof: { es: 'demuestra responsive + estado', en: 'proves responsive + status' },
+    viewport: '390 · noche',
+    token: '--fs-motion-base · --fs-signal-blue',
+  },
+] as const;
 
 const MOCKUPS = [
   {
@@ -87,7 +133,11 @@ const MOCKUPS = [
   },
 ] as const;
 
-export const References = () => (
+export const References = () => {
+  const { language } = useBrandbook();
+  const copy = REFERENCE_COPY[language];
+
+  return (
   <section id="referencias" className="section references">
     <SectionIntro
       index="10"
@@ -96,16 +146,55 @@ export const References = () => (
       body="Estas piezas fijan proporción, densidad, jerarquía y profundidad. No son pantallas finales ni evidencia de capacidades: son el criterio con el que se diseñan las siguientes."
     />
 
+    <div
+      className="clay-atlas"
+      aria-label={copy.atlasAria}
+    >
+      <div className="clay-atlas__head">
+        <span className="tag">Atlas Clay–Minimal</span>
+        <p>
+          {copy.atlasNote}
+        </p>
+      </div>
+      <div className="clay-atlas__grid">
+        {CLAY_REFERENCES.map((item) => (
+          <figure className="clay-reference" key={item.src}>
+            <div className="clay-reference__image">
+              <Image
+                unoptimized
+                src={publicAsset(item.src)}
+                alt={`${item.title[language]} · ${copy.mockupAlt}`}
+                width={1200}
+                height={800}
+                loading="eager"
+                sizes="(max-width: 720px) 100vw, 33vw"
+              />
+            </div>
+            <figcaption>
+              <code>{item.label}</code>
+              <strong>{item.title[language]}</strong>
+              <span>{item.note[language]}</span>
+              <span className="clay-reference__proof">
+                {item.proof[language]}
+                <code>{CLAY_VIEWPORT_COPY[item.viewport][language]}</code>
+              </span>
+              <code className="clay-reference__token">{item.token}</code>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+
     <div className="device-references">
       <figure className="device-reference">
         <div className="device-reference__head">
-          <span>estudio de dispositivo · día</span>
-          <strong>escritorio + teléfono</strong>
+          <span>{copy.deviceDayLabel}</span>
+          <strong>{copy.deviceDayTitle}</strong>
         </div>
         <Image
           unoptimized
-          src="/mockups/device-day-studio.png"
-          alt="FusionStructure en monitor y teléfono, modo día"
+          src={publicAsset('/mockups/device-day-studio.png')}
+          alt={copy.deviceDayAlt}
           width={1584}
           height={992}
           sizes="(max-width: 900px) 100vw, 50vw"
@@ -113,13 +202,13 @@ export const References = () => (
       </figure>
       <figure className="device-reference device-reference--night">
         <div className="device-reference__head">
-          <span>estudio de dispositivo · noche</span>
-          <strong>carbón neutro</strong>
+          <span>{copy.deviceNightLabel}</span>
+          <strong>{copy.deviceNightTitle}</strong>
         </div>
         <Image
           unoptimized
-          src="/mockups/device-night-studio.png"
-          alt="FusionStructure en monitor y teléfono, modo noche"
+          src={publicAsset('/mockups/device-night-studio.png')}
+          alt={copy.deviceNightAlt}
           width={1584}
           height={992}
           sizes="(max-width: 900px) 100vw, 50vw"
@@ -131,9 +220,9 @@ export const References = () => (
       <div className={`mockup-group mockup-group--${mode}`} key={mode}>
         <div className="mockup-group__head">
           <span>
-            {mode === 'dia' ? 'día · papel técnico' : 'noche · carbón'}
+            {mode === 'dia' ? copy.dayGroup : copy.nightGroup}
           </span>
-          <code>05 referencias</code>
+          <code>{copy.referenceCount}</code>
         </div>
         <div className="mockup-gallery">
           {MOCKUPS.filter((item) => item.mode === mode).map((item) => (
@@ -144,14 +233,14 @@ export const References = () => (
               <div className="mockup-frame__bar">
                 <span>
                   <ImageIcon size={12} />{' '}
-                  {item.format === 'portrait' ? 'móvil' : 'escritorio'}
+                  {item.format === 'portrait' ? copy.mobile : copy.desktop}
                 </span>
                 <code>{item.id}</code>
               </div>
               <Image
                 unoptimized
-                src={item.src}
-                alt={`Referencia de FusionStructure: ${item.title}`}
+                src={publicAsset(item.src)}
+                alt={`${copy.mockupAlt}: ${MOCKUP_COPY[item.id].title[language]}`}
                 width={item.format === 'portrait' ? 943 : 1584}
                 height={item.format === 'portrait' ? 1677 : 992}
                 sizes={
@@ -161,8 +250,8 @@ export const References = () => (
                 }
               />
               <figcaption>
-                <strong>{item.title}</strong>
-                <span>{item.note}</span>
+                <strong>{MOCKUP_COPY[item.id].title[language]}</strong>
+                <span>{MOCKUP_COPY[item.id].note[language]}</span>
               </figcaption>
             </figure>
           ))}
@@ -170,10 +259,9 @@ export const References = () => (
       </div>
     ))}
 
-    <RuleStrip index="Regla 10">
-      Aplicar principios, no copiar pantallas: papel técnico, un solo escalón
-      de volumen con una sola luz, color con significado y movimiento que
-      explica procedencia.
+    <RuleStrip index={`${RULE_LABEL[language]} 10`}>
+      {copy.rule}
     </RuleStrip>
   </section>
-);
+  );
+};

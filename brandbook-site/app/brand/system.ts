@@ -163,6 +163,14 @@ export const SIGNALS = [
 
 export type SignalId = (typeof SIGNALS)[number]['id'];
 
+export type SurfaceLevel =
+  | 'plano'
+  | 'interior'
+  | 'elevado'
+  | 'flotante'
+  | 'hoja'
+  | 'modal';
+
 /** Rampa neutra. Un solo eje de grises cálidos para papel y carbón. */
 export const NEUTRALS = [
   { step: '000', day: '#FFFEFA', night: '#0E1113', role: 'papel elevado' },
@@ -177,7 +185,12 @@ export const NEUTRALS = [
   { step: '900', day: '#14171A', night: '#F2F4F3', role: 'tinta' },
 ] as const;
 
-export const SURFACE_LEVELS = [
+export const SURFACE_LEVELS: readonly {
+  id: SurfaceLevel;
+  name: string;
+  use: string;
+  rule: string;
+}[] = [
   {
     id: 'plano',
     name: 'Plano',
@@ -297,6 +310,28 @@ export const MOTION_TOKENS = [
     value: '1400ms',
     token: '--fs-pulse',
     use: 'espera y proceso',
+  },
+] as const;
+
+/** Escala semántica del shell Atlas, alineada con las variables de Figma. */
+export const ATLAS_MOTION_TOKENS = [
+  {
+    name: 'Rápido',
+    value: '180ms',
+    token: '--fs-motion-quick',
+    use: 'controles, foco y respuesta inmediata',
+  },
+  {
+    name: 'Base',
+    value: '360ms',
+    token: '--fs-motion-base',
+    use: 'transición explicativa',
+  },
+  {
+    name: 'Lento',
+    value: '720ms',
+    token: '--fs-motion-slow',
+    use: 'llegada y estudio',
   },
 ] as const;
 

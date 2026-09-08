@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-09-08T15:17:36.026Z",
+  "url": "http://localhost:3020/",
+  "viewports": [
+    {
+      "width": 390,
+      "sections": 12,
+      "imageCount": 16,
+      "esSlogan": "Make complexity legible.",
+      "englishSlogan": "Make complexity legible.",
+      "esHasTranslatedSlogan": false,
+      "scrollWidthMatchesViewport": true,
+      "imagesLoadedAfterScroll": true,
+      "layout": {
+        "sectionOverlaps": [],
+        "headerOverlap": false
+      },
+      "badResponses": [],
+      "pageErrors": [],
+      "englishHeading": "Twenty-five surfaces, one project.",
+      "englishStatus": "AVAILABLE\n\nA usable path exists within the documented scope.\n\nUsable today. It does not equal certification or construction work.",
+      "documentLanguage": "en",
+      "signalAndFilterPersist": {
+        "signalBefore": "signal-tab-moment",
+        "signalAfter": "signal-tab-moment",
+        "filterBefore": 1,
+        "filterAfter": 1
+      },
+      "nightTheme": "brandbook atlas brandbook--noche ",
+      "calmMode": "brandbook atlas brandbook--noche brandbook--calma",
+      "mobileMenu": {
+        "opened": true,
+        "closed": true
+      }
+    },
+    {
+      "width": 768,
+      "sections": 12,
+      "imageCount": 16,
+      "esSlogan": "Make complexity legible.",
+      "englishSlogan": "Make complexity legible.",
+      "esHasTranslatedSlogan": false,
+      "scrollWidthMatchesViewport": true,
+      "imagesLoadedAfterScroll": true,
+      "layout": {
+        "sectionOverlaps": [],
+        "headerOverlap": false
+      },
+      "badResponses": [],
+      "pageErrors": [],
+      "englishHeading": "Twenty-five surfaces, one project.",
+      "englishStatus": "AVAILABLE\n\nA usable path exists within the documented scope.\n\nUsable today. It does not equal certification or construction work.",
+      "documentLanguage": "en",
+      "signalAndFilterPersist": {
+        "signalBefore": "signal-tab-moment",
+        "signalAfter": "signal-tab-moment",
+        "filterBefore": 1,
+        "filterAfter": 1
+      },
+      "nightTheme": "brandbook atlas brandbook--noche ",
+      "calmMode": "brandbook atlas brandbook--noche brandbook--calma",
+      "mobileMenu": {
+        "opened": true,
+        "closed": true
+      }
+    },
+    {
+      "width": 1280,
+      "sections": 12,
+      "imageCount": 16,
+      "esSlogan": "Make complexity legible.",
+      "englishSlogan": "Make complexity legible.",
+      "esHasTranslatedSlogan": false,
+      "scrollWidthMatchesViewport": true,
+      "imagesLoadedAfterScroll": true,
+      "layout": {
+        "sectionOverlaps": [],
+        "headerOverlap": false
+      },
+      "badResponses": [],
+      "pageErrors": [],
+      "englishHeading": "Twenty-five surfaces, one project.",
+      "englishStatus": "AVAILABLE\n\nA usable path exists within the documented scope.\n\nUsable today. It does not equal certification or construction work.",
+      "documentLanguage": "en",
+      "signalAndFilterPersist": {
+        "signalBefore": "signal-tab-moment",
+        "signalAfter": "signal-tab-moment",
+        "filterBefore": 1,
+        "filterAfter": 1
+      },
+      "nightTheme": "brandbook atlas brandbook--noche ",
+      "calmMode": "brandbook atlas brandbook--noche brandbook--calma",
+      "mobileMenu": {
+        "desktopMenuHidden": true
+      }
+    },
+    {
+      "width": 1440,
+      "sections": 12,
+      "imageCount": 16,
+      "esSlogan": "Make complexity legible.",
+      "englishSlogan": "Make complexity legible.",
+      "esHasTranslatedSlogan": false,
+      "scrollWidthMatchesViewport": true,
+      "imagesLoadedAfterScroll": true,
+      "layout": {
+        "sectionOverlaps": [],
+        "headerOverlap": false
+      },
+      "badResponses": [],
+      "pageErrors": [],
+      "englishHeading": "Twenty-five surfaces, one project.",
+      "englishStatus": "AVAILABLE\n\nA usable path exists within the documented scope.\n\nUsable today. It does not equal certification or construction work.",
+      "documentLanguage": "en",
+      "signalAndFilterPersist": {
+        "signalBefore": "signal-tab-moment",
+        "signalAfter": "signal-tab-moment",
+        "filterBefore": 1,
+        "filterAfter": 1
+      },
+      "nightTheme": "brandbook atlas brandbook--noche ",
+      "calmMode": "brandbook atlas brandbook--noche brandbook--calma",
+      "mobileMenu": {
+        "desktopMenuHidden": true
+      }
+    }
+  ]
+}

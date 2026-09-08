@@ -8,12 +8,23 @@ import {
   VOICE_PRINCIPLES,
   VOICE_REWRITES,
 } from '../brand/system';
-import { RuleStrip, SectionIntro } from '../brand/ui';
+import {
+  GLOSSARY_COPY,
+  MICROCOPY_COPY,
+  RULE_LABEL,
+  VOICE_COPY,
+  VOICE_PRINCIPLE_COPY,
+  VOICE_REWRITE_COPY,
+} from '../brand/copy';
+import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 export const Voice = () => {
+  const { language } = useBrandbook();
   const [rewrite, setRewrite] = useState<string>(VOICE_REWRITES[0].id);
   const active =
     VOICE_REWRITES.find((item) => item.id === rewrite) ?? VOICE_REWRITES[0];
+  const copy = VOICE_COPY[language];
+  const activeCopy = VOICE_REWRITE_COPY[active.id];
 
   return (
     <section id="voz" className="section voice">
@@ -28,50 +39,55 @@ export const Voice = () => {
         {VOICE_PRINCIPLES.map((principle, index) => (
           <article key={principle.id}>
             <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{principle.title}</strong>
-            <p>{principle.body}</p>
+            <strong>{VOICE_PRINCIPLE_COPY[principle.id].title[language]}</strong>
+            <p>{VOICE_PRINCIPLE_COPY[principle.id].body[language]}</p>
           </article>
         ))}
       </div>
 
       <div className="rewriter">
         <div className="rewriter__head">
-          <span className="tag">Reescritura</span>
-          <h3>La misma idea, sostenible.</h3>
-          <p>
-            Elige una frase típica y mira qué queda cuando se le quita la
-            promesa.
-          </p>
+          <span className="tag">{copy.rewrite}</span>
+          <h3>{copy.title}</h3>
+          <p>{copy.body}</p>
         </div>
 
         <div className="rewriter__body">
           <ul
             className="rewriter__list"
             role="tablist"
-            aria-label="Frases para reescribir"
+            aria-label={copy.tabs}
           >
             {VOICE_REWRITES.map((item) => (
               <li key={item.id}>
                 <button
                   type="button"
                   role="tab"
+                  id={`voice-tab-${item.id}`}
+                  aria-controls="voice-panel"
                   aria-selected={rewrite === item.id}
                   className={rewrite === item.id ? 'is-active' : ''}
                   onClick={() => setRewrite(item.id)}
                 >
-                  <small>{item.context}</small>
-                  <span>{item.before}</span>
+                  <small>{VOICE_REWRITE_COPY[item.id].context[language]}</small>
+                  <span>{VOICE_REWRITE_COPY[item.id].before[language]}</span>
                 </button>
               </li>
             ))}
           </ul>
 
-          <div className="rewriter__stage">
+          <div
+            id="voice-panel"
+            role="tabpanel"
+            tabIndex={0}
+            aria-labelledby={`voice-tab-${active.id}`}
+            className="rewriter__stage"
+          >
             <div className="rewriter__card rewriter__card--before">
               <span className="rewriter__badge">
-                <X size={13} /> promete
+                <X size={13} /> {copy.promises}
               </span>
-              <p>{active.before}</p>
+              <p>{activeCopy.before[language]}</p>
             </div>
             <ArrowRight
               className="rewriter__arrow"
@@ -80,12 +96,12 @@ export const Voice = () => {
             />
             <div className="rewriter__card rewriter__card--after">
               <span className="rewriter__badge">
-                <Check size={13} /> sostiene
+                <Check size={13} /> {copy.supports}
               </span>
-              <p>{active.after}</p>
+              <p>{activeCopy.after[language]}</p>
             </div>
             <p className="rewriter__why">
-              <strong>Por qué:</strong> {active.why}
+              <strong>{copy.why}</strong> {activeCopy.why[language]}
             </p>
           </div>
         </div>
@@ -95,13 +111,13 @@ export const Voice = () => {
         {MICROCOPY.map((group) => (
           <article key={group.id}>
             <div className="microcopy__head">
-              <span className="tag">{group.group}</span>
+              <span className="tag">{MICROCOPY_COPY[group.id].group[language]}</span>
             </div>
             <ul>
-              {group.items.map((item) => (
+              {group.items.map((item, index) => (
                 <li key={item.label}>
-                  <strong>{item.label}</strong>
-                  <small>{item.note}</small>
+                  <strong>{MICROCOPY_COPY[group.id].items[index].label[language]}</strong>
+                  <small>{MICROCOPY_COPY[group.id].items[index].note[language]}</small>
                 </li>
               ))}
             </ul>
@@ -111,26 +127,21 @@ export const Voice = () => {
 
       <div className="glossary">
         <div className="glossary__head">
-          <span className="tag">Glosario</span>
-          <p>
-            Seis palabras que significan lo mismo en la interfaz, en la
-            documentación y en una conversación con quien revisa.
-          </p>
+          <span className="tag">{copy.glossary}</span>
+          <p>{copy.glossaryBody}</p>
         </div>
         <dl>
           {GLOSSARY.map((entry) => (
             <div key={entry.term}>
-              <dt>{entry.term}</dt>
-              <dd>{entry.meaning}</dd>
+              <dt>{GLOSSARY_COPY[entry.term].term[language]}</dt>
+              <dd>{GLOSSARY_COPY[entry.term].meaning[language]}</dd>
             </div>
           ))}
         </dl>
       </div>
 
-      <RuleStrip index="Regla 11">
-        FusionStructure no sustituye el criterio de una persona responsable, la
-        revisión independiente ni la normativa aplicable. Escribir como si lo
-        hiciera es un error de marca.
+      <RuleStrip index={`${RULE_LABEL[language]} 11`}>
+        {copy.rule}
       </RuleStrip>
     </section>
   );

@@ -11,7 +11,12 @@ import {
   Terminal,
 } from 'lucide-react';
 import { BrandMark, StatusPill } from '../brand/marks';
-import { RuleStrip, SectionIntro } from '../brand/ui';
+import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
+import {
+  PATTERN_COPY,
+  PATTERN_STATE_COPY,
+  RULE_LABEL,
+} from '../brand/copy';
 
 type LayoutMode = 'escritorio' | 'movil';
 
@@ -47,9 +52,12 @@ const STATES = [
 ] as const;
 
 export const Patterns = () => {
+  const { language } = useBrandbook();
   const [mode, setMode] = useState<LayoutMode>('escritorio');
   const [state, setState] = useState<string>('exito');
   const activeState = STATES.find((item) => item.id === state) ?? STATES[0];
+  const copy = PATTERN_COPY[language];
+  const stateCopy = PATTERN_STATE_COPY[activeState.id];
 
   return (
     <section id="patrones" className="section patterns">
@@ -62,28 +70,28 @@ export const Patterns = () => {
 
       <div className="layout-toolbar">
         <div>
-          <span className="tag">Campo de interfaz</span>
+          <span className="tag">{copy.field}</span>
           <strong>
             {mode === 'escritorio'
-              ? 'Escritorio · mesa de trabajo'
-              : 'Móvil · modo enfocado'}
+              ? copy.desktop
+              : copy.mobile}
           </strong>
         </div>
         <fieldset className="segmented">
-          <legend className="visually-hidden">Vista del patrón</legend>
+          <legend className="visually-hidden">{copy.view}</legend>
           <button
             type="button"
             className={mode === 'escritorio' ? 'is-active' : ''}
             onClick={() => setMode('escritorio')}
           >
-            <Monitor size={14} /> Escritorio
+            <Monitor size={14} /> {language === 'es' ? 'Escritorio' : 'Desktop'}
           </button>
           <button
             type="button"
             className={mode === 'movil' ? 'is-active' : ''}
             onClick={() => setMode('movil')}
           >
-            <Smartphone size={14} /> Móvil
+            <Smartphone size={14} /> {language === 'es' ? 'Móvil' : 'Mobile'}
           </button>
         </fieldset>
       </div>
@@ -95,25 +103,25 @@ export const Patterns = () => {
           </span>
           <button type="button" className="workbench__tool is-active">
             <Ruler size={14} />
-            <span>Modelo</span>
+            <span>{copy.model}</span>
           </button>
           <button type="button" className="workbench__tool">
             <SlidersHorizontal size={14} />
-            <span>Cargas</span>
+            <span>{copy.loads}</span>
           </button>
           <button type="button" className="workbench__tool">
             <Layers size={14} />
-            <span>Resultados</span>
+            <span>{copy.results}</span>
           </button>
           <button type="button" className="workbench__tool">
             <Terminal size={14} />
-            <span>Traza</span>
+            <span>{copy.trace}</span>
           </button>
         </div>
 
         <div className="workbench__canvas">
           <div className="workbench__canvas-bar">
-            <span>pórtico-04</span>
+            <span>{copy.project}</span>
             <code>12.00 × 4.20 m · kN</code>
           </div>
           <div className="workbench__scene" aria-hidden="true">
@@ -125,46 +133,43 @@ export const Patterns = () => {
             <span className="workbench__node workbench__node--b" />
           </div>
           <div className="workbench__canvas-foot">
-            <span>selección · miembro B4</span>
-            <span>snap 0.25 m</span>
+            <span>{copy.selected}</span>
+            <span>{copy.snap}</span>
           </div>
         </div>
 
         <div className="workbench__inspector">
           <div className="workbench__inspector-head">
-            <strong>Inspector</strong>
-            <StatusPill status="disponible" compact />
+            <strong>{copy.inspector}</strong>
+            <StatusPill status="disponible" language={language} compact />
           </div>
           <dl>
             <div>
-              <dt>Sección</dt>
+              <dt>{copy.section}</dt>
               <dd>IPE 300</dd>
             </div>
             <div>
-              <dt>Momento</dt>
+              <dt>{copy.moment}</dt>
               <dd>−148.60 kN·m</dd>
             </div>
             <div>
-              <dt>Deformada</dt>
+              <dt>{copy.deformed}</dt>
               <dd>11.70 mm</dd>
             </div>
           </dl>
           <button type="button" className="ui-button ui-button--primary">
-            Abrir traza <ChevronRight size={14} />
+            {copy.openTrace} <ChevronRight size={14} />
           </button>
         </div>
       </div>
 
       <div className="states">
         <div className="states__head">
-          <span className="tag">Cuatro estados obligatorios</span>
-          <p>
-            Toda superficie debe diseñar los cuatro antes de considerarse
-            terminada.
-          </p>
+          <span className="tag">{copy.states}</span>
+          <p>{copy.statesBody}</p>
         </div>
         <fieldset className="segmented segmented--tight">
-          <legend className="visually-hidden">Estado de la superficie</legend>
+          <legend className="visually-hidden">{copy.stateLegend}</legend>
           {STATES.map((item) => (
             <button
               key={item.id}
@@ -172,22 +177,21 @@ export const Patterns = () => {
               className={state === item.id ? 'is-active' : ''}
               onClick={() => setState(item.id)}
             >
-              {item.label}
+              {PATTERN_STATE_COPY[item.id].label[language]}
             </button>
           ))}
         </fieldset>
         <article className={`state-card state-card--${activeState.id}`}>
-          <strong>{activeState.title}</strong>
-          <p>{activeState.body}</p>
+          <strong>{stateCopy.title[language]}</strong>
+          <p>{stateCopy.body[language]}</p>
           <button type="button" className="ui-button">
-            {activeState.action}
+            {stateCopy.action[language]}
           </button>
         </article>
       </div>
 
-      <RuleStrip index="Regla 09">
-        Orientar, actuar, comprobar y continuar. Si una pantalla no permite las
-        cuatro, le falta una.
+      <RuleStrip index={`${RULE_LABEL[language]} 09`}>
+        {copy.rule}
       </RuleStrip>
     </section>
   );

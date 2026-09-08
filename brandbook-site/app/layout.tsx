@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { publicAsset } from './brand/paths';
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   title: 'FusionStructure · Brandbook',
   description:
     'Sistema visual y verbal de FusionStructure: marca, color con significado, movimiento que explica y un catálogo de 25 superficies con su estado real.',
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: publicAsset('/favicon.svg') },
   openGraph: {
     title: 'FusionStructure · Brandbook',
     description:

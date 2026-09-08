@@ -2,29 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 import { BrandMark } from '../brand/marks';
 import { SIGNALS, type SectionId, type SignalId } from '../brand/system';
-import { STATUS_COUNTS, STATUS_META } from '../brand/catalog';
+import { STATUS_COUNTS } from '../brand/catalog';
+import {
+  HERO_BEAT_COPY,
+  HERO_BOARD_COPY,
+  HERO_COPY,
+  STATUS_COPY,
+} from '../brand/copy';
+import { publicAsset } from '../brand/paths';
 import { Eyebrow, useBrandbook } from '../brand/ui';
 
-const BEATS = [
-  {
-    id: 'modelo',
-    label: 'Modelo',
-    note: 'geometría, apoyos y cargas declaradas',
-  },
-  {
-    id: 'analisis',
-    label: 'Análisis',
-    note: 'equilibrio resuelto con su tolerancia',
-  },
-  { id: 'lectura', label: 'Lectura', note: 'el diagrama dice qué gobierna' },
-  {
-    id: 'decision',
-    label: 'Decisión',
-    note: 'la traza queda unida al resultado',
-  },
-] as const;
+const BEATS = ['modelo', 'analisis', 'lectura', 'decision'] as const;
 
 /**
  * Cada señal dibuja su propia geometría sobre el mismo pórtico: el tablero no
@@ -70,22 +61,20 @@ const DIAGRAM_GEOMETRY: Record<
  * decisión. Cada fase enciende una capa; ninguna capa aparece sin su rótulo.
  */
 const AnalysisBoard = ({ beat }: { beat: number }) => {
-  const { activeSignal } = useBrandbook();
+  const { activeSignal, language } = useBrandbook();
   const signal = SIGNALS.find((item) => item.id === activeSignal) ?? SIGNALS[0];
   const geometry = DIAGRAM_GEOMETRY[signal.id];
+  const copy = HERO_BOARD_COPY[language];
 
   return (
     <div className={`board board--beat-${beat}`} data-signal={activeSignal}>
       <div className="board__chrome">
         <span className="board__dot" aria-hidden="true" />
-        <span>pórtico-04 · marco plano</span>
+        <span>{copy.chrome}</span>
         <code>12.00 × 4.20 m</code>
       </div>
 
-      <p className="visually-hidden">
-        Pórtico de dos columnas con carga distribuida, deformada y diagrama de
-        resultado para la señal activa.
-      </p>
+      <p className="visually-hidden">{copy.description}</p>
 
       <svg className="board__canvas" viewBox="0 0 520 320" aria-hidden="true">
         <defs>
@@ -187,21 +176,21 @@ const AnalysisBoard = ({ beat }: { beat: number }) => {
             {signal.id === 'attention' ? '1' : null}
           </strong>
           <small>
-            {signal.id === 'yield' ? 'demanda / capacidad' : null}
-            {signal.id === 'attention' ? 'supuesto sin declarar' : signal.unit}
+            {signal.id === 'yield' ? copy.yieldUnit : null}
+            {signal.id === 'attention' ? copy.attentionUnit : signal.unit}
           </small>
         </div>
         <dl className="board__meta">
           <div>
-            <dt>método</dt>
-            <dd>lineal · P-Δ</dd>
+            <dt>{copy.method}</dt>
+            <dd>{copy.methodValue}</dd>
           </div>
           <div>
-            <dt>tolerancia</dt>
+            <dt>{copy.tolerance}</dt>
             <dd>1e−6</dd>
           </div>
           <div>
-            <dt>revisión</dt>
+            <dt>{copy.revision}</dt>
             <dd>v4</dd>
           </div>
         </dl>
@@ -211,13 +200,14 @@ const AnalysisBoard = ({ beat }: { beat: number }) => {
 };
 
 export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
-  const { motionMode } = useBrandbook();
+  const { motionMode, language } = useBrandbook();
   const [cycled, setCycled] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const calm = motionMode === 'calma';
   // Elegir una fase detiene el ciclo; en calma no hay ciclo, pero la elección
   // manual sigue mandando y sin ella se muestra la fase final.
   const beat = picked ?? (calm ? BEATS.length - 1 : cycled);
+  const heroCopy = HERO_COPY[language];
 
   useEffect(() => {
     if (calm || picked !== null) return;
@@ -230,17 +220,13 @@ export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
   return (
     <section id="norte" className="section hero">
       <div className="hero__copy">
-        <Eyebrow>FusionStructure · sistema visual y verbal</Eyebrow>
-        <h1 aria-label="Make complexity legible.">
-          <span className="hero__word">Make</span>
-          <span className="hero__word">complexity</span>
-          <em className="hero__word">legible.</em>
+        <Eyebrow>{heroCopy.eyebrow}</Eyebrow>
+        <h1 aria-label={heroCopy.titleLines.join(' ')}>
+          <span className="hero__word">{heroCopy.titleLines[0]}</span>
+          <span className="hero__word">{heroCopy.titleLines[1]}</span>
+          <em className="hero__word">{heroCopy.titleLines[2]}</em>
         </h1>
-        <p className="hero__lead">
-          Un modelo, un resultado y una decisión deben leerse igual en pantalla,
-          en papel y en obra. Este documento fija cómo se ve, cómo se mueve y
-          cómo habla esa continuidad.
-        </p>
+        <p className="hero__lead">{heroCopy.lead}</p>
 
         <div className="hero__actions">
           <button
@@ -248,14 +234,14 @@ export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
             className="action action--primary"
             onClick={() => onGoTo('herramientas')}
           >
-            Ver las 25 superficies <ArrowUpRight size={16} />
+            {heroCopy.tools} <ArrowUpRight size={16} />
           </button>
           <button
             type="button"
             className="action"
             onClick={() => onGoTo('identidad')}
           >
-            Empezar por la marca <ArrowDown size={16} />
+            {heroCopy.identity} <ArrowDown size={16} />
           </button>
         </div>
 
@@ -268,26 +254,44 @@ export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
                   aria-hidden="true"
                 />
                 <strong>{STATUS_COUNTS[status] ?? 0}</strong>
-                <small>{STATUS_META[status].label}</small>
+                <small>
+                  {STATUS_COPY[status][language]}
+                </small>
               </li>
             ),
           )}
           <li className="hero__ledger-note">
             <BrandMark size={18} tone="mono" />
-            <small>estado verificable, no promesa comercial</small>
+            <small>{heroCopy.state}</small>
           </li>
         </ul>
       </div>
 
       <div className="hero__stage">
         <AnalysisBoard beat={beat} />
+        <figure className="hero__clay-reference">
+          <Image
+            unoptimized
+            src={publicAsset('/proposals/clay/cover.png')}
+            alt={heroCopy.alt}
+            width={640}
+            height={420}
+            loading="eager"
+            sizes="(max-width: 900px) 100vw, 320px"
+          />
+          <figcaption>{HERO_BOARD_COPY[language].figure}</figcaption>
+        </figure>
         <ol className="hero__beats">
-          {BEATS.map((item, index) => (
-            <li key={item.id} className={index === beat ? 'is-active' : ''}>
+          {BEATS.map((id, index) => (
+            <li key={id} className={index === beat ? 'is-active' : ''}>
               <button type="button" onClick={() => setPicked(index)}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{item.label}</strong>
-                <small>{item.note}</small>
+                <strong>
+                  {HERO_BEAT_COPY[id].label[language]}
+                </strong>
+                <small>
+                  {HERO_BEAT_COPY[id].note[language]}
+                </small>
               </button>
             </li>
           ))}

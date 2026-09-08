@@ -4,7 +4,14 @@ import { useMemo } from 'react';
 import { MiniDiagram } from '../brand/marks';
 import { NEUTRALS, SIGNALS } from '../brand/system';
 import { FAMILY_COLORS, type FamilyId } from '../brand/generated/palette';
-import { FAMILY_META } from '../brand/catalog';
+import {
+  COLOR_COPY,
+  FAMILY_COPY,
+  NEUTRAL_ROLE_COPY,
+  RULE_LABEL,
+  SIGNAL_COPY,
+  SIGNAL_UNIT_COPY,
+} from '../brand/copy';
 import { CopyChip, RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 const channel = (value: number) => {
@@ -29,20 +36,20 @@ export const contrastRatio = (a: string, b: string) => {
   return (light + 0.05) / (dark + 0.05);
 };
 
-const ratioLabel = (ratio: number) => {
-  if (ratio >= 7) return 'AAA';
-  if (ratio >= 4.5) return 'AA';
-  if (ratio >= 3) return 'AA · gráfico';
-  return 'insuficiente';
-};
-
 export const Color = () => {
-  const { theme, activeSignal, setActiveSignal } = useBrandbook();
+  const { theme, activeSignal, setActiveSignal, language } = useBrandbook();
   const isNight = theme === 'noche';
   const paper = isNight ? '#14171A' : '#F7F6F1';
 
   const signal = SIGNALS.find((item) => item.id === activeSignal) ?? SIGNALS[0];
   const signalHex = isNight ? signal.night : signal.day;
+  const copy = COLOR_COPY[language];
+  const contrastLabel = (ratio: number) => {
+    if (ratio >= 7) return 'AAA';
+    if (ratio >= 4.5) return 'AA';
+    if (ratio >= 3) return copy.graphic;
+    return copy.insufficient;
+  };
 
   const families = useMemo(
     () =>
@@ -66,31 +73,39 @@ export const Color = () => {
         <div
           className="signal-list"
           role="tablist"
-          aria-label="Señales de resultado"
+          aria-label={copy.signals}
         >
           {SIGNALS.map((item) => (
             <button
               key={item.id}
               type="button"
               role="tab"
+              id={`signal-tab-${item.id}`}
+              aria-controls="signal-panel"
               aria-selected={activeSignal === item.id}
               className={`signal-row signal-row--${item.id} ${activeSignal === item.id ? 'is-active' : ''}`}
               onClick={() => setActiveSignal(item.id)}
             >
               <span className="signal-row__swatch" aria-hidden="true" />
               <span className="signal-row__copy">
-                <strong>{item.name}</strong>
-                <small>{item.use}</small>
+                <strong>{SIGNAL_COPY[item.id].name[language]}</strong>
+                <small>{SIGNAL_COPY[item.id].use[language]}</small>
               </span>
               <code>{item.short}</code>
             </button>
           ))}
         </div>
 
-        <div className={`signal-stage signal--${signal.id}`}>
+        <div
+          id="signal-panel"
+          role="tabpanel"
+          tabIndex={0}
+          aria-labelledby={`signal-tab-${signal.id}`}
+          className={`signal-stage signal--${signal.id}`}
+        >
           <div className="signal-stage__top">
             <span>
-              activo · {signal.name} <code>{signal.unit}</code>
+              {copy.active} · {SIGNAL_COPY[signal.id].name[language]} <code>{SIGNAL_UNIT_COPY[signal.id][language]}</code>
             </span>
             <div className="signal-stage__chips">
               <CopyChip value={signal.token} />
@@ -102,48 +117,42 @@ export const Color = () => {
             <MiniDiagram type={signal.id} />
           </div>
 
-          <p className="signal-stage__description">{signal.description}</p>
+          <p className="signal-stage__description">{SIGNAL_COPY[signal.id].description[language]}</p>
 
           <dl className="signal-stage__rules">
             <div>
-              <dt>usar en</dt>
-              <dd>línea · punto · estado · etiqueta</dd>
+              <dt>{copy.use}</dt>
+              <dd>{copy.usageValue}</dd>
             </div>
             <div>
-              <dt>evitar</dt>
-              <dd>fondo completo · relleno decorativo · texto largo</dd>
+              <dt>{copy.avoid}</dt>
+              <dd>{copy.avoidValue}</dd>
             </div>
             <div>
-              <dt>contraste</dt>
+              <dt>{copy.contrast}</dt>
               <dd>
                 {contrastRatio(signalHex, paper).toFixed(2)}:1 ·{' '}
-                {ratioLabel(contrastRatio(signalHex, paper))}
+                {contrastLabel(contrastRatio(signalHex, paper))}
               </dd>
             </div>
           </dl>
         </div>
       </div>
 
-      <RuleStrip index="Regla 04">
-        Si el color no explica una relación del dominio, se elimina antes de
-        discutirlo.
-      </RuleStrip>
+      <RuleStrip index={`${RULE_LABEL[language]} 04`}>{copy.rule}</RuleStrip>
 
       <div className="palette-block">
         <div className="palette-block__head">
-          <span className="tag">Familias</span>
-          <p>
-            Emparentadas con las señales, pero más profundas: la señal pertenece
-            al dato y la familia a la herramienta. Nunca se usan como resultado.
-          </p>
+          <span className="tag">{copy.families}</span>
+          <p>{copy.familyBody}</p>
         </div>
         <ul className="family-palette">
           {families.map((item) => (
             <li key={item.id} className={`family--${item.id}`}>
               <span className="family-palette__chip" aria-hidden="true" />
               <div>
-                <strong>{FAMILY_META[item.id].label}</strong>
-                <small>{FAMILY_META[item.id].purpose}</small>
+                <strong>{FAMILY_COPY[item.id].label[language]}</strong>
+                <small>{FAMILY_COPY[item.id].purpose[language]}</small>
               </div>
               <div className="family-palette__data">
                 <CopyChip value={item.hex} />
@@ -156,7 +165,7 @@ export const Color = () => {
                         : 'is-fail'
                   }
                 >
-                  {item.ratio.toFixed(2)}:1 · {ratioLabel(item.ratio)}
+                  {item.ratio.toFixed(2)}:1 · {contrastLabel(item.ratio)}
                 </span>
               </div>
             </li>
@@ -166,11 +175,8 @@ export const Color = () => {
 
       <div className="palette-block">
         <div className="palette-block__head">
-          <span className="tag">Neutros</span>
-          <p>
-            Una sola rampa cálida para día y noche. Cada paso tiene un papel;
-            ninguno se usa «porque se ve bien».
-          </p>
+          <span className="tag">{copy.neutrals}</span>
+          <p>{copy.neutralBody}</p>
         </div>
         <ul className="neutral-ramp">
           {NEUTRALS.map((step) => (
@@ -181,7 +187,7 @@ export const Color = () => {
                 aria-hidden="true"
               />
               <code>{step.step}</code>
-              <small>{step.role}</small>
+              <small>{NEUTRAL_ROLE_COPY[step.step][language]}</small>
               <CopyChip value={isNight ? step.night : step.day} />
             </li>
           ))}
@@ -190,20 +196,14 @@ export const Color = () => {
 
       <div className="theme-pair">
         <article className="theme-pair__card theme-pair__card--day">
-          <span className="tag">Día · papel técnico</span>
-          <strong>Fondo tranquilo, tinta densa.</strong>
-          <p>
-            El papel cálido baja el brillo sin apagar el trazo. La señal aparece
-            en tono profundo para sostener 4.5:1 sobre fondo claro.
-          </p>
+          <span className="tag">{copy.day}</span>
+          <strong>{copy.dayTitle}</strong>
+          <p>{copy.dayBody}</p>
         </article>
         <article className="theme-pair__card theme-pair__card--night">
-          <span className="tag">Noche · carbón</span>
-          <strong>Carbón neutro, nunca negro puro.</strong>
-          <p>
-            En noche la misma señal sube de luminosidad. El significado no
-            cambia: cambia el valor para conservar la lectura.
-          </p>
+          <span className="tag">{copy.night}</span>
+          <strong>{copy.nightTitle}</strong>
+          <p>{copy.nightBody}</p>
         </article>
       </div>
     </section>

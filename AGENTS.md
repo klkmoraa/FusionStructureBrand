@@ -68,3 +68,16 @@ Una feature nueva debe declarar qué entidad del proyecto modifica, qué validac
 El usuario autorizó actualizar el repositorio en esta sesión. Para cambios posteriores, no hacer push ni abrir un Pull Request salvo que se solicite explícitamente en esa sesión.
 
 Si el cambio toca una superficie crítica, dejar una nota de decisión o una prueba reproducible. Si una verificación falla, reportar el fallo exacto y no presentarlo como éxito.
+
+## Brandbook Atlas Clay–Minimal
+
+- `brandbook-site/` es la fuente web del brandbook; la landing del portal vive en `src/` y no se modifica mientras el trabajo esté en fase de brandbook.
+- Mantener las doce anclas (`norte`, `identidad`, `herramientas`, `color`, `tipografia`, `movimiento`, `materia`, `iconografia`, `patrones`, `referencias`, `voz`, `entrega`) aunque cambie su agrupación editorial.
+- Los cinco capítulos visuales son Orientación, Semántica, Lenguaje, Comportamiento y Entrega. La navegación debe seguir siendo accesible por teclado y funcionar en móvil.
+- Usar tokens `--fs-*` y los datos de `app/brand/system.ts`; no introducir hexadecimales o estados duplicados en una sección sin documentar la excepción.
+- `app/brand/copy.ts` es el catálogo bilingüe. Todo texto nuevo de interfaz, etiqueta de estado, alt text y ARIA debe tener `es` y `en`; no traducir valores ni unidades técnicas.
+- Claymorfismo sólo en superficies funcionales (panel activo, control, muestra, tarjeta de herramienta o laboratorio). Papel, retícula, espacio negativo y color semántico forman la estructura minimalista.
+- Los tres assets seleccionados viven en `brandbook-site/public/proposals/clay/`; conservar nombres, alt text y proporciones. No enlazar assets temporales de Figma en el código.
+- Figma se mantiene como referencia visual: archivo nuevo en Drafts, páginas `00 · Cover` a `06 · Handoff`, variables Día/Noche y componentes con nombres estables. No borrar archivos Figma existentes.
+- Flujo Figma-to-code: inspeccionar metadata/contexto, registrar IDs en el ledger, validar con screenshot y adaptar tokens al código existente. Las mutaciones se hacen secuencialmente.
+- Validar al menos typecheck, lint/build y revisión visual en 390, 768, 1280 y 1440 px; comprobar día/noche, ES/EN, calma, foco visible, reduced motion, cero scroll horizontal y cero assets 404.
