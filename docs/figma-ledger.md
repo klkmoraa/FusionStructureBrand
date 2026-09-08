@@ -95,30 +95,33 @@ copy documenting the migration.
 
 ## Product evidence
 
-Eight raster fills are intentional. Four are declared real product captures:
+Eleven raster fills are intentional. Four are declared real product captures:
 
 - `166:69` — FStructure · day
 - `166:72` — FStructure · night
 - `166:75` — Space 3D · real editor
 - `166:78` — FusionStructure web reference
 
-Four are generated concept references with canonical vector brand overlays:
+Seven are user-provided brand-application photographs:
 
-- `212:3` — PPE / helmet and vest
-- `212:11` — construction-site signage
-- `212:19` — technical report and drawings
-- `212:27` — corporate identity and workstation
+- `212:3` — correspondence
+- `212:11` — business cards
+- `212:19` — application collage
+- `212:27` — technical report
+- `233:44` — brand book
+- `233:45` — office
+- `233:46` — PPE / helmet and vest
 
-Their source PNGs are preserved in `docs/brandbook-assets/generated/`.
+Their source JPEGs are preserved in `docs/brandbook-assets/user-provided/`.
 Section `157:71` also contains six fully editable brand application
-components. There is no stock photography.
+components.
 
 ## Validation record
 
 - Exactly one Figma page and one top-level canonical master.
 - Twelve continuous sections, day/night guidance and clay depth hierarchy.
-- Eight intentional IMAGE fills only: four real captures and four generated,
-  explicitly labelled concept references.
+- Eleven intentional IMAGE fills only: four real captures and seven
+  user-provided brand photographs.
 - Remaining `#0F95D1` fills are limited to Axial technical evidence.
 - Primary mint with ink is 6.05:1; focus ring on paper is 4.81:1.
 - No descendant exceeds its section bounds.
