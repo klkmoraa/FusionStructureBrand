@@ -160,6 +160,9 @@ table {
   --fs-neutral-700: var(--n-700);
   --fs-neutral-900: var(--n-900);
 
+  /* marca */
+  --fs-brand-accent: #0b7c7e;
+
   /* señales de resultado */
   --fs-signal-axial: #1b75b0;
   --fs-signal-moment: #b8412f;
@@ -226,7 +229,7 @@ table {
   --fs-ease-in: cubic-bezier(0.5, 0, 0.75, 0);
   --fs-ease-firm: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --active-signal: var(--fs-signal-moment);
+  --active-signal: var(--fs-brand-accent);
   --glyph-accent: var(--ink);
 
   min-height: 100vh;
@@ -242,6 +245,7 @@ table {
 }
 
 .brandbook--noche {
+  --fs-brand-accent: #6fe7e0;
   --n-000: #0e1113;
   --n-050: #14171a;
   --n-100: #1b1f22;

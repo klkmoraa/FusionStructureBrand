@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 
 const githubPagesBuild = process.env.BRANDBOOK_GITHUB_PAGES === '1';
 const githubPagesBasePath =
-  process.env.NEXT_PUBLIC_BASE_PATH || '/fusionstructure-web/brandbook';
+  process.env.NEXT_PUBLIC_BASE_PATH || '/fusionstructure-web';
 
 const nextConfig: NextConfig = githubPagesBuild
   ? {

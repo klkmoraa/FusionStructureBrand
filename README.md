@@ -1,50 +1,42 @@
-# FusionStructure Web
+# FusionStructure Brandbook
 
-Portal y marca del ecosistema FusionStructure. El portal contiene catálogo,
-landing, brandbook y tooling visual; los productos 2D y 3D se abren por enlaces
-de aplicación y no se importan dentro de esta build.
+Repositorio oficial del **sistema de marca de FusionStructure**.
 
-## Publicación
+Este repositorio ya no contiene la landing del ecosistema. Su única responsabilidad es definir, documentar y entregar la identidad visual y verbal de FusionStructure.
 
-El portal se publica en https://klkmoraa.github.io/fusionstructure-web/ y el
-botón **Solver 2D** abre la aplicación independiente en
-https://klkmoraa.github.io/fstructure/.
+## Contenido
 
-El brandbook Atlas se publica en
-https://klkmoraa.github.io/fusionstructure-web/brandbook/.
+- marca principal, lockups e isotipo;
+- acento **Aqua estructural**;
+- señales técnicas y colores semánticos;
+- tipografía y jerarquía;
+- iconografía y familias de herramientas;
+- material, profundidad y patrones de interfaz;
+- motion y comportamiento;
+- voz y microcopy;
+- mockups, referencias y entregables de handoff.
 
-## Estado
-
-`Experimental`: los estados Disponible, Experimental y Planeado del catálogo
-son explícitos. El portal no constituye software certificado para obra.
+La landing pública vive en **[FusionStructure](https://github.com/klkmoraa/FusionStructure)**.
 
 ## Desarrollo
 
-```text
+```bash
+cd brandbook-site
 npm ci
-npm run check
+npm run brand:assets
+npm run lint
 npm run dev
 ```
 
-La procedencia, el tag de corte y el alcance filtrado están en
-[MIGRATION.md](MIGRATION.md). `brandbook-site/` y `motion/` permanecen como
-workspaces de producción visual; la puerta raíz no los importa como solvers.
+## Build estático
 
-## Foundation local y flujo rápido
-
-`src/foundation/productLinks.ts` es propiedad exclusiva de Web. Expone
-`PRODUCT_IDS` y `PRODUCT_LINKS` para identificar productos y abrir sus URLs
-públicas; no incorpora unidades, álgebra lineal ni implementaciones de 2D/3D.
-
-Para el trabajo diario sobre esta capa, ejecutar sus pruebas focalizadas y la
-puerta de límite antes de cambiar una URL:
-
-```text
-npm run test -- src/foundation/productLinks.test.ts src/foundation/localFoundationBoundary.test.ts
-npm run check:local-foundation
+```bash
+cd brandbook-site
+NEXT_PUBLIC_BASE_PATH=/fusionstructure-web/ npm run build:pages
 ```
 
-Para una liberación, ejecutar `npm run check` y abrir un PR sólo para Web. La
-puerta revisa los TS/TSX de producción y `package.json`: bloquea el Foundation
-archivado y dependencias o internos de productos hermanos, mientras que los
-fixtures de pruebas quedan fuera del escaneo.
+GitHub Pages publica el brandbook directamente en la raíz del sitio del repositorio.
+
+## Estado
+
+Experimental. El brandbook distingue identidad de marca, señales técnicas y estados de producto para evitar usar color decorativo como significado técnico.

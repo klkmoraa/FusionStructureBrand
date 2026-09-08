@@ -68,7 +68,7 @@ export default function Brandbook() {
     motionChoice ?? (prefersCalm ? 'calma' : 'activo');
   const copy = UI_COPY[language];
   const [activeSection, setActiveSection] = useState<SectionId>('norte');
-  const [activeSignal, setActiveSignal] = useState<SignalId>('moment');
+  const [activeSignal, setActiveSignal] = useState<SignalId>('axial');
   const [copiedValue, setCopiedValue] = useState('');
   const [copiedLabel, setCopiedLabel] = useState('');
   const [copyFailed, setCopyFailed] = useState(false);
