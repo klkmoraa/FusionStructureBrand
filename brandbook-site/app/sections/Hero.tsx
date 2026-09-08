@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
 import { BrandMark } from '../brand/marks';
+import { ClayRelief } from '../brand/ClayRelief';
 import { SIGNALS, type SectionId, type SignalId } from '../brand/system';
 import { STATUS_COUNTS } from '../brand/catalog';
 import {
@@ -12,7 +12,6 @@ import {
   HERO_COPY,
   STATUS_COPY,
 } from '../brand/copy';
-import { publicAsset } from '../brand/paths';
 import { Eyebrow, useBrandbook } from '../brand/ui';
 
 const BEATS = ['modelo', 'analisis', 'lectura', 'decision'] as const;
@@ -270,15 +269,7 @@ export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
       <div className="hero__stage">
         <AnalysisBoard beat={beat} />
         <figure className="hero__clay-reference">
-          <Image
-            unoptimized
-            src={publicAsset('/proposals/clay/cover.png')}
-            alt={heroCopy.alt}
-            width={640}
-            height={420}
-            loading="eager"
-            sizes="(max-width: 900px) 100vw, 320px"
-          />
+          <ClayRelief label={heroCopy.alt} compact />
           <figcaption>{HERO_BOARD_COPY[language].figure}</figcaption>
         </figure>
         <ol className="hero__beats">
