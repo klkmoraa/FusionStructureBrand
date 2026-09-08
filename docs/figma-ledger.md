@@ -3,8 +3,9 @@
 Updated: 2026-09-08
 
 This is the handoff index for the editable Figma file. IDs are recorded here
-so a future pass can inspect or update a node without guessing. The file is
-kept in Drafts and no previous Figma file was deleted.
+so a future pass can inspect or update a node without guessing. By explicit
+product direction, the file was consolidated and rebuilt as one continuous
+page; the legacy pages were removed after their coverage was reconstructed.
 
 ## File
 
@@ -17,22 +18,13 @@ kept in Drafts and no previous Figma file was deleted.
 
 | Page | Page ID | Primary frames |
 | --- | --- | --- |
-| `00 · Cover` | `0:1` | `5:2` Atlas Cover / 1440 |
-| `01 · Foundations` | `3:2` | `5:19` Foundations / 1440; `30:2` Type · Space · Material · Motion |
-| `02 · Brand` | `3:3` | `13:2` logo family; `7:60` Brand / 1440; `23:2` identity manual; `33:29` lockups · voice · principles |
-| `03 · Semantic UI` | `3:4` | `32:2` component docs; `78:2` complete 14-primitive contract; `39:2` 25-tool inventory |
-| `04 · Labs` | `3:5` | `9:2` Labs / 1440; `34:2` Motion · States · Stress |
-| `05 · Atlas Web` | `3:6` | `9:42` desktop / 1440; `9:72` mobile / 390; `36:32` annotated mockups |
-| `06 · Handoff` | `3:7` | `9:84` Handoff / 1440; `37:2` anchor map; `37:37` token matrix; `49:2` reference benchmarks; `93:2` extended benchmarks |
-| `07 · Brandbook Web / Single Page` | `116:56` | `108:2` editable web capture; `110:2` Clay System 2026 component kit |
+| `FusionStructure · Brandbook 2026 / Single Page` | `116:56` | `108:2` editable continuous web; `110:2` Clay System 2026 component kit |
 
 ## Editable identity
 
-- `23:3` — `BrandMark / Canonical / 48u` master component.
-- `25:38` — `Lockup / Stacked` component.
-- `13:2` — complete logo family board.
-- `23:2` — bilingual identity manual: construction, clear space, sizes,
-  lockups and six misuse examples.
+- `126:101` — `BrandMark / Rebuilt` set: Signal, Mono and Inverse.
+- `126:103` — horizontal lockup; `126:111` — signature lockup.
+- `126:86` — rebuilt identity, typography and spacing section.
 - Canonical geometry: `M8 5h9v38H8z M17 5h24v5.5L17 14z` plus
   `M17 21h17v5L17 30z`.
 - Body: `#14171A`; signal arm: `#63C5FF`; wordmark: `FusionStructure`.
@@ -59,41 +51,20 @@ kept in Drafts and no previous Figma file was deleted.
 
 ## Component inventory
 
-- 25 components, 2 component sets.
-- Sets: `7:37` Action and `7:50` StatusPill.
 - Single-page clay kit: `112:45` Action / Clay (8 variants), `113:51`
   Card / Clay (3 variants), `114:102` Color Token / FS (15 variants) and six
   editable vector icon components inside `110:2`.
-- Primitives: `7:4` BrandMark, `7:7` Surface, `7:10` IndexLink,
-  `7:13` ChapterIntro, `7:16` RuleStrip, `7:19` SignalSwatch, `7:22`
-  ToolTile, `7:25` ToolCard, `7:28` LabFrame, `7:51` LanguageToggle,
-  `7:54` ThemeToggle, `7:57` MotionToggle.
-- Logo components: `13:5`, `13:9`, `13:13`, `13:20`, `13:26`, `23:3`,
-  `25:38`.
+- Rebuilt identity: `126:101` BrandMark (3 variants) plus two lockup
+  components. The continuous web frame contains all 12 anchors, five chapters,
+  proprietary clay mockups and the full bilingual brand guidance.
 
 ## Validation record
 
-- Top-level overlap audit: zero overlaps on the original seven pages; the new
-  eighth page intentionally places the continuous web capture and its component
-  kit side by side.
-- Final API audit: 37 variables across four collections, 25 components, two
-  component sets, 20 visual top-level board frames bound to the paper token,
-  and no invalid variable code syntax. (The API also reports 37 top-level
-  nodes because the Semantic UI page intentionally exposes primitive
-  components and text specimens alongside its three board frames.)
-- Screenshots reviewed for identity, component docs, inventory, Atlas desktop
-  and mobile, annotated mockups, anchor map, token matrix and benchmarks.
-- No destructive Figma operations were used; old placeholders remain hidden
-  where replaced by the canonical mark.
-- `93:2` — `Reference benchmarks / Extended · Material 3 · Fluent 2 · NASA · Apple`;
-  four editable benchmark cards (`96:2`, `96:9`, `97:2`, `97:9`) plus provenance
-  footer (`98:2`–`98:4`). The board records official names and links only; no
-  third-party assets were imported.
-- Extended benchmark screenshot reviewed after each incremental phase; card
-  grid and footer have no visible clipping or overlap.
-- Local Clay references are copied to
-  `brandbook-site/public/proposals/clay/`; no temporary Figma asset URL is
-  used by the web app.
+- Final API audit: exactly one page, two top-level frames and zero IMAGE fills.
+- The web capture is 1280 × 34163 px; the editable kit is 1440 × 3451 px.
+- Screenshots reviewed after buttons, cards, tokens, modes and rebuilt identity.
+- All former pages were removed only after their required coverage had been
+  rebuilt in the continuous web and component kit.
 - Web smoke evidence is recorded in
   `brandbook-site/output/playwright/final-audit.json` (390, 768, 1280 and
   1440 px; ES → EN, night theme and mobile index included).
