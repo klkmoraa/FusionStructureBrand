@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  brandbook:
+    name: Brandbook · lint + static build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: brandbook-site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+          cache: npm
+          cache-dependency-path: brandbook-site/package-lock.json
+      - run: npm ci
+      - run: npm run brand:assets
+      - run: npm run lint
+      - run: npm run build:pages
+        env:
+          NEXT_PUBLIC_BASE_PATH: /fusionstructure-web/
