@@ -24,6 +24,7 @@ kept in Drafts and no previous Figma file was deleted.
 | `04 · Labs` | `3:5` | `9:2` Labs / 1440; `34:2` Motion · States · Stress |
 | `05 · Atlas Web` | `3:6` | `9:42` desktop / 1440; `9:72` mobile / 390; `36:32` annotated mockups |
 | `06 · Handoff` | `3:7` | `9:84` Handoff / 1440; `37:2` anchor map; `37:37` token matrix; `49:2` reference benchmarks; `93:2` extended benchmarks |
+| `07 · Brandbook Web / Single Page` | `116:56` | `108:2` editable web capture; `110:2` Clay System 2026 component kit |
 
 ## Editable identity
 
@@ -60,6 +61,9 @@ kept in Drafts and no previous Figma file was deleted.
 
 - 25 components, 2 component sets.
 - Sets: `7:37` Action and `7:50` StatusPill.
+- Single-page clay kit: `112:45` Action / Clay (8 variants), `113:51`
+  Card / Clay (3 variants), `114:102` Color Token / FS (15 variants) and six
+  editable vector icon components inside `110:2`.
 - Primitives: `7:4` BrandMark, `7:7` Surface, `7:10` IndexLink,
   `7:13` ChapterIntro, `7:16` RuleStrip, `7:19` SignalSwatch, `7:22`
   ToolTile, `7:25` ToolCard, `7:28` LabFrame, `7:51` LanguageToggle,
@@ -69,7 +73,9 @@ kept in Drafts and no previous Figma file was deleted.
 
 ## Validation record
 
-- Top-level overlap audit: zero overlaps on all seven pages.
+- Top-level overlap audit: zero overlaps on the original seven pages; the new
+  eighth page intentionally places the continuous web capture and its component
+  kit side by side.
 - Final API audit: 37 variables across four collections, 25 components, two
   component sets, 20 visual top-level board frames bound to the paper token,
   and no invalid variable code syntax. (The API also reports 37 top-level

@@ -159,6 +159,8 @@ table {
   --fs-neutral-600: var(--n-600);
   --fs-neutral-700: var(--n-700);
   --fs-neutral-900: var(--n-900);
+  /* Contraste estable para texto sobre señales luminosas en Día y Noche. */
+  --fs-contrast-on-signal: #0e1113;
 
   /* marca */
   --fs-brand-accent: #0b7c7e;

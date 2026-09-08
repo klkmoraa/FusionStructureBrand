@@ -771,7 +771,7 @@
     linear-gradient(145deg,
       color-mix(in srgb, var(--active-signal) 82%, white),
       var(--active-signal));
-  color: var(--paper);
+  color: var(--fs-contrast-on-signal);
   box-shadow:
     inset 1px 1px 0 color-mix(in srgb, white 48%, transparent),
     4px 5px 14px color-mix(in srgb, var(--active-signal) 24%, transparent),
@@ -1015,6 +1015,8 @@
     linear-gradient(145deg, var(--surface), var(--surface-sunken));
 }
 
+/* Excepción documentada: estos valores congelan el espécimen Noche dentro del
+   modo Día para poder comparar ambos modos simultáneamente. */
 .device-study--noche { --paper: #14171a; --surface: #1b1f22; --surface-sunken: #0e1113; --ink: #f2f4f3; --ink-muted: #b4bdc0; --ink-faint: #8b9599; --line-soft: #333a3e; --line-strong: #465055; --active-signal: #63c5ff; }
 
 .device-study__monitor { position: relative; z-index: 2; width: min(78%, 430px); padding: 8px 8px 14px; border-radius: 20px; background: var(--surface); box-shadow: 12px 16px 30px color-mix(in srgb, black 22%, transparent), -7px -7px 20px color-mix(in srgb, white 54%, transparent), inset 2px 2px 2px color-mix(in srgb, white 50%, transparent); }
