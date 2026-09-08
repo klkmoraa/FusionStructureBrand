@@ -2,10 +2,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { publicAsset } from './brand/paths';
 
+const siteUrl =
+  process.env.BRANDBOOK_GITHUB_PAGES === '1'
+    ? 'https://klkmoraa.github.io/fusionstructure-web/brandbook'
+    : 'https://fusionstructure-brandbook.crdrawin.chatgpt.site';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    'https://fusionstructure-brandbook.crdrawin.chatgpt.site',
-  ),
+  metadataBase: new URL(siteUrl),
   title: 'FusionStructure · Brandbook',
   description:
     'Sistema visual y verbal de FusionStructure: marca, color con significado, movimiento que explica y un catálogo de 25 superficies con su estado real.',
