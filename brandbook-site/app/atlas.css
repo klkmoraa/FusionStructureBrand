@@ -765,7 +765,10 @@
 
 .atlas .action--primary,
 .atlas .ui-button--primary,
-.atlas .segmented button.is-active {
+.atlas .segmented button.is-active,
+.brandbook--noche.atlas .action--primary,
+.brandbook--noche.atlas .ui-button--primary,
+.brandbook--noche.atlas .segmented button.is-active {
   border-color: color-mix(in srgb, var(--active-signal) 38%, var(--line-soft));
   background:
     linear-gradient(145deg,
