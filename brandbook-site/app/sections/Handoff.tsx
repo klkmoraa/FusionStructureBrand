@@ -17,7 +17,6 @@ import {
   type FamilyId,
 } from '../brand/generated/palette';
 import { TOOLS } from '../brand/catalog';
-import { BrandMark } from '../brand/marks';
 import { CopyChip, SectionIntro, useBrandbook } from '../brand/ui';
 import {
   BRAND_ASSET_COPY,
@@ -33,39 +32,37 @@ const BRAND_ASSETS = [
   {
     id: 'signal',
     href: publicAsset('/brand/fusionstructure-mark.svg'),
-    name: 'Marca · señal',
-    note: 'uso general, brazo en color de señal',
   },
   {
     id: 'mono',
     href: publicAsset('/brand/fusionstructure-mark-mono.svg'),
-    name: 'Marca · mono',
-    note: 'documento, impresión y grabado',
   },
   {
     id: 'inverse',
     href: publicAsset('/brand/fusionstructure-mark-inverse.svg'),
-    name: 'Marca · inversa',
-    note: 'fondos oscuros',
   },
   {
     id: 'icon',
     href: publicAsset('/brand/fusionstructure-app-icon.svg'),
-    name: 'Icono de aplicación',
-    note: 'carbón con esquina de 11u',
   },
   {
     id: 'lockup',
     href: publicAsset('/brand/fusionstructure-lockup.svg'),
-    name: 'Firma horizontal',
-    note: 'marca, nombre y principio',
   },
   {
     id: 'favicon',
     href: publicAsset('/favicon.svg'),
-    name: 'Favicon',
-    note: '16 px en adelante',
   },
+] as const;
+
+const CHECK_BLOCKS = [
+  'sistema',
+  'sistema',
+  'lenguaje',
+  'interaccion',
+  'patrones',
+  'lenguaje',
+  'interaccion',
 ] as const;
 
 const buildTokenSheet = (language: Language) => {
@@ -107,16 +104,12 @@ const buildTokenSheet = (language: Language) => {
 export const Handoff = () => {
   const { copyValue, language } = useBrandbook();
   const sheet = buildTokenSheet(language);
+  const preview = sheet.split('\n').slice(0, 12).join('\n');
   const copy = HANDOFF_COPY[language];
 
   return (
     <section id="entrega" className="section handoff">
-      <SectionIntro
-        index="12"
-        eyebrow="Entrega · guardas"
-        title="Un sistema se sostiene con guardas, no con buenas intenciones."
-        body="Estos son los valores que propone el brandbook y las comprobaciones que un cambio debe pasar antes de considerarse listo. La aplicación todavía consume los suyos en src/design-system/tokens.css: alinear ambos es una migración pendiente, no un hecho. Si una guarda falla, se reporta el fallo: no se presenta como éxito."
-      />
+      <SectionIntro index="12" />
 
       <div className="handoff__grid">
         <article className="panel handoff__tokens">
@@ -125,7 +118,7 @@ export const Handoff = () => {
             <code>css</code>
           </div>
           <pre>
-            <code>{sheet}</code>
+            <code>{preview}</code>
           </pre>
           <button
             type="button"
@@ -149,7 +142,9 @@ export const Handoff = () => {
             {HANDOFF_CHECKS.map((check, index) => (
               <li key={check}>
                 <Check size={15} aria-hidden="true" />
-                <span>{HANDOFF_CHECK_COPY[index][language]}</span>
+                <a href={`#bloque-${CHECK_BLOCKS[index]}`}>
+                  {HANDOFF_CHECK_COPY[index][language]}
+                </a>
               </li>
             ))}
           </ul>
@@ -252,14 +247,6 @@ export const Handoff = () => {
             </div>
           </dl>
         </article>
-      </div>
-
-      <div className="handoff__closing">
-        <BrandMark size={54} />
-        <div>
-          <h3>{copy.closingTitle}</h3>
-          <p>{copy.closing}</p>
-        </div>
       </div>
     </section>
   );

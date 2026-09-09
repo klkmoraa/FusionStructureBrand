@@ -1,7 +1,7 @@
 'use client';
 
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, Search, X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { StatusPill, ToolTile } from '../brand/marks';
 import { TOOLS, type StatusId, type Tool } from '../brand/catalog';
 import {
@@ -11,15 +11,13 @@ import {
 } from '../brand/generated/palette';
 import {
   FAMILY_COPY,
-  RULE_LABEL,
   STATUS_COPY,
-  STATUS_MEANING_COPY,
   STATUS_RULE_COPY,
   TOOLS_COPY,
   TOOL_CODE_COPY,
   TOOL_COPY,
 } from '../brand/copy';
-import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
+import { SectionIntro, useBrandbook } from '../brand/ui';
 
 type FamilyFilter = FamilyId | 'todas';
 type StatusFilter = StatusId | 'todos';
@@ -60,7 +58,9 @@ const ToolDetail = ({
         <div>
           <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
           <h3>{toolCopy.name[language]}</h3>
-          <p>{toolCopy.summary[language]}</p>
+          <p>
+            {toolCopy.role[language]} · {toolCopy.summary[language]}
+          </p>
         </div>
         <button
           type="button"
@@ -145,12 +145,7 @@ export const Tools = () => {
 
   return (
     <section id="herramientas" className="section tools">
-      <SectionIntro
-        index="03"
-        eyebrow="Herramientas · catálogo"
-        title="Seis familias, una marca madre."
-        body="Análisis, modelo, civil, proyecto, conexiones y aprendizaje comparten una estructura visual. Las herramientas permanecen trazables y declaran su estado sin convertirse en una séptima identidad."
-      />
+      <SectionIntro index="03" />
 
       <div className="tools__controls">
         <fieldset className="filter-row">
@@ -199,11 +194,11 @@ export const Tools = () => {
             </button>
             {STATUS_ORDER.map((id) => {
               const count = TOOLS.filter((tool) => tool.status === id).length;
+              if (count === 0) return null;
               return (
                 <button
                   key={id}
                   type="button"
-                  disabled={count === 0}
                   className={`chip chip--status status--${id} ${status === id ? 'is-active' : ''}`}
                   onClick={() => setStatus(id)}
                 >
@@ -259,14 +254,7 @@ export const Tools = () => {
                   </span>
                   <span className="tool-card__name">
                     <strong>{toolCopy.name[language]}</strong>
-                    <small>{toolCopy.role[language]}</small>
-                  </span>
-                  <span className="tool-card__summary">
-                    {toolCopy.summary[language]}
-                  </span>
-                  <span className="tool-card__reference">
-                    <small>{copy.category}</small>
-                    {toolCopy.reference[language]}
+                    <small>{FAMILY_COPY[tool.family].label[language]}</small>
                   </span>
                   <span className="tool-card__foot">
                     <StatusPill
@@ -274,8 +262,6 @@ export const Tools = () => {
                       language={language}
                       compact
                     />
-                    <span className="tool-card__more">{copy.viewGate}</span>
-                    <ArrowRight size={14} aria-hidden="true" />
                   </span>
                 </button>
               </li>
@@ -296,22 +282,6 @@ export const Tools = () => {
       {visible.length === 0 ? (
         <p className="empty-state">{copy.empty}</p>
       ) : null}
-
-      <div className="status-board">
-        <div className="status-board__head">
-          <span className="tag">{copy.vocabulary}</span>
-          <p>{copy.vocabularyBody}</p>
-        </div>
-        {STATUS_ORDER.map((id) => (
-          <div key={id} className="status-board__row">
-            <StatusPill status={id} language={language} />
-            <p>{STATUS_MEANING_COPY[id][language]}</p>
-            <small>{STATUS_RULE_COPY[id][language]}</small>
-          </div>
-        ))}
-      </div>
-
-      <RuleStrip index={`${RULE_LABEL[language]} 03`}>{copy.rule}</RuleStrip>
     </section>
   );
 };

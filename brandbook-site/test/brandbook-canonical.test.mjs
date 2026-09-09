@@ -137,3 +137,102 @@ test('keeps every hard-clay shadow layer unblurred', async () => {
     /(?:backdrop-filter|filter:\s*[^n]|\bblur\(|scale\(0\.99\))/i,
   );
 });
+
+test('centralizes concise section introductions and the fixed signature', async () => {
+  const copy = await read('../app/brand/copy.ts');
+  const ui = await read('../app/brand/ui.tsx');
+  assert.doesNotMatch(
+    ui,
+    /section-intro__meta|eyebrow\?: string|body\?: string/,
+  );
+  const intros = copy
+    .split('export const SECTION_INTROS:')[1]
+    .split('export const UI_COPY')[0];
+  const bodies = [
+    ...intros.matchAll(/body: \{\s*es: '([^']*)',\s*en: '([^']*)'/g),
+  ];
+  assert.equal(bodies.length, 12);
+  for (const [, es, en] of bodies) {
+    for (const body of [es, en]) {
+      assert.ok(body.length <= 180, body);
+      assert.ok(body.split(/[.!?](?:\s|$)/).filter(Boolean).length <= 2, body);
+    }
+  }
+  assert.match(copy, /language that does not overpromise/);
+  assert.match(copy, /Make complexity legible\./);
+  for (const name of [
+    'Identity',
+    'Tools',
+    'Typography',
+    'Motion',
+    'Patterns',
+    'Handoff',
+    'References',
+  ]) {
+    const section = await read(`../app/sections/${name}.tsx`);
+    assert.doesNotMatch(
+      section,
+      /<SectionIntro[^>]*\b(?:eyebrow|title|body)=/s,
+    );
+  }
+});
+
+test('keeps collapsed tools concise and normative status definitions accessible', async () => {
+  const tools = await read('../app/sections/Tools.tsx');
+  const card = tools.split('className={`tool-card ')[1].split('</button>')[0];
+  assert.doesNotMatch(
+    card,
+    /toolCopy\.(?:role|summary|reference)|tool-card__more/,
+  );
+  assert.match(card, /FAMILY_COPY\[tool.family\]/);
+  assert.match(tools, /if \(count === 0\) return null/);
+  const color = await read('../app/sections/Color.tsx');
+  assert.match(color, /STATUS_MEANING_COPY/);
+  assert.match(color, /<details/);
+});
+
+test('prunes duplicate inventories and embeds pattern states in the workbench', async () => {
+  const [identity, icons, material, patterns] = await Promise.all(
+    ['Identity', 'Iconography', 'Material', 'Patterns'].map((name) =>
+      read(`../app/sections/${name}.tsx`),
+    ),
+  );
+  assert.match(identity, /<code>5<\/code>/);
+  assert.equal(
+    [...identity.matchAll(/className="variant variant--/g)].length,
+    5,
+  );
+  assert.doesNotMatch(identity, /familyPreview|family__preview/);
+  assert.doesNotMatch(icons, /SIGNALS|diagram-grid|SIGNAL_COPY/);
+  assert.doesNotMatch(material, /button-showcase|table-demo/);
+  assert.doesNotMatch(patterns, /className="states"|className=\{`state-card/);
+  assert.match(patterns, /workbench__state/);
+});
+
+test('renders one of at most four references with scene, viewport and theme controls', async () => {
+  const source = await read('../app/sections/References.tsx');
+  const definitions = source
+    .split('const CLAY_REFERENCES = [')[1]
+    .split('] as const;')[0];
+  const scenes = [...definitions.matchAll(/scene: '/g)];
+  assert.ok(scenes.length > 0 && scenes.length <= 4);
+  assert.equal([...source.matchAll(/<figure\b/g)].length, 1);
+  assert.match(source, /setActiveScene/);
+  assert.match(source, /setViewport/);
+  assert.match(source, /setSceneTheme/);
+  assert.doesNotMatch(source, /DeviceStudy|\b(?:es|en):/);
+});
+
+test('combines motion and six depth levels in one active interaction specimen', async () => {
+  const [motion, material] = await Promise.all([
+    read('../app/sections/Motion.tsx'),
+    read('../app/sections/Material.tsx'),
+  ]);
+  assert.match(motion, /SURFACE_LEVELS\.map/);
+  assert.match(motion, /data-level=\{level\}/);
+  assert.match(motion, /interaction-timing/);
+  assert.match(motion, /id="movimiento"/);
+  assert.match(material, /id="materia"/);
+  assert.doesNotMatch(material, /material-stage|material-lab|useState/);
+  assert.match(material, /SURFACE_LEVELS\.map/);
+});

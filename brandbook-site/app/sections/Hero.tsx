@@ -205,12 +205,7 @@ export const Hero = () => {
       </div>
       <div className="hero__stage">
         <AnalysisBoard beat={2} />
-        <p className="hero__axiom">
-          01 —{' '}
-          {language === 'es'
-            ? 'La claridad precede a la expresión.'
-            : 'Clarity precedes expression.'}
-        </p>
+        <p className="hero__axiom">01 — {heroCopy.axiom}</p>
       </div>
     </section>
   );

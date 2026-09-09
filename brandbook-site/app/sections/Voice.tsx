@@ -10,6 +10,7 @@ import {
 } from '../brand/system';
 import {
   GLOSSARY_COPY,
+  EXPLORER_COPY,
   MICROCOPY_COPY,
   RULE_LABEL,
   VOICE_COPY,
@@ -30,17 +31,20 @@ export const Voice = () => {
     <section id="voz" className="section voice">
       <SectionIntro index="11" compact />
 
-      <div className="voice-principles">
-        {VOICE_PRINCIPLES.map((principle, index) => (
-          <article key={principle.id}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>
-              {VOICE_PRINCIPLE_COPY[principle.id].title[language]}
-            </strong>
-            <p>{VOICE_PRINCIPLE_COPY[principle.id].body[language]}</p>
-          </article>
-        ))}
-      </div>
+      <details className="content-disclosure">
+        <summary>{copy.why}</summary>
+        <div className="voice-principles">
+          {VOICE_PRINCIPLES.map((principle, index) => (
+            <article key={principle.id}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>
+                {VOICE_PRINCIPLE_COPY[principle.id].title[language]}
+              </strong>
+              <p>{VOICE_PRINCIPLE_COPY[principle.id].body[language]}</p>
+            </article>
+          ))}
+        </div>
+      </details>
 
       <div className="rewriter">
         <div className="rewriter__head">
@@ -93,36 +97,40 @@ export const Voice = () => {
               </span>
               <p>{activeCopy.after[language]}</p>
             </div>
-            <p className="rewriter__why">
-              <strong>{copy.why}</strong> {activeCopy.why[language]}
-            </p>
+            <details className="rewriter__why">
+              <summary>{copy.why}</summary>
+              <p>{activeCopy.why[language]}</p>
+            </details>
           </div>
         </div>
       </div>
 
-      <div className="microcopy">
-        {MICROCOPY.map((group) => (
-          <article key={group.id}>
-            <div className="microcopy__head">
-              <span className="tag">
-                {MICROCOPY_COPY[group.id].group[language]}
-              </span>
-            </div>
-            <ul>
-              {group.items.map((item, index) => (
-                <li key={item.label}>
-                  <strong>
-                    {MICROCOPY_COPY[group.id].items[index].label[language]}
-                  </strong>
-                  <small>
-                    {MICROCOPY_COPY[group.id].items[index].note[language]}
-                  </small>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
+      <details className="content-disclosure">
+        <summary>{EXPLORER_COPY[language].microcopy}</summary>
+        <div className="microcopy">
+          {MICROCOPY.map((group) => (
+            <article key={group.id}>
+              <div className="microcopy__head">
+                <span className="tag">
+                  {MICROCOPY_COPY[group.id].group[language]}
+                </span>
+              </div>
+              <ul>
+                {group.items.map((item, index) => (
+                  <li key={item.label}>
+                    <strong>
+                      {MICROCOPY_COPY[group.id].items[index].label[language]}
+                    </strong>
+                    <small>
+                      {MICROCOPY_COPY[group.id].items[index].note[language]}
+                    </small>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </details>
 
       <div className="glossary">
         <div className="glossary__head">
@@ -139,7 +147,7 @@ export const Voice = () => {
         </dl>
       </div>
 
-      <RuleStrip index={`${RULE_LABEL[language]} 11`}>{copy.rule}</RuleStrip>
+      <RuleStrip index={`${RULE_LABEL[language]} 04`}>{copy.rule}</RuleStrip>
     </section>
   );
 };

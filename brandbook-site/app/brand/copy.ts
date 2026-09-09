@@ -159,7 +159,7 @@ export const SECTION_COPY: Record<
     label: { es: 'Voz', en: 'Voice' },
     detail: {
       es: 'lenguaje que no promete de más',
-      en: 'language that overpromises less',
+      en: 'language that does not overpromise',
     },
   },
   entrega: {
@@ -180,8 +180,8 @@ export const SECTION_INTROS: Record<
       en: 'Make complexity legible.',
     },
     body: {
-      es: 'Un modelo, un resultado y una decisión deben leerse igual en pantalla, en papel y en obra. La marca convierte complejidad técnica en evidencia navegable.',
-      en: 'A model, a result, and a decision should read the same on screen, on paper, and on site. The brand turns technical complexity into navigable evidence.',
+      es: 'Modelo, resultado y decisión se leen igual en pantalla, en papel y en obra.',
+      en: 'Model, result, and decision read consistently on screen, on paper, and on site.',
     },
   },
   '02': {
@@ -496,16 +496,14 @@ export const TYPOGRAPHY_COPY = {
     display: 'títulos, marca y una idea por pantalla',
     interface: 'controles, listas y lectura larga',
     data: 'unidad, versión, coordenada y token',
-    fallback:
-      'Las tres respaldan con la pila del sistema. Si la fuente no carga, la jerarquía sigue en pie porque vive en el tamaño y el espacio.',
+    fallback: 'Respaldo: fuentes del sistema; conserva tamaño y espaciado.',
     line: 'línea',
     displayLabel: 'Display · Space Grotesk',
     interfaceLabel: 'Interfaz · Inter',
     dataLabel: 'Dato · IBM Plex Mono',
     numbers: 'Números',
     numbersTitle: 'Un dato mal escrito es un dato equivocado.',
-    numbersBody:
-      'La tipografía de datos usa cifras tabulares para que las columnas se puedan comparar sin leer cada renglón.',
+    numbersBody: 'Alinea cifras tabulares; conserva unidad, signo y versión.',
     yes: 'así',
     no: 'así no',
     rule: 'Si el texto necesita explicarse dos veces, el problema es la jerarquía, no el tamaño.',
@@ -599,7 +597,8 @@ export const DRAWING_RULE_COPY: Record<
 export const HERO_COPY = {
   es: {
     eyebrow: 'Capítulo 01 · orientación',
-    lead: 'Un modelo, un resultado y una decisión deben leerse igual en pantalla, en papel y en obra. La marca convierte complejidad técnica en evidencia navegable.',
+    axiom: 'La claridad precede a la expresión.',
+    lead: 'Modelo, resultado y decisión se leen igual en pantalla, en papel y en obra.',
     // El eslogan es una firma de marca y no se traduce.
     titleLines: ['Make', 'complexity', 'legible.'],
     tools: 'Ver las 6 familias',
@@ -609,7 +608,8 @@ export const HERO_COPY = {
   },
   en: {
     eyebrow: 'Chapter 01 · orientation',
-    lead: 'A model, a result, and a decision should read the same on screen, on paper, and on site. The brand turns technical complexity into navigable evidence.',
+    axiom: 'Clarity precedes expression.',
+    lead: 'Model, result, and decision read consistently on screen, on paper, and on site.',
     titleLines: ['Make', 'complexity', 'legible.'],
     tools: 'View the 6 families',
     identity: 'Start with the mark',
@@ -681,20 +681,20 @@ export const HERO_BEAT_COPY: Record<
 
 export const IDENTITY_COPY = {
   es: {
+    signalNight: 'Señal · noche',
+    signalNightUse: 'sobre carbón',
     mark: 'Marca de FusionStructure',
     markCaption: 'Ménsula',
     markEdition: 'marca madre · 2026',
     construction: 'Construcción',
     grid: 'retícula 48u',
-    constructionBody:
-      'Columna de 9u, voladizo superior de 24u y voladizo medio de 17u. El peralte pasa de 9u en el arranque a 5u en la punta. Ninguna curva: lo que sostiene es recto y lo que responde es el ángulo.',
+    constructionBody: 'Columna 9u · voladizos 24u / 17u · peralte 9u → 5u.',
     minimumSizes: 'Tamaños mínimos',
     sizeBody:
-      'A 16 px el brazo de señal sigue siendo legible porque nunca baja de 1 px real. Por debajo de 16 px se usa el icono de aplicación, no la marca suelta.',
+      'Marca ≥16 px · brazo ≥1 px. Por debajo de 16 px, usa el icono de aplicación.',
     clearspace: 'Espacio libre',
     clearspaceUnit: '1 columna = 9u',
-    clearspaceBody:
-      'Alrededor de la marca se reserva el ancho de su propia columna. Ese aire es parte de la marca: sin él, la ménsula parece apoyada en otra cosa.',
+    clearspaceBody: 'Reserva 9u en los cuatro lados.',
     variants: 'Variantes',
     signal: 'Señal',
     signalUse: 'uso general',
@@ -744,29 +744,22 @@ export const IDENTITY_COPY = {
       },
       ruido: { label: 'No sobre imagen', note: 'sin contraste no hay lectura' },
     },
-    rule: 'El glifo identifica, el color agrupa y el nombre confirma. Si quitar el color deja dos herramientas iguales, el glifo está mal dibujado.',
-    familyTag: 'Marca respaldada',
-    familyTitle: 'Una madre neutra. Seis familias reconocibles.',
-    familyBody:
-      'Cada superficie hereda la retícula, el trazo y el nudo de la ménsula. Lo que cambia es el glifo funcional y el tono de familia; el estado real lo sigue definiendo el código.',
-    noColor: 'Sin color',
-    noColorBody: 'La misma fila en tinta: el glifo debe bastar.',
+    rule: 'Conserva la geometría, el espacio libre y el brazo de señal de la marca.',
   },
   en: {
+    signalNight: 'Signal · night',
+    signalNightUse: 'on charcoal',
     mark: 'FusionStructure mark',
     markCaption: 'Cantilever',
     markEdition: 'parent mark · 2026',
     construction: 'Construction',
     grid: '48u grid',
-    constructionBody:
-      'A 9u column, a 24u upper cantilever, and a 17u middle cantilever. Depth moves from 9u at the root to 5u at the tip. No curves: what carries is straight and what responds is the angle.',
+    constructionBody: 'Column 9u · cantilevers 24u / 17u · depth 9u → 5u.',
     minimumSizes: 'Minimum sizes',
-    sizeBody:
-      'At 16 px the signal arm remains legible because it never drops below 1 real px. Below 16 px use the app icon, not the standalone mark.',
+    sizeBody: 'Mark ≥16 px · arm ≥1 px. Below 16 px, use the app icon.',
     clearspace: 'Clear space',
     clearspaceUnit: '1 column = 9u',
-    clearspaceBody:
-      'Reserve the width of the mark’s own column around it. That air is part of the mark: without it, the cantilever looks supported by something else.',
+    clearspaceBody: 'Reserve 9u on all four sides.',
     variants: 'Variants',
     signal: 'Signal',
     signalUse: 'general use',
@@ -819,13 +812,7 @@ export const IDENTITY_COPY = {
         note: 'without contrast there is no reading',
       },
     },
-    rule: 'The glyph identifies, color groups, and the name confirms. If removing color leaves two tools looking alike, the glyph is drawn wrong.',
-    familyTag: 'Backed mark',
-    familyTitle: 'One neutral parent. Six recognizable families.',
-    familyBody:
-      'Every surface inherits the cantilever’s grid, stroke, and joint. What changes is the functional glyph and family tone; code still defines the real state.',
-    noColor: 'No color',
-    noColorBody: 'The same row in ink: the glyph must be enough.',
+    rule: 'Preserve the mark geometry, clearspace, and signal arm.',
   },
 } as const;
 
@@ -2009,88 +1996,6 @@ export const REFERENCE_COPY = {
   },
 } as const;
 
-export const CLAY_VIEWPORT_COPY: Record<string, Localized> = {
-  '1440 · día': { es: '1440 · día', en: '1440 · day' },
-  '768 · día': { es: '768 · día', en: '768 · day' },
-  '390 · noche': { es: '390 · noche', en: '390 · night' },
-};
-
-export const MOCKUP_COPY: Record<
-  string,
-  { title: Localized; note: Localized }
-> = {
-  'day-analysis': {
-    title: { es: 'Mesa de análisis', en: 'Analysis workbench' },
-    note: {
-      es: 'Modelo, resultados e inspector comparten un solo campo de trabajo.',
-      en: 'Model, results, and inspector share one work field.',
-    },
-  },
-  'day-projects': {
-    title: { es: 'Continuidad de proyecto', en: 'Project continuity' },
-    note: {
-      es: 'Fases, versiones y siguiente acción sin convertir el inicio en un tablero genérico.',
-      en: 'Phases, versions, and next action without turning the start into a generic dashboard.',
-    },
-  },
-  'day-model': {
-    title: { es: 'Modelado directo', en: 'Direct modeling' },
-    note: {
-      es: 'La carga nace del elemento seleccionado y la profundidad explica la relación.',
-      en: 'The load originates at the selected element and depth explains the relationship.',
-    },
-  },
-  'day-compare': {
-    title: { es: 'Comparación estructural', en: 'Structural comparison' },
-    note: {
-      es: 'Las señales se alinean por significado: comparar no obliga a traducir.',
-      en: 'Signals align by meaning: comparison does not require translation.',
-    },
-  },
-  'day-field': {
-    title: { es: 'Revisión de campo', en: 'Field review' },
-    note: {
-      es: 'Una incidencia, su evidencia y un siguiente paso visible en móvil.',
-      en: 'One issue, its evidence, and a visible next step on mobile.',
-    },
-  },
-  'night-model': {
-    title: { es: 'Modelo en carbón', en: 'Charcoal model' },
-    note: {
-      es: 'Carbón neutro con superficies elevadas y señal de alta legibilidad.',
-      en: 'Neutral charcoal with raised surfaces and a highly legible signal.',
-    },
-  },
-  'night-results': {
-    title: { es: 'Explorador de resultados', en: 'Results explorer' },
-    note: {
-      es: 'Diagramas sincronizados, estación seleccionada y deformada vinculada.',
-      en: 'Synchronized diagrams, selected station, and linked deformation.',
-    },
-  },
-  'night-trace': {
-    title: { es: 'Traza de decisión', en: 'Decision trace' },
-    note: {
-      es: 'Modelo, análisis, incidencia y evidencia dentro de una secuencia reversible.',
-      en: 'Model, analysis, issue, and evidence within a reversible sequence.',
-    },
-  },
-  'night-report': {
-    title: { es: 'Reporte y procedencia', en: 'Report and provenance' },
-    note: {
-      es: 'El documento conserva vínculos visibles con modelo, resultado y versión.',
-      en: 'The document keeps visible links to model, result, and version.',
-    },
-  },
-  'night-mobile': {
-    title: { es: 'Resultados móviles', en: 'Mobile results' },
-    note: {
-      es: 'Foco táctil y significado estructural en poco espacio.',
-      en: 'Touch focus and structural meaning in little space.',
-    },
-  },
-};
-
 export const HANDOFF_COPY = {
   es: {
     tokens: 'Hoja de tokens · propuesta',
@@ -2115,9 +2020,6 @@ export const HANDOFF_COPY = {
     source: 'Fuente',
     changelog: 'Changelog',
     changelogValue: 'Atlas Clay–Minimal · primera edición',
-    closingTitle: 'Make complexity legible.',
-    closing:
-      'FusionStructure es experimental. Este documento describe cómo se ve y cómo habla el producto, no promete cumplimiento normativo, exactitud para una obra real ni módulos terminados. Lo que existe está marcado como disponible; lo demás está dibujado, no prometido.',
   },
   en: {
     tokens: 'Token sheet · proposal',
@@ -2142,9 +2044,6 @@ export const HANDOFF_COPY = {
     source: 'Source',
     changelog: 'Changelog',
     changelogValue: 'Atlas Clay–Minimal · first edition',
-    closingTitle: 'Make complexity legible.',
-    closing:
-      'FusionStructure is experimental. This document describes how the product looks and speaks; it does not promise regulatory compliance, accuracy for real construction, or completed modules. What exists is marked available; the rest is drawn, not promised.',
   },
 } as const;
 
@@ -2420,3 +2319,77 @@ export const SYSTEM_MATURITY = [
     detail: { es: 'no usar en trabajo nuevo', en: 'do not use for new work' },
   },
 ] as const;
+
+export const EXPLORER_COPY = {
+  es: {
+    scene: 'Escena',
+    viewport: 'Ancho de referencia',
+    theme: 'Tema de la escena',
+    project: 'pórtico-04',
+    verified: 'equilibrio verificado',
+    model: 'modelo',
+    result: 'resultado',
+    decision: 'decisión',
+    signals: 'Señales',
+    families: 'Familias',
+    status: 'Estados',
+    scales: 'Escala de color',
+    details: 'Definiciones y guardas',
+    glyphs: 'Inventario de glifos',
+    drawing: 'Reglas de dibujo',
+    mono: 'Monocromo',
+    color: 'Color de familia',
+    iconSize: 'Tamaño del icono',
+    inspector: 'Inspector estructural',
+    microcopy: 'Ejemplos de interfaz',
+  },
+  en: {
+    scene: 'Scene',
+    viewport: 'Reference width',
+    theme: 'Scene theme',
+    project: 'frame-04',
+    verified: 'equilibrium verified',
+    model: 'model',
+    result: 'result',
+    decision: 'decision',
+    signals: 'Signals',
+    families: 'Families',
+    status: 'Status',
+    scales: 'Color scale',
+    details: 'Definitions and guardrails',
+    glyphs: 'Glyph inventory',
+    drawing: 'Drawing rules',
+    mono: 'Monochrome',
+    color: 'Family color',
+    iconSize: 'Icon size',
+    inspector: 'Structural inspector',
+    microcopy: 'Interface examples',
+  },
+} as const;
+
+export const CLAY_SCENE_COPY = {
+  cover: {
+    title: { es: 'Marca como estructura', en: 'Mark as structure' },
+    note: {
+      es: 'Conserva la silueta y el espacio libre.',
+      en: 'Preserve silhouette and clearspace.',
+    },
+    proof: { es: 'Identidad', en: 'Identity' },
+  },
+  spread: {
+    title: { es: 'Campo editorial', en: 'Editorial field' },
+    note: {
+      es: 'Ordena con retícula, cotas y aire.',
+      en: 'Organize with grid, dimensions, and space.',
+    },
+    proof: { es: 'Jerarquía', en: 'Hierarchy' },
+  },
+  product: {
+    title: { es: 'Materia en producto', en: 'Material in product' },
+    note: {
+      es: 'Mantén dato, estado y procedencia al cambiar de tema.',
+      en: 'Preserve data, status, and provenance across themes.',
+    },
+    proof: { es: 'Modo y estado', en: 'Mode and status' },
+  },
+} as const;

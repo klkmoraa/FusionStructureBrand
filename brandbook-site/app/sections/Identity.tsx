@@ -1,16 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { BrandMark, Glyph, MarkConstruction, ToolTile } from '../brand/marks';
-import { FAMILY_META, TOOLS } from '../brand/catalog';
-import { PRODUCT_FAMILY_IDS } from '../brand/generated/palette';
-import {
-  FAMILY_COPY,
-  IDENTITY_COPY,
-  RULE_LABEL,
-  TOOL_CODE_COPY,
-  TOOL_COPY,
-} from '../brand/copy';
+import { BrandMark, MarkConstruction } from '../brand/marks';
+import { IDENTITY_COPY, RULE_LABEL } from '../brand/copy';
 import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
 const MISUSES = [
@@ -27,19 +19,11 @@ export const Identity = () => {
   const { theme, language } = useBrandbook();
   const copy = IDENTITY_COPY[language];
   const [lockup, setLockup] = useState<(typeof LOCKUPS)[number]>('horizontal');
-  const familyPreview = TOOLS.filter((tool) =>
-    ['fs-a01', 'fs-m01', 'fs-c01', 'fs-p01', 'fs-i01', 'fs-l01'].includes(
-      tool.id,
-    ),
-  );
 
   return (
     <section id="identidad" className="section identity">
       <SectionIntro
         index="02"
-        eyebrow="Identidad · la ménsula"
-        title="Una marca que se sostiene sola."
-        body="Un miembro vertical y dos voladizos cuyo peralte decrece hacia la punta: la misma forma que toma una sección cuando se dimensiona por el momento que recibe. La marca no ilustra una estructura, está construida como una."
         aside={
           <figure className="identity__hero-mark">
             <BrandMark size={140} title={copy.mark} />
@@ -92,7 +76,7 @@ export const Identity = () => {
         <article className="panel identity__variants">
           <div className="panel__label">
             <span>{copy.variants}</span>
-            <code>4</code>
+            <code>5</code>
           </div>
           <div className="identity__variant-grid">
             <div className="variant variant--signal">
@@ -102,12 +86,8 @@ export const Identity = () => {
             </div>
             <div className="variant variant--mono">
               <BrandMark size={44} tone="inverse" />
-              <strong>
-                {language === 'es' ? 'Signal · Night' : 'Signal · Night'}
-              </strong>
-              <small>
-                {language === 'es' ? 'sobre carbón' : 'on charcoal'}
-              </small>
+              <strong>{copy.signalNight}</strong>
+              <small>{copy.signalNightUse}</small>
             </div>
             <div className="variant variant--mono">
               <BrandMark size={44} tone="mono" />
@@ -199,55 +179,6 @@ export const Identity = () => {
       </div>
 
       <RuleStrip index={`${RULE_LABEL[language]} 02`}>{copy.rule}</RuleStrip>
-
-      <div className="family">
-        <div className="family__head">
-          <div>
-            <span className="tag">{copy.familyTag}</span>
-            <h3>{copy.familyTitle}</h3>
-            <p>{copy.familyBody}</p>
-          </div>
-          <ul className="family__legend">
-            {PRODUCT_FAMILY_IDS.map((id) => {
-              const meta = FAMILY_META[id];
-              return (
-                <li key={id} className={`family__legend-item family--${id}`}>
-                  <span className="family__swatch" aria-hidden="true" />
-                  <strong>{FAMILY_COPY[id].label[language]}</strong>
-                  <code>{meta.prefix}</code>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="family__preview">
-          {familyPreview.map((tool) => (
-            <figure key={tool.id}>
-              <ToolTile glyph={tool.glyph} family={tool.family} size={56} />
-              <figcaption>
-                <strong>{TOOL_COPY[tool.id].name[language]}</strong>
-                <code>
-                  {TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}
-                </code>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <div className="family__mono">
-          <span className="tag">{copy.noColor}</span>
-          <div className="family__mono-row">
-            {familyPreview.map((tool) => (
-              <Glyph
-                key={tool.id}
-                id={tool.glyph}
-                size={30}
-                className="glyph--mono"
-              />
-            ))}
-          </div>
-          <p>{copy.noColorBody}</p>
-        </div>
-      </div>
     </section>
   );
 };

@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { Glyph } from '../brand/marks';
 import { NUMBER_RULES, TYPE_SCALE } from '../brand/system';
 import {
   NUMBER_RULE_COPY,
-  RULE_LABEL,
+  EXPLORER_COPY,
   TYPE_SCALE_COPY,
   TYPOGRAPHY_COPY,
 } from '../brand/copy';
-import { CopyChip, RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
+import { CopyChip, SectionIntro, useBrandbook } from '../brand/ui';
 
 const WEIGHTS = [400, 500, 600, 700] as const;
 
@@ -16,15 +17,13 @@ export const Typography = () => {
   const { language } = useBrandbook();
   const [weight, setWeight] = useState<number>(600);
   const copy = TYPOGRAPHY_COPY[language];
+  const controls = EXPLORER_COPY[language];
+  const [iconSize, setIconSize] = useState(24);
+  const [mono, setMono] = useState(false);
 
   return (
     <section id="tipografia" className="section typography">
-      <SectionIntro
-        index="05"
-        eyebrow="Tipografía · dos voces"
-        title="La jerarquía se entiende antes de leerse."
-        body="Una sans geométrica para orientar y actuar; una monoespaciada para todo lo que se compara: unidades, coordenadas, versiones, hashes y procedencia. Si un dato se puede alinear en columna, va en mono."
-      />
+      <SectionIntro index="05" />
 
       <div className="type-lab">
         <div className="type-canvas">
@@ -40,9 +39,9 @@ export const Typography = () => {
           </div>
         </div>
 
-        <div className="panel type-panel">
+        <div className="panel type-panel inspector-specimen">
           <div className="panel__label">
-            <span>{copy.weight}</span>
+            <span>{controls.inspector}</span>
             <code>400—700</code>
           </div>
           <fieldset className="segmented segmented--tight">
@@ -58,6 +57,40 @@ export const Typography = () => {
               </button>
             ))}
           </fieldset>
+          <div className="inspector-specimen__data">
+            <Glyph
+              id="solver2d"
+              size={iconSize}
+              className={mono ? 'glyph--mono' : 'family--analisis'}
+            />
+            <span>
+              −148.60 kN·m
+              <br />
+              <small>v4 · 1e−6</small>
+            </span>
+          </div>
+          <fieldset className="segmented">
+            <legend className="visually-hidden">{controls.iconSize}</legend>
+            {[20, 24, 32].map((size) => (
+              <button
+                key={size}
+                type="button"
+                aria-pressed={iconSize === size}
+                className={iconSize === size ? 'is-active' : ''}
+                onClick={() => setIconSize(size)}
+              >
+                {size} px
+              </button>
+            ))}
+          </fieldset>
+          <button
+            type="button"
+            className="chip"
+            aria-pressed={mono}
+            onClick={() => setMono(!mono)}
+          >
+            {mono ? controls.mono : controls.color}
+          </button>
           <ul className="type-stack">
             <li>
               <strong>{copy.displayLabel}</strong>
@@ -72,9 +105,7 @@ export const Typography = () => {
               <small>{copy.data}</small>
             </li>
           </ul>
-          <p className="type-panel__note">
-            {copy.fallback}
-          </p>
+          <p className="type-panel__note">{copy.fallback}</p>
         </div>
       </div>
 
@@ -83,7 +114,9 @@ export const Typography = () => {
           <article key={step.role}>
             <span>{TYPE_SCALE_COPY[step.role].role[language]}</span>
             <strong>{step.size}</strong>
-            <code>{copy.line} {step.line}</code>
+            <code>
+              {copy.line} {step.line}
+            </code>
             <small>{TYPE_SCALE_COPY[step.role].use[language]}</small>
           </article>
         ))}
@@ -100,10 +133,12 @@ export const Typography = () => {
             <li key={rule.rule}>
               <strong>{NUMBER_RULE_COPY[String(index)].rule[language]}</strong>
               <span className="numbers__good">
-                <code>{NUMBER_RULE_COPY[String(index)].good[language]}</code> {copy.yes}
+                <code>{NUMBER_RULE_COPY[String(index)].good[language]}</code>{' '}
+                {copy.yes}
               </span>
               <span className="numbers__bad">
-                <code>{NUMBER_RULE_COPY[String(index)].bad[language]}</code> {copy.no}
+                <code>{NUMBER_RULE_COPY[String(index)].bad[language]}</code>{' '}
+                {copy.no}
               </span>
             </li>
           ))}
@@ -113,8 +148,6 @@ export const Typography = () => {
           <CopyChip value="--fs-font-data" />
         </div>
       </div>
-
-      <RuleStrip index={`${RULE_LABEL[language]} 05`}>{copy.rule}</RuleStrip>
     </section>
   );
 };
