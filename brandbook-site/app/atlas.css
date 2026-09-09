@@ -773,9 +773,9 @@
   .atlas .ui-button:hover,
   .atlas .chip:hover,
   .atlas .copy-chip:hover,
-  .clay-reference,
-  .clay-reference:hover,
-  .clay-reference:active {
+  .brandbook:not(.brandbook--calma) .clay-reference,
+  .brandbook:not(.brandbook--calma) .clay-reference:hover,
+  .brandbook:not(.brandbook--calma) .clay-reference:active {
     animation: none;
     transform: none;
   }

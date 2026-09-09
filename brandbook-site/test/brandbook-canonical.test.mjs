@@ -48,6 +48,10 @@ test('keeps the live Clay Atlas tactile and image-free', async () => {
   assert.match(atlas, /@keyframes atlas-clay-arrive/);
   assert.match(atlas, /\.clay-reference:hover\s*\{[^}]*translateY\(-1px\)/s);
   assert.match(atlas, /\.clay-reference:active\s*\{[^}]*translateY\(1px\)/s);
+  assert.match(
+    atlas,
+    /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.brandbook:not\(\.brandbook--calma\) \.clay-reference,\s*\.brandbook:not\(\.brandbook--calma\) \.clay-reference:hover,\s*\.brandbook:not\(\.brandbook--calma\) \.clay-reference:active\s*\{[^}]*animation:\s*none;[^}]*transform:\s*none;/,
+  );
   assert.doesNotMatch(
     `${atlas}\n${globals}`,
     /(?:backdrop-filter|filter:\s*[^n]|\bblur\(|scale\(0\.99\))/i,
