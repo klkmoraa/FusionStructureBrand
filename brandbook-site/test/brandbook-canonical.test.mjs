@@ -175,6 +175,76 @@ test('keeps every hard-clay shadow layer unblurred', async () => {
   assert.doesNotMatch(atlas, /\.segmented label/);
 });
 
+test('primary hover preserves the signal fill and contrast ink in both themes', async () => {
+  const [atlas, globals] = await Promise.all([
+    read('../app/atlas.css'),
+    read('../app/globals.css'),
+  ]);
+  // Resolve the simple class/hover rules in actual import order. This catches
+  // a later legacy hover tying Atlas specificity and replacing the fill.
+  const css = `${atlas}\n${globals}`.replace(/\/\*[\s\S]*?\*\//g, '');
+  for (const theme of ['dia', 'noche']) {
+    for (const control of ['action', 'ui-button']) {
+      const applicable = new Set([
+        '.atlas',
+        '.brandbook',
+        `.brandbook--${theme}`,
+        `.${control}`,
+        `.${control}--primary`,
+        ':hover',
+      ]);
+      const resolved = new Map();
+      for (const [, selectors, body] of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+        for (const selector of selectors.split(',')) {
+          if (!/^(?:\s*(?:\.[\w-]+|:hover))+\s*$/.test(selector)) continue;
+          const parts = selector.match(/\.[\w-]+|:hover/g);
+          if (!parts.every((part) => applicable.has(part))) continue;
+          for (const [, property, value] of body.matchAll(
+            /(?:^|;)\s*(background|color):\s*([^;]+)(?=;)/g,
+          )) {
+            if (parts.length >= (resolved.get(property)?.specificity ?? -1)) {
+              resolved.set(property, {
+                value: value.trim(),
+                specificity: parts.length,
+              });
+            }
+          }
+        }
+      }
+      assert.equal(
+        resolved.get('background')?.value,
+        'var(--active-signal)',
+        `${theme} ${control} hover fill`,
+      );
+      assert.equal(
+        resolved.get('color')?.value,
+        'var(--fs-contrast-on-signal)',
+        `${theme} ${control} hover ink`,
+      );
+    }
+  }
+});
+
+test('copied material recipes export every custom-property dependency', async () => {
+  const system = await read('../app/brand/system.ts');
+  const material = system
+    .split('export const MATERIAL_TOKENS = [')[1]
+    .split('] as const;')[0];
+  const tokens = new Map(
+    [...material.matchAll(/token: '(--[\w-]+)',\s*value:\s*'([^']+)'/g)].map(
+      ([, token, value]) => [token, value],
+    ),
+  );
+  for (const [token, value] of tokens) {
+    for (const [, dependency] of value.matchAll(/var\((--[\w-]+)\)/g)) {
+      assert.ok(
+        tokens.has(dependency),
+        `${token} depends on unpublished ${dependency}`,
+      );
+    }
+  }
+});
+
 test('centralizes concise section introductions and the fixed signature', async () => {
   const copy = await read('../app/brand/copy.ts');
   const ui = await read('../app/brand/ui.tsx');

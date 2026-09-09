@@ -271,6 +271,12 @@ export const MATERIAL_TOKENS = [
   { token: '--radius-md', value: '18px', role: 'tarjeta y panel' },
   { token: '--radius-lg', value: '24px', role: 'marco y modal' },
   {
+    token: '--active-signal',
+    value: '#1AA57A',
+    night: '#53E0B2',
+    role: 'señal activa: marca por defecto, reemplazable por el dominio',
+  },
+  {
     token: '--clay-light',
     value: 'rgb(255 255 255 / 82%)',
     night: 'rgb(142 153 158 / 20%)',

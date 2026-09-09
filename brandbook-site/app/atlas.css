@@ -771,7 +771,9 @@
 }
 
 .atlas .action--primary,
-.atlas .ui-button--primary {
+.atlas .ui-button--primary,
+.atlas .action--primary:hover,
+.atlas .ui-button--primary:hover {
   border-color: color-mix(in srgb, var(--active-signal) 38%, var(--line-soft));
   background: var(--active-signal);
   color: var(--fs-contrast-on-signal);
