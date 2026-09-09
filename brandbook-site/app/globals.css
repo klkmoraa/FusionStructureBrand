@@ -87,14 +87,22 @@
 .reference-explorer .clay-reference__token {
   overflow-wrap: anywhere;
 }
+.reference-explorer .product-mockup__inspector strong,
+.reference-explorer .clay-reference figcaption code {
+  color: var(--ink);
+}
 .reference-explorer [data-theme='dia'] {
   --paper: #f7f6f1;
   --surface: #fffefa;
   --surface-sunken: #edefe9;
   --ink: #14171a;
   --ink-muted: #5c6a6f;
+  --ink-faint: #5c6a6f;
+  --ink-strong: #3f4a50;
   --line: #c6cdc6;
   --line-soft: #dde2dc;
+  --line-strong: #a7b1a9;
+  --success: #277654;
   --fs-brand-accent: #1aa57a;
 }
 .reference-explorer [data-theme='noche'] {
@@ -103,8 +111,12 @@
   --surface-sunken: #252a2e;
   --ink: #f2f4f3;
   --ink-muted: #b4bdc0;
+  --ink-faint: #8b9599;
+  --ink-strong: #b4bdc0;
   --line: #465055;
   --line-soft: #333a3e;
+  --line-strong: #465055;
+  --success: #55c990;
   --fs-brand-accent: #53e0b2;
 }
 .reference-explorer [data-viewport='390'] .product-mockup__body {

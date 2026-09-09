@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
+import { SIGNALS } from '../brand/system';
 import { ClayRelief } from '../brand/ClayRelief';
 import { BrandMark } from '../brand/marks';
 import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
@@ -98,11 +99,23 @@ const EditorialScene = ({ language }: { language: Language }) => {
 };
 
 export const References = () => {
-  const { language, theme } = useBrandbook();
+  const { language, theme, activeSignal } = useBrandbook();
   const [activeScene, setActiveScene] =
     useState<(typeof CLAY_REFERENCES)[number]['id']>('cover');
   const [viewport, setViewport] = useState(1440);
   const [sceneTheme, setSceneTheme] = useState(theme);
+  const selectedSignal =
+    SIGNALS.find((signal) => signal.id === activeSignal) ?? SIGNALS[0];
+  const scenePalette = {
+    ...Object.fromEntries(
+      SIGNALS.map((signal) => [
+        signal.token,
+        sceneTheme === 'noche' ? signal.night : signal.day,
+      ]),
+    ),
+    '--active-signal':
+      sceneTheme === 'noche' ? selectedSignal.night : selectedSignal.day,
+  };
   const copy = REFERENCE_COPY[language];
   const controls = EXPLORER_COPY[language];
   const item =
@@ -165,6 +178,7 @@ export const References = () => {
         <figure
           className="clay-reference"
           data-theme={sceneTheme}
+          style={scenePalette as CSSProperties}
           data-viewport={viewport}
         >
           <div className="clay-reference__image" style={{ maxWidth: viewport }}>

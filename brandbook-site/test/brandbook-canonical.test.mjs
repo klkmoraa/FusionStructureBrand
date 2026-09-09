@@ -236,3 +236,40 @@ test('combines motion and six depth levels in one active interaction specimen', 
   assert.doesNotMatch(material, /material-stage|material-lab|useState/);
   assert.match(material, /SURFACE_LEVELS\.map/);
 });
+
+test('isolates reference signal and foreground colors from the global theme', async () => {
+  const [references, css] = await Promise.all([
+    read('../app/sections/References.tsx'),
+    read('../app/globals.css'),
+  ]);
+  assert.match(references, /SIGNALS\.map\(\(signal\) =>/);
+  assert.match(
+    references,
+    /signal\.token,\s*sceneTheme === 'noche' \? signal\.night : signal\.day/,
+  );
+  assert.match(references, /signal\.id === activeSignal/);
+  assert.match(
+    references,
+    /'--active-signal':\s*sceneTheme === 'noche' \? selectedSignal\.night : selectedSignal\.day/,
+  );
+  assert.match(references, /style=\{scenePalette as CSSProperties\}/);
+  for (const theme of ['dia', 'noche']) {
+    const palette = css
+      .split(`.reference-explorer [data-theme='${theme}'] {`)[1]
+      .split('}')[0];
+    for (const name of [
+      'ink',
+      'ink-muted',
+      'ink-faint',
+      'ink-strong',
+      'line-strong',
+      'success',
+    ]) {
+      assert.match(palette, new RegExp(`--${name}:`));
+    }
+  }
+  assert.match(
+    css,
+    /\.reference-explorer \.product-mockup__inspector strong,\s*\.reference-explorer \.clay-reference figcaption code\s*\{\s*color: var\(--ink\)/,
+  );
+});
