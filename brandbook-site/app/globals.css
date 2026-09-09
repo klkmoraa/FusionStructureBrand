@@ -1250,7 +1250,7 @@ table {
   flex-direction: column;
   min-width: 0;
   gap: clamp(72px, 9vw, 148px);
-  padding: 26px 0 0;
+  padding: 26px 0 max(80px, env(safe-area-inset-bottom, 48px));
 }
 
 .section {
@@ -1262,11 +1262,13 @@ table {
 
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translate3d(0, 14px, 0);
+  will-change: transform, opacity;
   transition:
     opacity var(--fs-reveal) var(--fs-ease),
     transform var(--fs-reveal) var(--fs-ease);
 }
+
 
 .reveal.is-revealed {
   opacity: 1;
@@ -3707,15 +3709,15 @@ table {
 @keyframes confirm-pop {
   0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translate3d(0, 8px, 0);
   }
   60% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -3726,6 +3728,7 @@ table {
 .motion-screen--comparar .motion-compare i {
   animation: compare-grow 620ms var(--fs-ease) forwards;
   transform: scaleX(0);
+  will-change: transform;
 }
 
 .motion-screen--comparar .motion-compare__b {
@@ -3745,15 +3748,15 @@ table {
 @keyframes undo-return {
   0% {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
   55% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translate3d(30px, 0, 0);
   }
 }
 
@@ -3763,14 +3766,15 @@ table {
 
 .motion-screen--esperar .motion-progress i {
   animation: progress-slide var(--fs-pulse) var(--fs-ease-firm) infinite;
+  will-change: transform;
 }
 
 @keyframes progress-slide {
   0% {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
   }
   100% {
-    transform: translateX(340%);
+    transform: translate3d(340%, 0, 0);
   }
 }
 
@@ -5988,13 +5992,94 @@ table {
   color: var(--ink);
 }
 
-.microcopy {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(266px, 1fr));
-  gap: 12px;
+/* --- 60/120 FPS Hardware Acceleration Engine --- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-.microcopy article {
+.action,
+.ui-button,
+.icon-button,
+.top-control,
+.segmented button,
+.chip,
+.tool-card,
+.workbench__tool,
+.workbench__layer-btn,
+.sheet-subtab,
+.sheet-card,
+.sheet-action-item,
+.microcopy-btn-specimen,
+.microcopy-btn,
+.microcopy-empty-specimen,
+.microcopy-alert-specimen,
+.rewriter__list button,
+.rewriter__card,
+.glossary__card {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.action:active,
+.ui-button:active:not(:disabled),
+.icon-button:active,
+.segmented button:active,
+.chip:active,
+.tool-card:active,
+.workbench__tool:active,
+.sheet-subtab:active,
+.sheet-action-item:active,
+.microcopy-btn:active {
+  transform: translate3d(0, 1.5px, 0) !important;
+  transition-duration: 50ms !important;
+}
+
+/* --- Microcopy: Especímenes de interfaz táctiles --- */
+
+.microcopy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.microcopy__nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.microcopy__segmented {
+  display: inline-flex;
+}
+
+.microcopy__count {
+  font-family: var(--fs-font-data);
+  font-size: 9.5px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  color: var(--ink-faint);
+  margin-left: 3px;
+  line-height: 1;
+}
+
+.microcopy__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.microcopy-group {
   display: grid;
   gap: 12px;
   align-content: start;
@@ -6002,38 +6087,264 @@ table {
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-md);
   background: var(--surface);
+  box-shadow: var(--shadow-flat);
 }
 
-.microcopy ul {
-  display: grid;
+.microcopy__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
-.microcopy li {
+.microcopy__hint {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.microcopy-items {
   display: grid;
-  gap: 2px;
-  padding: 10px 12px;
+  gap: 10px;
+}
+
+/* Botones como componentes táctiles interactivos */
+.microcopy-btn-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
   border-radius: var(--radius-sm);
   background: var(--surface-sunken);
+  border: 1px solid var(--line-soft);
+  box-shadow:
+    0 2px 4px var(--clay-dark-soft),
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+  transition:
+    border-color var(--fs-quick) var(--fs-ease),
+    box-shadow var(--fs-quick) var(--fs-ease);
 }
 
-.microcopy strong {
-  font-size: 13px;
+.microcopy-btn-specimen:hover {
+  border-color: var(--line-strong);
 }
 
-.microcopy small {
+.microcopy-btn-specimen__action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.microcopy-btn {
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    0 2px 5px var(--clay-dark-soft),
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+}
+
+.microcopy-btn--solve {
+  background: #1aa57a;
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 6px color-mix(in srgb, #1aa57a 40%, transparent);
+}
+
+.microcopy-btn--solve:hover {
+  background: color-mix(in srgb, #1aa57a 90%, #ffffff);
+}
+
+.microcopy-btn--compare {
+  background: var(--surface);
+  color: var(--ink-strong);
+  border-color: var(--line-soft);
+}
+
+.microcopy-btn--save {
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  color: var(--ink-muted);
+  border: 1px dashed var(--line);
+}
+
+.microcopy-btn--danger {
+  background: color-mix(in srgb, #ed4b46 12%, var(--surface));
+  color: #ed4b46;
+  border-color: color-mix(in srgb, #ed4b46 35%, transparent);
+}
+
+.microcopy-btn__toast {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: color-mix(in srgb, #1aa57a 15%, var(--surface));
+  border: 1px solid color-mix(in srgb, #1aa57a 30%, transparent);
+  color: #1aa57a;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--fs-font-data);
+  animation: confirm-pop 200ms var(--fs-ease) forwards;
+}
+
+.microcopy-btn-specimen__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 6px;
+  border-top: 1px solid color-mix(in srgb, var(--line-soft) 80%, transparent);
+}
+
+.microcopy-btn-specimen__badge {
+  align-self: flex-start;
+  font-family: var(--fs-font-data);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--ink-faint);
-  font-size: 11.5px;
-  line-height: 1.4;
 }
+
+.microcopy-btn-specimen__rationale {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-strong);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.microcopy-btn-specimen__sub {
+  font-size: 11px;
+  color: var(--ink-faint);
+  line-height: 1.3;
+}
+
+/* Estados vacíos táctiles ilustrados */
+.microcopy-empty-specimen {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line-soft);
+  box-shadow:
+    0 2px 4px var(--clay-dark-soft),
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+}
+
+.microcopy-empty-specimen__icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--ink) 6%, var(--surface));
+  color: var(--ink-muted);
+  border: 1px solid var(--line-soft);
+  box-shadow:
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+}
+
+.microcopy-empty-specimen__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.microcopy-empty-specimen__body strong {
+  font-size: 13px;
+  color: var(--ink-strong);
+}
+
+.microcopy-specimen__pill {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+/* Avisos y notificaciones semánticas */
+.microcopy-alert-specimen {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line-soft);
+  box-shadow:
+    0 2px 4px var(--clay-dark-soft),
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+}
+
+.microcopy-alert-specimen__icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+}
+
+.microcopy-alert-specimen--info .microcopy-alert-specimen__icon {
+  background: color-mix(in srgb, #0f95d1 15%, var(--surface));
+  color: #0f95d1;
+  border: 1px solid color-mix(in srgb, #0f95d1 30%, transparent);
+}
+
+.microcopy-alert-specimen--warning .microcopy-alert-specimen__icon {
+  background: color-mix(in srgb, #d9720a 15%, var(--surface));
+  color: #d9720a;
+  border: 1px solid color-mix(in srgb, #d9720a 30%, transparent);
+}
+
+.microcopy-alert-specimen--science .microcopy-alert-specimen__icon {
+  background: color-mix(in srgb, #7657d5 15%, var(--surface));
+  color: #7657d5;
+  border: 1px solid color-mix(in srgb, #7657d5 30%, transparent);
+}
+
+.microcopy-alert-specimen--offline .microcopy-alert-specimen__icon {
+  background: color-mix(in srgb, var(--ink) 8%, var(--surface));
+  color: var(--ink-faint);
+  border: 1px solid var(--line-soft);
+}
+
+.microcopy-alert-specimen__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.microcopy-alert-specimen__body strong {
+  font-size: 13px;
+  color: var(--ink-strong);
+}
+
+/* --- Glosario Táctil --- */
 
 .glossary {
   display: grid;
   gap: 14px;
   padding: clamp(18px, 2.6vw, 28px);
+  padding-bottom: max(36px, env(safe-area-inset-bottom, 24px));
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-lg);
   background: var(--surface-sunken);
+  box-shadow: var(--shadow-flat);
 }
 
 .glossary__head {
@@ -6049,30 +6360,67 @@ table {
   font-size: 13.5px;
 }
 
-.glossary dl {
+.glossary__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
 }
 
-.glossary dl > div {
-  display: grid;
-  gap: 3px;
+.glossary__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   padding: 12px 14px;
   border-radius: var(--radius-sm);
   background: var(--surface);
+  border: 1px solid var(--line-soft);
+  box-shadow:
+    0 2px 4px var(--clay-dark-soft),
+    inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
+  transition:
+    border-color var(--fs-quick) var(--fs-ease),
+    transform var(--fs-quick) var(--fs-ease);
 }
 
-.glossary dt {
+.glossary__card:hover {
+  border-color: var(--line-strong);
+  transform: translate3d(0, -1px, 0);
+}
+
+.glossary__card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glossary__card-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, #1aa57a 14%, var(--surface-sunken));
+  color: #1aa57a;
+  border: 1px solid color-mix(in srgb, #1aa57a 24%, transparent);
+}
+
+.glossary__card dt {
   font-family: var(--fs-font-display);
   font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-strong);
 }
 
-.glossary dd {
+.glossary__card dd {
   color: var(--ink-muted);
   font-size: 12.5px;
   line-height: 1.45;
+  margin: 0;
 }
+
 
 /* --- 19. Entrega ---------------------------------------------------------- */
 
@@ -6897,15 +7245,16 @@ table {
 @keyframes atlas-board-intro {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translate3d(0, 12px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 .brandbook:not(.brandbook--calma) .hero .board {
   animation: atlas-board-intro 720ms var(--fs-ease) both;
+  will-change: transform, opacity;
 }
 @media (max-width: 900px) {
   .atlas .topbar {

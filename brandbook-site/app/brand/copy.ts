@@ -1819,6 +1819,40 @@ export const MICROCOPY_COPY: Record<
   },
 };
 
+export const VOICE_SPECIMENS_COPY = {
+  tabAll: { es: 'Todos', en: 'All' },
+  tabButtons: { es: 'Botones', en: 'Buttons' },
+  tabStates: { es: 'Estados vacíos', en: 'Empty states' },
+  tabNotices: { es: 'Avisos', en: 'Notices' },
+  ruleBadge: { es: 'Regla de voz', en: 'Voice rule' },
+  clickFeedback: {
+    es: '✓ Respuesta háptica instantánea · 120 FPS',
+    en: '✓ Instant haptic response · 120 FPS',
+  },
+  interactiveHint: {
+    es: 'Pulsa cualquier botón para probar el relieve y la respuesta háptica',
+    en: 'Tap any button to test tactile depth and haptic response',
+  },
+  buttonRationales: [
+    {
+      es: 'Acción primordial · Verbo de dominio directo',
+      en: 'Primary action · Direct domain verb',
+    },
+    {
+      es: 'Contexto múltiple · Objeto explícito cuando hay varios',
+      en: 'Multiple context · Explicit object when multiple',
+    },
+    {
+      es: 'Ubicación explícita · Indica destino del archivo',
+      en: 'Explicit location · Indicates file destination',
+    },
+    {
+      es: 'Cuantificador de impacto · Conteo del daño evitable',
+      en: 'Impact quantifier · Count of avoidable impact',
+    },
+  ],
+} as const;
+
 export const GLOSSARY_COPY: Record<
   string,
   { term: Localized; meaning: Localized }
