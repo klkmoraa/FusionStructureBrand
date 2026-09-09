@@ -54,15 +54,16 @@ Apply the shared physical grammar to:
 
 Do not apply an outer elevation to table rows, data labels, text, navigation
 tabs, fields, or every generic element. Inputs/selects remain recessed
-controls, not raised buttons. No markup or media asset is added.
+controls, not raised buttons. Markup may be simplified by the companion
+`2026-09-09-concise-visual-brandbook-design.md`; no media asset is added.
 
-## Hero CTA correction
+## Hero simplification
 
-At widths up to 1080 px, the Hero action group changes from equal-width
-two-column controls to a one-column stack capped at 360 px. This preserves
-the 44 px action height, accessible tap target, text size, and semantic
-labels while eliminating clipping for both Spanish and English. Wide
-desktops retain the two-action composition.
+The companion information-architecture design removes the two Hero calls to
+action and the `6 / 3 / 1` ledger because they duplicate the persistent index
+and Sistema inventory. The structural board becomes the Hero's only
+interactive surface. No replacement CTA is added. The Hero copy and board
+must remain free of horizontal overflow in both languages through 1080 px.
 
 ## Theme and accessibility requirements
 
@@ -79,10 +80,12 @@ desktops retain the two-action composition.
 ## Verification
 
 - A red/green source contract rejects nonzero-blur shadow recipes in the
-  shared Atlas material controls and asserts the 1080 px Hero stack rule.
+  shared Atlas material controls and asserts removal of the overflowing Hero
+  action group.
 - Run asset generation, canonical tests, TypeScript, lint, and the Pages
   static build.
-- Browser-test ES/EN and Day/Night at 390, 768, 1008, 1280, and 1440 px;
+- Browser-test ES/EN and Day/Night at 390, 560, 768, 1008, 1080, 1280, and
+  1440 px;
   verify no Hero overflow, visible labels, correct control geometry, keyboard
   focus, and no failed requests or console errors.
 - Inspect computed styles for the user-reported primary, material, workbench,
