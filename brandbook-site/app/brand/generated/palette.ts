@@ -10,7 +10,10 @@ export type FamilyId =
   | 'interop'
   | 'aprendizaje';
 
-export const FAMILY_COLORS: Record<FamilyId, { day: string; night: string; label: string }> = {
+export const FAMILY_COLORS: Record<
+  FamilyId,
+  { day: string; night: string; label: string }
+> = {
   nucleo: { day: '#1AA57A', night: '#53E0B2', label: 'FusionStructure' },
   analisis: { day: '#ED4B46', night: '#FF8E80', label: 'Análisis' },
   modelo: { day: '#7657D5', night: '#A990FF', label: 'Modelo' },
@@ -33,14 +36,17 @@ export const PRODUCT_FAMILY_IDS = [
 
 export type ProductFamilyId = (typeof PRODUCT_FAMILY_IDS)[number];
 
-export const TOOL_BINDINGS: Record<string, { glyph: GlyphId; family: FamilyId }> = {
-  'proyecto': { glyph: 'project', family: 'nucleo' },
-  'calidad': { glyph: 'quality', family: 'nucleo' },
-  'memoria': { glyph: 'memo', family: 'nucleo' },
-  'intercambio': { glyph: 'exchange', family: 'nucleo' },
-  'biblioteca': { glyph: 'library', family: 'nucleo' },
-  'offline': { glyph: 'offline', family: 'nucleo' },
-  'asistencia': { glyph: 'assist', family: 'nucleo' },
+export const TOOL_BINDINGS: Record<
+  string,
+  { glyph: GlyphId; family: FamilyId }
+> = {
+  proyecto: { glyph: 'project', family: 'nucleo' },
+  calidad: { glyph: 'quality', family: 'nucleo' },
+  memoria: { glyph: 'memo', family: 'nucleo' },
+  intercambio: { glyph: 'exchange', family: 'nucleo' },
+  biblioteca: { glyph: 'library', family: 'nucleo' },
+  offline: { glyph: 'offline', family: 'nucleo' },
+  asistencia: { glyph: 'assist', family: 'nucleo' },
   'fs-a01': { glyph: 'solver2d', family: 'analisis' },
   'fs-a02': { glyph: 'solver3d', family: 'analisis' },
   'fs-a03': { glyph: 'fem', family: 'analisis' },
