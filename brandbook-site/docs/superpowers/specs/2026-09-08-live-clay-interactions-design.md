@@ -48,4 +48,3 @@ The existing top-control and action geometry remains unchanged: 86 px desktop,
   system.
 - Verify 390, 768, 1280, and 1440 px in Día and Noche, with no overflow,
   failed requests, or broken Calm mode.
-
