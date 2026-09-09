@@ -32,7 +32,7 @@ npm run dev
 
 ```bash
 cd brandbook-site
-NEXT_PUBLIC_BASE_PATH=/fusionstructure-web/ npm run build:pages
+NEXT_PUBLIC_BASE_PATH=/FusionStructureBrand/ npm run build:pages
 ```
 
 GitHub Pages publica el brandbook directamente en la raíz del sitio del repositorio.
