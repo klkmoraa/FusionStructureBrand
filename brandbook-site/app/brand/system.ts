@@ -271,34 +271,88 @@ export const MATERIAL_TOKENS = [
   { token: '--radius-md', value: '18px', role: 'tarjeta y panel' },
   { token: '--radius-lg', value: '24px', role: 'marco y modal' },
   {
+    token: '--clay-light',
+    value: 'rgb(255 255 255 / 82%)',
+    night: 'rgb(142 153 158 / 20%)',
+    role: 'contacto arriba-izquierda',
+  },
+  {
+    token: '--clay-dark',
+    value: 'rgb(20 23 26 / 18%)',
+    night: 'rgb(0 0 0 / 54%)',
+    role: 'canto de contacto',
+  },
+  {
+    token: '--clay-dark-strong',
+    value: 'rgb(20 23 26 / 26%)',
+    night: 'rgb(0 0 0 / 66%)',
+    role: 'canto de superficies flotantes',
+  },
+  {
+    token: '--clay-veil',
+    value: 'rgb(20 23 26 / 45%)',
+    night: 'rgb(0 0 0 / 62%)',
+    role: 'velo modal',
+  },
+  {
     token: '--shadow-raised',
     value:
-      '3px 4px 10px rgb(20 23 26 / 8%), -2px -2px 7px rgb(255 255 255 / 60%)',
-    night:
-      '3px 4px 10px rgb(0 0 0 / 40%), -2px -2px 7px rgb(120 124 126 / 16%)',
+      '-2px -2px 0 var(--clay-light), 3px 3px 0 var(--clay-dark), inset 1px 1px 0 var(--clay-light)',
     role: 'elevado: un escalón',
   },
   {
     token: '--shadow-float',
     value:
-      '6px 8px 18px rgb(20 23 26 / 10%), -3px -3px 10px rgb(255 255 255 / 65%)',
-    night:
-      '6px 8px 18px rgb(0 0 0 / 46%), -3px -3px 10px rgb(120 124 126 / 20%)',
+      '-3px -3px 0 var(--clay-light), 5px 5px 0 var(--clay-dark-strong), inset 1px 1px 0 var(--clay-light)',
     role: 'flotante: dos escalones',
+  },
+  {
+    token: '--shadow-lifted',
+    value: '-4px -4px 0 var(--clay-light), 7px 7px 0 var(--clay-dark-strong)',
+    role: 'modal: separación máxima',
   },
   {
     token: '--shadow-inset',
     value:
-      'inset 2px 2px 6px rgb(20 23 26 / 9%), inset -1px -1px 4px rgb(255 255 255 / 55%)',
-    night:
-      'inset 2px 2px 6px rgb(0 0 0 / 45%), inset -1px -1px 4px rgb(120 124 126 / 14%)',
+      'inset 2px 2px 0 var(--clay-dark), inset -2px -2px 0 var(--clay-light)',
     role: 'interior: la misma luz, invertida',
   },
   {
+    token: '--shadow-selected',
+    value:
+      'inset 2px 2px 0 var(--clay-dark), inset -1px -1px 0 var(--clay-light), 0 0 0 1px color-mix(in srgb, var(--active-signal) 55%, transparent)',
+    role: 'selección persistente',
+  },
+  {
     token: '--shadow-sheet',
-    value: '0 -10px 24px rgb(20 23 26 / 10%)',
-    night: '0 -10px 24px rgb(0 0 0 / 32%)',
+    value:
+      '0 -5px 0 var(--clay-dark-strong), inset 1px 1px 0 var(--clay-light)',
     role: 'hoja: la única que sube',
+  },
+  {
+    token: '--shadow-veil',
+    value: '0 0 0 2000px var(--clay-veil)',
+    role: 'velo plano, sin difusión',
+  },
+  {
+    token: '--shadow-chip',
+    value: '-1px -1px 0 var(--clay-light), 1px 1px 0 var(--clay-dark)',
+    role: 'filtro compacto',
+  },
+  {
+    token: '--fs-shadow-interior',
+    value: 'var(--shadow-inset)',
+    role: 'alias Atlas: interior',
+  },
+  {
+    token: '--fs-shadow-elevated',
+    value: 'var(--shadow-raised)',
+    role: 'alias Atlas: elevado',
+  },
+  {
+    token: '--fs-shadow-floating',
+    value: 'var(--shadow-float)',
+    role: 'alias Atlas: flotante',
   },
   {
     token: '--press',

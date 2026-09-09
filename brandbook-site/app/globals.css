@@ -92,6 +92,9 @@
   color: var(--ink);
 }
 .reference-explorer [data-theme='dia'] {
+  --clay-light: rgb(255 255 255 / 82%);
+  --clay-dark: rgb(20 23 26 / 18%);
+  --clay-dark-strong: rgb(20 23 26 / 26%);
   --paper: #f7f6f1;
   --surface: #fffefa;
   --surface-sunken: #edefe9;
@@ -106,6 +109,9 @@
   --fs-brand-accent: #1aa57a;
 }
 .reference-explorer [data-theme='noche'] {
+  --clay-light: rgb(142 153 158 / 20%);
+  --clay-dark: rgb(0 0 0 / 54%);
+  --clay-dark-strong: rgb(0 0 0 / 66%);
   --paper: #14171a;
   --surface: #1b1f22;
   --surface-sunken: #252a2e;
@@ -427,25 +433,10 @@ table {
   --radius-lg: 24px;
   --radius-pill: 999px;
 
-  --shadow-raised:
-    3px 4px 7px rgb(20 23 26 / 11%), -1px -1px 2px rgb(255 255 255 / 78%),
-    inset 1px 1px 0 rgb(255 255 255 / 62%);
-  --shadow-float:
-    5px 7px 11px rgb(20 23 26 / 14%), -2px -2px 3px rgb(255 255 255 / 80%),
-    inset 1px 1px 0 rgb(255 255 255 / 62%);
-  --shadow-lifted:
-    7px 9px 14px rgb(20 23 26 / 16%), -2px -2px 4px rgb(255 255 255 / 82%),
-    inset 1px 1px 0 rgb(255 255 255 / 62%);
-  /* Una cavidad invierte la luz: oscurece su pared de arriba-izquierda y
-     aclara la de abajo-derecha. Es `--shadow-raised` girada media vuelta. */
-  --shadow-inset:
-    inset 2px 2px 4px rgb(20 23 26 / 12%),
-    inset -1px -1px 2px rgb(255 255 255 / 72%);
-  /* Una hoja nace de un borde y proyecta hacia él: la única que sube. Pesa algo
-     más que un contacto normal porque en el brandbook además tiene que
-     enseñarse: un nivel que no se ve no documenta nada. */
-  --shadow-sheet: 0 -5px 10px rgb(20 23 26 / 13%);
-  --shadow-veil: 0 0 0 2000px rgb(20 23 26 / 45%);
+  --clay-light: rgb(255 255 255 / 82%);
+  --clay-dark: rgb(20 23 26 / 18%);
+  --clay-dark-strong: rgb(20 23 26 / 26%);
+  --clay-veil: rgb(20 23 26 / 45%);
   --press: translateY(1px);
 
   /* movimiento */
@@ -517,22 +508,39 @@ table {
   /* La luz de contacto no puede ser blanca sobre carbón: lo que recoge un
      canto de noche no es una fuente, es ambiente. Gris de ambiente, y la capa
      oscura sube de opacidad porque tiene menos rango donde separarse. */
-  --shadow-raised:
-    3px 4px 7px rgb(0 0 0 / 52%), -1px -1px 2px rgb(120 124 126 / 13%),
-    inset 1px 1px 0 rgb(255 255 255 / 4%);
-  --shadow-float:
-    5px 7px 11px rgb(0 0 0 / 58%), -2px -2px 3px rgb(120 124 126 / 14%),
-    inset 1px 1px 0 rgb(255 255 255 / 4%);
-  --shadow-lifted:
-    7px 9px 14px rgb(0 0 0 / 64%), -2px -2px 4px rgb(120 124 126 / 16%),
-    inset 1px 1px 0 rgb(255 255 255 / 4%);
-  --shadow-inset:
-    inset 2px 2px 4px rgb(0 0 0 / 52%),
-    inset -1px -1px 2px rgb(120 124 126 / 11%);
-  --shadow-sheet: 0 -5px 10px rgb(0 0 0 / 40%);
+  --clay-light: rgb(142 153 158 / 20%);
+  --clay-dark: rgb(0 0 0 / 54%);
+  --clay-dark-strong: rgb(0 0 0 / 66%);
   /* De noche el papel ES carbón, así que un velo de la misma tinta sobre la
      misma tinta no vela nada: el velo nocturno tiene que ser negro. */
-  --shadow-veil: 0 0 0 2000px rgb(0 0 0 / 62%);
+  --clay-veil: rgb(0 0 0 / 62%);
+}
+
+/* Una sola geometría, también resuelta en la raíz de cada escena local.
+   Los alias se resuelven aquí para no heredar colores del tema exterior. */
+.brandbook,
+.reference-explorer [data-theme],
+.device-study--noche {
+  --shadow-raised:
+    -2px -2px 0 var(--clay-light), 3px 3px 0 var(--clay-dark),
+    inset 1px 1px 0 var(--clay-light);
+  --shadow-float:
+    -3px -3px 0 var(--clay-light), 5px 5px 0 var(--clay-dark-strong),
+    inset 1px 1px 0 var(--clay-light);
+  --shadow-lifted:
+    -4px -4px 0 var(--clay-light), 7px 7px 0 var(--clay-dark-strong);
+  --shadow-inset:
+    inset 2px 2px 0 var(--clay-dark), inset -2px -2px 0 var(--clay-light);
+  --shadow-selected:
+    inset 2px 2px 0 var(--clay-dark), inset -1px -1px 0 var(--clay-light),
+    0 0 0 1px color-mix(in srgb, var(--active-signal) 55%, transparent);
+  --shadow-sheet:
+    0 -5px 0 var(--clay-dark-strong), inset 1px 1px 0 var(--clay-light);
+  --shadow-veil: 0 0 0 2000px var(--clay-veil);
+  --shadow-chip: -1px -1px 0 var(--clay-light), 1px 1px 0 var(--clay-dark);
+  --fs-shadow-interior: var(--shadow-inset);
+  --fs-shadow-elevated: var(--shadow-raised);
+  --fs-shadow-floating: var(--shadow-float);
 }
 
 /* Un color por familia, resuelto una sola vez. */
@@ -1083,10 +1091,7 @@ table {
     background-color var(--fs-quick) var(--fs-ease);
 }
 
-/* La elevación es intención, no importancia: en reposo un control está
-   apoyado, al pasar el puntero se levanta y al pulsarlo se hunde. En reposo
-   no lleva sombra a propósito — las filas de botones van a 7 y 8px de
-   separación, y cinco piezas con volumen a esa distancia son un borrón. */
+/* El control conserva su canto en reposo y se hunde al pulsarlo. */
 .action:hover {
   border-color: var(--ink-faint);
   box-shadow: var(--shadow-raised);
@@ -1094,7 +1099,7 @@ table {
 
 .action:active {
   transform: var(--press);
-  box-shadow: none;
+  box-shadow: var(--shadow-inset);
 }
 
 .action--primary {
@@ -1189,8 +1194,7 @@ table {
     background-color var(--fs-quick) var(--fs-ease);
 }
 
-/* Las pastillas se quedan planas: son etiquetas y filtros a alta densidad, y
-   una píldora con volumen promete ser un botón. Sólo se hunden al pulsarlas. */
+/* El filtro compacto usa un canto más corto que una acción. */
 .chip:active {
   transform: var(--press);
 }
@@ -3333,11 +3337,11 @@ table {
 @keyframes confirm-pop {
   0% {
     opacity: 0;
-    transform: translateY(8px) scale(0.94);
+    transform: translateY(8px);
   }
   60% {
     opacity: 1;
-    transform: translateY(0) scale(1.02);
+    transform: translateY(0);
   }
   100% {
     opacity: 1;
@@ -3870,7 +3874,7 @@ table {
 
 .ui-button:active:not(:disabled) {
   transform: var(--press);
-  box-shadow: none;
+  box-shadow: var(--shadow-inset);
 }
 
 .ui-button--primary {
@@ -5482,8 +5486,7 @@ table {
 .atlas .index-link.is-active {
   color: var(--ink);
   background: var(--surface-sunken);
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--fs-brand-accent) 30%, transparent);
+  box-shadow: var(--shadow-selected);
 }
 .atlas .index-link.is-active .index-link__number {
   color: var(--fs-brand-accent);

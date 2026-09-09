@@ -32,15 +32,23 @@ const LEGACY_TOPIC_IDS = [
 ];
 
 const shadowLayers = (source) =>
-  [...source.matchAll(/--(?:fs-)?shadow-[\w-]+:\s*([^;]+);/g)].flatMap(
-    ([, value]) => value.split(/,(?![^()]*\))/).map((layer) => layer.trim()),
-  );
+  [
+    ...source.matchAll(/(?:--(?:fs-)?shadow-[\w-]+|box-shadow):\s*([^;]+);/g),
+  ].flatMap(([, value]) => {
+    // Ignore function arguments so color channels and variable names cannot
+    // be mistaken for lengths; commas inside color-mix are not layers.
+    let geometry = value;
+    while (/\([^()]*\)/.test(geometry)) {
+      geometry = geometry.replace(/[\w-]+\([^()]*\)/g, '');
+    }
+    return geometry.split(',').map((layer) => layer.trim());
+  });
 
 const blurLength = (layer) => {
-  const lengths = [...layer.matchAll(/-?\d*\.?\d+(?:px|rem)/g)].map(
+  const lengths = [...layer.matchAll(/-?\d*\.?\d+(?:px|rem)?/g)].map(
     (match) => match[0],
   );
-  return lengths[layer.startsWith('inset') ? 2 : 2] ?? '0px';
+  return lengths[2] ?? '0';
 };
 
 test('publishes the canonical 2026 mint and family architecture', async () => {
@@ -124,18 +132,47 @@ test('keeps the concise handoff preview while copying its complete sheet', async
 });
 
 test('keeps every hard-clay shadow layer unblurred', async () => {
-  const [atlas, globals] = await Promise.all([
+  const [atlas, globals, system] = await Promise.all([
     read('../app/atlas.css'),
     read('../app/globals.css'),
+    read('../app/brand/system.ts'),
   ]);
 
   for (const layer of shadowLayers(`${atlas}\n${globals}`)) {
-    assert.match(blurLength(layer), /^0(?:px|rem)$/);
+    assert.match(blurLength(layer), /^0(?:px|rem)?$/, layer);
   }
   assert.doesNotMatch(
     `${atlas}\n${globals}`,
-    /(?:backdrop-filter|filter:\s*[^n]|\bblur\(|scale\(0\.99\))/i,
+    /(?:backdrop-filter|filter:\s*[^n]|text-shadow|\bblur\(|scale\(0\.99\))/i,
   );
+  // The copied handoff must reproduce the same material as the live page.
+  const exported = [
+    ...system.matchAll(/token: '(--shadow-[\w-]+)',\s*value:\s*'([^']+)'/g),
+  ];
+  assert.ok(exported.length >= 6);
+  for (const [, token, value] of exported) {
+    const declarations = [
+      ...globals.matchAll(new RegExp(`${token}:\\s*([^;]+);`, 'g')),
+    ];
+    assert.equal(
+      declarations.length,
+      1,
+      `${token} must have one geometry for both themes`,
+    );
+    assert.equal(declarations[0][1].replace(/\s+/g, ' ').trim(), value);
+  }
+  for (const [alias, canonical] of [
+    ['interior', 'inset'],
+    ['elevated', 'raised'],
+    ['floating', 'float'],
+  ]) {
+    assert.match(
+      globals,
+      new RegExp(`--fs-shadow-${alias}: var\\(--shadow-${canonical}\\);`),
+    );
+    assert.doesNotMatch(atlas, new RegExp(`--fs-shadow-${alias}:`));
+  }
+  assert.doesNotMatch(atlas, /\.segmented label/);
 });
 
 test('centralizes concise section introductions and the fixed signature', async () => {
