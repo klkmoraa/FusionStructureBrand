@@ -3,13 +3,12 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, Search, X } from 'lucide-react';
 import { StatusPill, ToolTile } from '../brand/marks';
+import { TOOLS, type StatusId, type Tool } from '../brand/catalog';
 import {
-  FAMILY_META,
-  TOOLS,
-  type StatusId,
-  type Tool,
-} from '../brand/catalog';
-import type { FamilyId } from '../brand/generated/palette';
+  MOTHER_BRAND_ID,
+  PRODUCT_FAMILY_IDS,
+  type FamilyId,
+} from '../brand/generated/palette';
 import {
   FAMILY_COPY,
   RULE_LABEL,
@@ -89,9 +88,7 @@ const ToolDetail = ({
           <dt>{copy.category}</dt>
           <dd>
             {toolCopy.reference[language]}
-            <small>
-              {copy.note}
-            </small>
+            <small>{copy.note}</small>
           </dd>
         </div>
       </dl>
@@ -151,8 +148,8 @@ export const Tools = () => {
       <SectionIntro
         index="03"
         eyebrow="Herramientas · catálogo"
-        title="Veinticinco superficies, un solo proyecto."
-        body="Un solver 2D para pórticos, un dominio 3D separado, dibujo, modelo constructivo, terreno, costos, programa, conectores y aula. Cada tarjeta declara qué existe hoy, qué debe crecer y qué prueba tiene que pasar antes de cambiar de estado."
+        title="Seis familias, una marca madre."
+        body="Análisis, modelo, civil, proyecto, conexiones y aprendizaje comparten una estructura visual. Las herramientas permanecen trazables y declaran su estado sin convertirse en una séptima identidad."
       />
 
       <div className="tools__controls">
@@ -165,7 +162,18 @@ export const Tools = () => {
           >
             {copy.all} <span>{TOOLS.length}</span>
           </button>
-          {(Object.keys(FAMILY_META) as FamilyId[]).map((id) => (
+          <button
+            type="button"
+            className={`chip family--${MOTHER_BRAND_ID} ${family === MOTHER_BRAND_ID ? 'is-active' : ''}`}
+            onClick={() => setFamily(MOTHER_BRAND_ID)}
+          >
+            <span className="chip__swatch" aria-hidden="true" />
+            {FAMILY_COPY[MOTHER_BRAND_ID].label[language]}
+            <span>
+              {TOOLS.filter((tool) => tool.family === MOTHER_BRAND_ID).length}
+            </span>
+          </button>
+          {PRODUCT_FAMILY_IDS.map((id) => (
             <button
               key={id}
               type="button"
@@ -229,54 +237,64 @@ export const Tools = () => {
         {visible.map((tool) => {
           const toolCopy = TOOL_COPY[tool.id];
           return (
-          <Fragment key={tool.id}>
-            <li>
-              <button
-                type="button"
-                className={`tool-card family--${tool.family} ${openTool === tool.id ? 'is-open' : ''}`}
-                onClick={() =>
-                  setOpenTool(openTool === tool.id ? null : tool.id)
-                }
-                aria-expanded={openTool === tool.id}
-              >
-                <span className="tool-card__top">
-                  <ToolTile glyph={tool.glyph} family={tool.family} size={48} />
-                  <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
-                </span>
-                <span className="tool-card__name">
-                  <strong>{toolCopy.name[language]}</strong>
-                  <small>{toolCopy.role[language]}</small>
-                </span>
-                <span className="tool-card__summary">{toolCopy.summary[language]}</span>
-                <span className="tool-card__reference">
-                  <small>{copy.category}</small>
-                  {toolCopy.reference[language]}
-                </span>
-                <span className="tool-card__foot">
-                  <StatusPill status={tool.status} language={language} compact />
-                  <span className="tool-card__more">{copy.viewGate}</span>
-                  <ArrowRight size={14} aria-hidden="true" />
-                </span>
-              </button>
-            </li>
-            {selected?.id === tool.id ? (
-              <li className="tool-grid__detail">
-                <ToolDetail
-                  tool={selected}
-                  onClose={() => setOpenTool(null)}
-                  language={language}
-                />
+            <Fragment key={tool.id}>
+              <li>
+                <button
+                  type="button"
+                  className={`tool-card family--${tool.family} ${openTool === tool.id ? 'is-open' : ''}`}
+                  onClick={() =>
+                    setOpenTool(openTool === tool.id ? null : tool.id)
+                  }
+                  aria-expanded={openTool === tool.id}
+                >
+                  <span className="tool-card__top">
+                    <ToolTile
+                      glyph={tool.glyph}
+                      family={tool.family}
+                      size={48}
+                    />
+                    <code>
+                      {TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}
+                    </code>
+                  </span>
+                  <span className="tool-card__name">
+                    <strong>{toolCopy.name[language]}</strong>
+                    <small>{toolCopy.role[language]}</small>
+                  </span>
+                  <span className="tool-card__summary">
+                    {toolCopy.summary[language]}
+                  </span>
+                  <span className="tool-card__reference">
+                    <small>{copy.category}</small>
+                    {toolCopy.reference[language]}
+                  </span>
+                  <span className="tool-card__foot">
+                    <StatusPill
+                      status={tool.status}
+                      language={language}
+                      compact
+                    />
+                    <span className="tool-card__more">{copy.viewGate}</span>
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </span>
+                </button>
               </li>
-            ) : null}
-          </Fragment>
+              {selected?.id === tool.id ? (
+                <li className="tool-grid__detail">
+                  <ToolDetail
+                    tool={selected}
+                    onClose={() => setOpenTool(null)}
+                    language={language}
+                  />
+                </li>
+              ) : null}
+            </Fragment>
           );
         })}
       </ul>
 
       {visible.length === 0 ? (
-        <p className="empty-state">
-          {copy.empty}
-        </p>
+        <p className="empty-state">{copy.empty}</p>
       ) : null}
 
       <div className="status-board">

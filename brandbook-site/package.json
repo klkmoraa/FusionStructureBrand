@@ -10,6 +10,7 @@
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
+    "test:brandbook": "node --test test/brandbook-canonical.test.mjs",
     "brand:assets": "node scripts/build-brand-assets.mjs && oxfmt app/brand/generated",
     "format": "oxfmt",
     "build:pages": "vite build --config vite.pages.config.ts"

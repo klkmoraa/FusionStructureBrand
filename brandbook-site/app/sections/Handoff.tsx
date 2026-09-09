@@ -10,8 +10,13 @@ import {
   NEUTRALS,
   SIGNALS,
 } from '../brand/system';
-import { FAMILY_COLORS, type FamilyId } from '../brand/generated/palette';
-import { FAMILY_META, TOOLS } from '../brand/catalog';
+import {
+  FAMILY_COLORS,
+  MOTHER_BRAND_ID,
+  PRODUCT_FAMILY_IDS,
+  type FamilyId,
+} from '../brand/generated/palette';
+import { TOOLS } from '../brand/catalog';
 import { BrandMark } from '../brand/marks';
 import { CopyChip, SectionIntro, useBrandbook } from '../brand/ui';
 import {
@@ -67,7 +72,9 @@ const buildTokenSheet = (language: Language) => {
   const lines: string[] = [':root {'];
   const nightLabel = language === 'es' ? 'noche' : 'night';
   for (const signal of SIGNALS) {
-    lines.push(`  ${signal.token}: ${signal.day}; /* ${nightLabel} ${signal.night} */`);
+    lines.push(
+      `  ${signal.token}: ${signal.day}; /* ${nightLabel} ${signal.night} */`,
+    );
   }
   for (const step of NEUTRALS) {
     lines.push(
@@ -89,7 +96,8 @@ const buildTokenSheet = (language: Language) => {
     lines.push(`  ${easing.token}: ${easing.value};`);
   }
   for (const material of MATERIAL_TOKENS) {
-    const night = 'night' in material ? ` /* ${nightLabel} ${material.night} */` : '';
+    const night =
+      'night' in material ? ` /* ${nightLabel} ${material.night} */` : '';
     lines.push(`  ${material.token}: ${material.value};${night}`);
   }
   lines.push('}');
@@ -127,8 +135,7 @@ export const Handoff = () => {
             <Download size={15} /> {copy.copySheet}
           </button>
           <p className="handoff__tokens-note">
-            {copy.tokensNote}{' '}
-            <code>src/design-system/tokens.css</code>{' '}
+            {copy.tokensNote} <code>src/design-system/tokens.css</code>{' '}
             {copy.tokensRest}
           </p>
         </article>
@@ -171,17 +178,20 @@ export const Handoff = () => {
           </ul>
           <p>
             {copy.assetNote} <code>/brand/tools/</code> {copy.assetRest}{' '}
-            <code>npm run brand:assets</code>{copy.assetEnd}
+            <code>npm run brand:assets</code>
+            {copy.assetEnd}
           </p>
         </article>
 
         <article className="panel handoff__inventory">
           <div className="panel__label">
             <span>{copy.inventory}</span>
-            <code>{TOOLS.length} {copy.surfaces}</code>
+            <code>
+              {TOOLS.length} {copy.surfaces}
+            </code>
           </div>
           <ul>
-            {(Object.keys(FAMILY_META) as FamilyId[]).map((id) => (
+            {[MOTHER_BRAND_ID, ...PRODUCT_FAMILY_IDS].map((id) => (
               <li key={id} className={`family--${id}`}>
                 <span className="handoff__swatch" aria-hidden="true" />
                 <strong>{FAMILY_COPY[id].label[language]}</strong>
@@ -211,7 +221,10 @@ export const Handoff = () => {
           </div>
           <ul className="maturity-scale">
             {SYSTEM_MATURITY.map((item, index) => (
-              <li className={`maturity-step maturity-step--${item.id}`} key={item.id}>
+              <li
+                className={`maturity-step maturity-step--${item.id}`}
+                key={item.id}
+              >
                 <span className="maturity-step__index">0{index + 1}</span>
                 <strong>{item.label[language]}</strong>
                 <small>{item.detail[language]}</small>

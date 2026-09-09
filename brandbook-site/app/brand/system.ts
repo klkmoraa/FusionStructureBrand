@@ -37,7 +37,7 @@ export const SECTIONS: readonly {
     id: 'herramientas',
     index: '03',
     label: 'Herramientas',
-    detail: '25 superficies con estado',
+    detail: '6 familias de producto',
   },
   {
     id: 'color',
@@ -92,8 +92,8 @@ export const SECTIONS: readonly {
 
 /** Acento de marca: estable y separado de cualquier resultado técnico. */
 export const BRAND_COLORS = {
-  day: '#0B7C7E',
-  night: '#6FE7E0',
+  day: '#1AA57A',
+  night: '#53E0B2',
   token: '--fs-brand-accent',
   label: 'Aqua estructural',
   use: 'marca, navegación, foco y controles activos',
@@ -106,7 +106,7 @@ export const SIGNALS = [
     name: 'Axial',
     short: 'N',
     unit: 'kN',
-    day: '#1B75B0',
+    day: '#0F95D1',
     night: '#63C5FF',
     token: '--fs-signal-axial',
     use: 'fuerza normal',
@@ -117,7 +117,7 @@ export const SIGNALS = [
     name: 'Momento',
     short: 'M',
     unit: 'kN·m',
-    day: '#B8412F',
+    day: '#ED4B46',
     night: '#FF8E80',
     token: '--fs-signal-moment',
     use: 'flexión',
@@ -128,7 +128,7 @@ export const SIGNALS = [
     name: 'Cortante',
     short: 'V',
     unit: 'kN',
-    day: '#277654',
+    day: '#468C09',
     night: '#55C990',
     token: '--fs-signal-shear',
     use: 'fuerza transversal',
@@ -139,7 +139,7 @@ export const SIGNALS = [
     name: 'Deformada',
     short: 'Δ',
     unit: 'mm',
-    day: '#6A57C8',
+    day: '#8B5CF6',
     night: '#9B87FF',
     token: '--fs-signal-deformed',
     use: 'geometría desplazada',
@@ -147,21 +147,22 @@ export const SIGNALS = [
   },
   {
     id: 'yield',
-    name: 'Fluencia',
-    short: 'Fy',
+    name: 'Influencia',
+    short: 'I',
     unit: 'estado',
-    day: '#B44A7E',
+    day: '#D85AC9',
     night: '#EF7AB9',
     token: '--fs-signal-yield',
-    use: 'estado límite local',
-    description: 'Plastificación, líneas de fluencia y estados límite locales.',
+    use: 'relación entre variables',
+    description:
+      'Líneas de influencia y relaciones entre una acción y su respuesta.',
   },
   {
     id: 'attention',
     name: 'Atención',
     short: '!',
     unit: 'revisión',
-    day: '#8A6110',
+    day: '#D9720A',
     night: '#F3C553',
     token: '--fs-signal-attention',
     use: 'dato incompleto',
@@ -256,14 +257,18 @@ export const MATERIAL_TOKENS = [
   { token: '--radius-lg', value: '24px', role: 'marco y modal' },
   {
     token: '--shadow-raised',
-    value: '3px 4px 10px rgb(20 23 26 / 8%), -2px -2px 7px rgb(255 255 255 / 60%)',
-    night: '3px 4px 10px rgb(0 0 0 / 40%), -2px -2px 7px rgb(120 124 126 / 16%)',
+    value:
+      '3px 4px 10px rgb(20 23 26 / 8%), -2px -2px 7px rgb(255 255 255 / 60%)',
+    night:
+      '3px 4px 10px rgb(0 0 0 / 40%), -2px -2px 7px rgb(120 124 126 / 16%)',
     role: 'elevado: un escalón',
   },
   {
     token: '--shadow-float',
-    value: '6px 8px 18px rgb(20 23 26 / 10%), -3px -3px 10px rgb(255 255 255 / 65%)',
-    night: '6px 8px 18px rgb(0 0 0 / 46%), -3px -3px 10px rgb(120 124 126 / 20%)',
+    value:
+      '6px 8px 18px rgb(20 23 26 / 10%), -3px -3px 10px rgb(255 255 255 / 65%)',
+    night:
+      '6px 8px 18px rgb(0 0 0 / 46%), -3px -3px 10px rgb(120 124 126 / 20%)',
     role: 'flotante: dos escalones',
   },
   {
@@ -280,7 +285,11 @@ export const MATERIAL_TOKENS = [
     night: '0 -10px 24px rgb(0 0 0 / 32%)',
     role: 'hoja: la única que sube',
   },
-  { token: '--press', value: 'translateY(1px)', role: 'el hundido de un pulsado' },
+  {
+    token: '--press',
+    value: 'translateY(1px)',
+    role: 'el hundido de un pulsado',
+  },
 ] as const;
 
 export const MOTION_TOKENS = [

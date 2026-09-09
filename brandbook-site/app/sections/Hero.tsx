@@ -1,20 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { BrandMark } from '../brand/marks';
-import { ClayRelief } from '../brand/ClayRelief';
 import { SIGNALS, type SectionId, type SignalId } from '../brand/system';
-import { STATUS_COUNTS } from '../brand/catalog';
-import {
-  HERO_BEAT_COPY,
-  HERO_BOARD_COPY,
-  HERO_COPY,
-  STATUS_COPY,
-} from '../brand/copy';
+import { HERO_BOARD_COPY, HERO_COPY } from '../brand/copy';
 import { Eyebrow, useBrandbook } from '../brand/ui';
-
-const BEATS = ['modelo', 'analisis', 'lectura', 'decision'] as const;
 
 /**
  * Cada señal dibuja su propia geometría sobre el mismo pórtico: el tablero no
@@ -199,34 +188,21 @@ const AnalysisBoard = ({ beat }: { beat: number }) => {
 };
 
 export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
-  const { motionMode, language } = useBrandbook();
-  const [cycled, setCycled] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
-  const calm = motionMode === 'calma';
-  // Elegir una fase detiene el ciclo; en calma no hay ciclo, pero la elección
-  // manual sigue mandando y sin ella se muestra la fase final.
-  const beat = picked ?? (calm ? BEATS.length - 1 : cycled);
+  const { language } = useBrandbook();
   const heroCopy = HERO_COPY[language];
-
-  useEffect(() => {
-    if (calm || picked !== null) return;
-    const timer = window.setInterval(() => {
-      setCycled((current) => (current + 1) % BEATS.length);
-    }, 2600);
-    return () => window.clearInterval(timer);
-  }, [calm, picked]);
 
   return (
     <section id="norte" className="section hero">
       <div className="hero__copy">
         <Eyebrow>{heroCopy.eyebrow}</Eyebrow>
         <h1 aria-label={heroCopy.titleLines.join(' ')}>
-          <span className="hero__word">{heroCopy.titleLines[0]}</span>
-          <span className="hero__word">{heroCopy.titleLines[1]}</span>
-          <em className="hero__word">{heroCopy.titleLines[2]}</em>
+          {heroCopy.titleLines.map((line) => (
+            <span className="hero__word" key={line}>
+              {line}
+            </span>
+          ))}
         </h1>
         <p className="hero__lead">{heroCopy.lead}</p>
-
         <div className="hero__actions">
           <button
             type="button"
@@ -243,50 +219,29 @@ export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
             {heroCopy.identity} <ArrowDown size={16} />
           </button>
         </div>
-
-        <ul className="hero__ledger">
-          {(['disponible', 'experimental', 'planeado'] as const).map(
-            (status) => (
-              <li key={status}>
-                <span
-                  className={`status-dot status-dot--${status}`}
-                  aria-hidden="true"
-                />
-                <strong>{STATUS_COUNTS[status] ?? 0}</strong>
-                <small>
-                  {STATUS_COPY[status][language]}
-                </small>
-              </li>
-            ),
-          )}
-          <li className="hero__ledger-note">
-            <BrandMark size={18} tone="mono" />
-            <small>{heroCopy.state}</small>
+        <ul className="hero__ledger" aria-label="Resumen del sistema">
+          <li>
+            <strong>6</strong>
+            <small>{language === 'es' ? 'Familias' : 'Families'}</small>
+          </li>
+          <li>
+            <strong>3</strong>
+            <small>{language === 'es' ? 'Capas' : 'Layers'}</small>
+          </li>
+          <li>
+            <strong>1</strong>
+            <small>{language === 'es' ? 'Sistema' : 'System'}</small>
           </li>
         </ul>
       </div>
-
       <div className="hero__stage">
-        <AnalysisBoard beat={beat} />
-        <figure className="hero__clay-reference">
-          <ClayRelief label={heroCopy.alt} compact />
-          <figcaption>{HERO_BOARD_COPY[language].figure}</figcaption>
-        </figure>
-        <ol className="hero__beats">
-          {BEATS.map((id, index) => (
-            <li key={id} className={index === beat ? 'is-active' : ''}>
-              <button type="button" onClick={() => setPicked(index)}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>
-                  {HERO_BEAT_COPY[id].label[language]}
-                </strong>
-                <small>
-                  {HERO_BEAT_COPY[id].note[language]}
-                </small>
-              </button>
-            </li>
-          ))}
-        </ol>
+        <AnalysisBoard beat={2} />
+        <p className="hero__axiom">
+          01 —{' '}
+          {language === 'es'
+            ? 'La claridad precede a la expresión.'
+            : 'Clarity precedes expression.'}
+        </p>
       </div>
     </section>
   );

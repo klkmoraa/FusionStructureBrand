@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BrandMark, Glyph, MarkConstruction, ToolTile } from '../brand/marks';
 import { FAMILY_META, TOOLS } from '../brand/catalog';
+import { PRODUCT_FAMILY_IDS } from '../brand/generated/palette';
 import {
   FAMILY_COPY,
   IDENTITY_COPY,
@@ -12,25 +13,24 @@ import {
 } from '../brand/copy';
 import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 
-const MISUSES = ['girar', 'estirar', 'recolorear', 'contorno', 'sombra', 'ruido'] as const;
+const MISUSES = [
+  'girar',
+  'estirar',
+  'recolorear',
+  'contorno',
+  'sombra',
+  'ruido',
+] as const;
 const LOCKUPS = ['horizontal', 'apilado', 'compacto'] as const;
 
 export const Identity = () => {
   const { theme, language } = useBrandbook();
   const copy = IDENTITY_COPY[language];
-  const [lockup, setLockup] =
-    useState<(typeof LOCKUPS)[number]>('horizontal');
+  const [lockup, setLockup] = useState<(typeof LOCKUPS)[number]>('horizontal');
   const familyPreview = TOOLS.filter((tool) =>
-    [
-      'fs-a01',
-      'fs-a02',
-      'fs-m01',
-      'fs-m02',
-      'fs-p02',
-      'fs-p03',
-      'fs-i01',
-      'fs-l01',
-    ].includes(tool.id),
+    ['fs-a01', 'fs-m01', 'fs-c01', 'fs-p01', 'fs-i01', 'fs-l01'].includes(
+      tool.id,
+    ),
   );
 
   return (
@@ -101,6 +101,15 @@ export const Identity = () => {
               <small>{copy.signalUse}</small>
             </div>
             <div className="variant variant--mono">
+              <BrandMark size={44} tone="inverse" />
+              <strong>
+                {language === 'es' ? 'Signal · Night' : 'Signal · Night'}
+              </strong>
+              <small>
+                {language === 'es' ? 'sobre carbón' : 'on charcoal'}
+              </small>
+            </div>
+            <div className="variant variant--mono">
               <BrandMark size={44} tone="mono" />
               <strong>{copy.mono}</strong>
               <small>{copy.monoUse}</small>
@@ -159,12 +168,12 @@ export const Identity = () => {
             <BrandMark size={lockup === 'compacto' ? 34 : 52} />
             <span className="lockup__text">
               <strong>FusionStructure</strong>
-              {lockup === 'compacto' ? null : <small>{copy.lockupTagline}</small>}
+              {lockup === 'compacto' ? null : (
+                <small>{copy.lockupTagline}</small>
+              )}
             </span>
           </div>
-          <p className="lockup-stage__note">
-            {copy.lockupUses[lockup]}
-          </p>
+          <p className="lockup-stage__note">{copy.lockupUses[lockup]}</p>
         </div>
       </div>
 
@@ -175,10 +184,7 @@ export const Identity = () => {
         </div>
         <ul className="misuse__grid">
           {MISUSES.map((id) => (
-            <li
-              key={id}
-              className={`misuse__item misuse__item--${id}`}
-            >
+            <li key={id} className={`misuse__item misuse__item--${id}`}>
               <span className="misuse__frame">
                 <BrandMark
                   size={40}
@@ -202,14 +208,14 @@ export const Identity = () => {
             <p>{copy.familyBody}</p>
           </div>
           <ul className="family__legend">
-            {(Object.keys(FAMILY_META) as (keyof typeof FAMILY_META)[]).map((id) => {
+            {PRODUCT_FAMILY_IDS.map((id) => {
               const meta = FAMILY_META[id];
               return (
-              <li key={id} className={`family__legend-item family--${id}`}>
-                <span className="family__swatch" aria-hidden="true" />
-                <strong>{FAMILY_COPY[id].label[language]}</strong>
-                <code>{meta.prefix}</code>
-              </li>
+                <li key={id} className={`family__legend-item family--${id}`}>
+                  <span className="family__swatch" aria-hidden="true" />
+                  <strong>{FAMILY_COPY[id].label[language]}</strong>
+                  <code>{meta.prefix}</code>
+                </li>
               );
             })}
           </ul>
@@ -220,7 +226,9 @@ export const Identity = () => {
               <ToolTile glyph={tool.glyph} family={tool.family} size={56} />
               <figcaption>
                 <strong>{TOOL_COPY[tool.id].name[language]}</strong>
-                <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
+                <code>
+                  {TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}
+                </code>
               </figcaption>
             </figure>
           ))}

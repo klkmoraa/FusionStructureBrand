@@ -63,9 +63,10 @@ export const FAMILY_META: Record<
   { label: string; prefix: string; purpose: string }
 > = {
   nucleo: {
-    label: 'Núcleo',
-    prefix: '···',
-    purpose: 'proyecto, unidades, versiones y evidencia compartida',
+    label: 'FusionStructure',
+    prefix: 'FS',
+    purpose:
+      'marca madre, proyecto, unidades, versiones y evidencia compartida',
   },
   analisis: {
     label: 'Análisis',
@@ -88,7 +89,7 @@ export const FAMILY_META: Record<
     purpose: 'documentos, cantidades, costo, programa y campo',
   },
   interop: {
-    label: 'Interoperabilidad',
+    label: 'Conexiones',
     prefix: 'FS-I',
     purpose: 'intercambio versionado con otras aplicaciones',
   },

@@ -1,9 +1,4 @@
-import type {
-  MotionDemoId,
-  SectionId,
-  SignalId,
-  SurfaceLevel,
-} from './system';
+import type { MotionDemoId, SectionId, SignalId, SurfaceLevel } from './system';
 import type { FamilyId } from './generated/palette';
 import { TOOLS, type StatusId } from './catalog';
 
@@ -81,8 +76,8 @@ export const SECTION_COPY: Record<
   herramientas: {
     label: { es: 'Herramientas', en: 'Tools' },
     detail: {
-      es: '25 superficies con estado',
-      en: '25 surfaces with status',
+      es: '6 familias de producto',
+      en: '6 product families',
     },
   },
   color: {
@@ -115,7 +110,10 @@ export const SECTION_COPY: Record<
   },
   voz: {
     label: { es: 'Voz', en: 'Voice' },
-    detail: { es: 'lenguaje que no promete de más', en: 'language that overpromises less' },
+    detail: {
+      es: 'lenguaje que no promete de más',
+      en: 'language that overpromises less',
+    },
   },
   entrega: {
     label: { es: 'Entrega', en: 'Handoff' },
@@ -135,30 +133,30 @@ export const SECTION_INTROS: Record<
       en: 'Make complexity legible.',
     },
     body: {
-      es: 'FusionStructure orienta con estructura, no con ruido. El brandbook convierte decisiones difíciles en superficies, señales y palabras que se pueden revisar.',
-      en: 'FusionStructure brings structure, not noise. The brandbook turns difficult decisions into surfaces, signals, and words that can be reviewed.',
+      es: 'Un modelo, un resultado y una decisión deben leerse igual en pantalla, en papel y en obra. La marca convierte complejidad técnica en evidencia navegable.',
+      en: 'A model, a result, and a decision should read the same on screen, on paper, and on site. The brand turns technical complexity into navigable evidence.',
     },
   },
   '02': {
     eyebrow: { es: 'Identidad · la ménsula', en: 'Identity · the cantilever' },
     title: {
-      es: 'Una marca que se sostiene sola.',
-      en: 'A mark that can stand on its own.',
+      es: 'Una F estructural, no decorativa.',
+      en: 'A structural F, not a decorative one.',
     },
     body: {
-      es: 'Un miembro vertical y dos voladizos cuyo peralte decrece hacia la punta: la misma forma que toma una sección cuando se dimensiona por el momento que recibe.',
-      en: 'One vertical member and two cantilevers tapering toward the tip: the same form a section takes when it is sized for the moment it carries.',
+      es: 'La F se construye como una columna y dos voladizos. El cuerpo permanece en grafito; sólo el brazo inferior adopta el color de la marca o de su familia.',
+      en: 'The F is built as a column and two cantilevers. Its body remains graphite; only the lower arm adopts the brand or family color.',
     },
   },
   '03': {
     eyebrow: { es: 'Herramientas · catálogo', en: 'Tools · catalog' },
     title: {
-      es: 'Veinticinco superficies, un solo proyecto.',
-      en: 'Twenty-five surfaces, one project.',
+      es: 'Seis familias, una marca madre.',
+      en: 'Six families, one mother brand.',
     },
     body: {
-      es: 'Cada tarjeta declara qué existe hoy, qué debe crecer y qué prueba tiene que pasar antes de cambiar de estado.',
-      en: 'Each card declares what exists today, what must grow, and which gate it must pass before changing state.',
+      es: 'Las familias ordenan el sistema; cada herramienta declara su estado real sin confundirse con la identidad.',
+      en: 'Families organize the system; every tool declares its real state without being confused with identity.',
     },
   },
   '04': {
@@ -215,15 +213,24 @@ export const SECTION_INTROS: Record<
   },
   '09': {
     eyebrow: { es: 'Patrones · composición', en: 'Patterns · composition' },
-    title: { es: 'Consola, lienzo e instrumento.', en: 'Console, canvas, and instrument.' },
+    title: {
+      es: 'Consola, lienzo e instrumento.',
+      en: 'Console, canvas, and instrument.',
+    },
     body: {
       es: 'La consola orienta, el lienzo trabaja y el instrumento confirma. En móvil la lógica se convierte en una secuencia enfocada.',
       en: 'The console orients, the canvas does the work, and the instrument confirms. On mobile the logic becomes a focused sequence.',
     },
   },
   '10': {
-    eyebrow: { es: 'Referencias · el sistema en producto', en: 'References · the system in product' },
-    title: { es: 'Una identidad, cualquier superficie.', en: 'One identity, any surface.' },
+    eyebrow: {
+      es: 'Referencias · el sistema en producto',
+      en: 'References · the system in product',
+    },
+    title: {
+      es: 'Una identidad, cualquier superficie.',
+      en: 'One identity, any surface.',
+    },
     body: {
       es: 'Estas piezas fijan proporción, densidad, jerarquía y profundidad. Son criterio, no pantallas finales.',
       en: 'These pieces set proportion, density, hierarchy, and depth. They are criteria, not final screens.',
@@ -231,7 +238,10 @@ export const SECTION_INTROS: Record<
   },
   '11': {
     eyebrow: { es: 'Voz · verdad del producto', en: 'Voice · product truth' },
-    title: { es: 'Claro sobre lo que existe. Preciso sobre lo que falta.', en: 'Clear about what exists. Precise about what is missing.' },
+    title: {
+      es: 'Claro sobre lo que existe. Preciso sobre lo que falta.',
+      en: 'Clear about what exists. Precise about what is missing.',
+    },
     body: {
       es: 'La confianza se construye declarando el estado, nombrando el límite y diciendo qué información está conectada con qué.',
       en: 'Trust is built by declaring status, naming limits, and saying which information is connected to what.',
@@ -239,7 +249,10 @@ export const SECTION_INTROS: Record<
   },
   '12': {
     eyebrow: { es: 'Entrega · guardas', en: 'Handoff · guardrails' },
-    title: { es: 'Un sistema se sostiene con guardas.', en: 'A system stands on guardrails.' },
+    title: {
+      es: 'Un sistema se sostiene con guardas.',
+      en: 'A system stands on guardrails.',
+    },
     body: {
       es: 'Los valores y comprobaciones que un cambio debe pasar antes de considerarse listo viven aquí, junto a su puente hacia CSS y TypeScript.',
       en: 'The values and checks a change must pass before it is ready live here, alongside their bridge to CSS and TypeScript.',
@@ -267,10 +280,12 @@ export const UI_COPY = {
     copied: 'Copiado',
     copyFailed: 'No se pudo copiar. Selecciona el valor y cópialo a mano.',
     chapter: 'Capítulo',
-    indexDescription: 'Un sistema propio para hacer legible la complejidad del trabajo construido.',
+    indexDescription:
+      'Un sistema propio para hacer legible la complejidad del trabajo construido.',
     direction: 'dirección',
     experimental: 'experimental',
-    footerLine: 'sistema propio · el estado de cada superficie lo define el código',
+    footerLine:
+      'sistema propio · el estado de cada superficie lo define el código',
   },
   en: {
     skip: 'Skip to content',
@@ -291,7 +306,8 @@ export const UI_COPY = {
     copied: 'Copied',
     copyFailed: 'Could not copy. Select the value and copy it manually.',
     chapter: 'Chapter',
-    indexDescription: 'A proprietary system that makes built-work complexity legible.',
+    indexDescription:
+      'A proprietary system that makes built-work complexity legible.',
     direction: 'direction',
     experimental: 'experimental',
     footerLine: 'proprietary system · code defines the state of every surface',
@@ -321,9 +337,11 @@ export const TOOLS_COPY = {
     searchLabel: 'Buscar en el catálogo',
     surfaces: 'superficies',
     of: 'de',
-    empty: 'Ninguna superficie coincide con ese filtro. Prueba con otra familia o borra la búsqueda.',
+    empty:
+      'Ninguna superficie coincide con ese filtro. Prueba con otra familia o borra la búsqueda.',
     vocabulary: 'Vocabulario de estado',
-    vocabularyBody: 'Cuatro palabras. Se usan igual en la interfaz, en la documentación y aquí.',
+    vocabularyBody:
+      'Cuatro palabras. Se usan igual en la interfaz, en la documentación y aquí.',
     rule: 'Una tarjeta puede dibujar una intención. No puede escribirla en presente.',
   },
   en: {
@@ -343,9 +361,11 @@ export const TOOLS_COPY = {
     searchLabel: 'Search the catalog',
     surfaces: 'surfaces',
     of: 'of',
-    empty: 'No surface matches that filter. Try another family or clear the search.',
+    empty:
+      'No surface matches that filter. Try another family or clear the search.',
     vocabulary: 'Status vocabulary',
-    vocabularyBody: 'Four words used consistently in the interface, documentation, and here.',
+    vocabularyBody:
+      'Four words used consistently in the interface, documentation, and here.',
     rule: 'A card can draw an intention. It cannot write it in the present tense.',
   },
 } as const;
@@ -369,16 +389,23 @@ export const COLOR_COPY = {
     contrast: 'contraste',
     usageValue: 'línea · punto · estado · etiqueta',
     avoidValue: 'fondo completo · relleno decorativo · texto largo',
-    families: 'Familias',
-    familyBody: 'Emparentadas con las señales, pero más profundas: la señal pertenece al dato y la familia a la herramienta. Nunca se usan como resultado.',
+    motherBrand: 'Marca madre',
+    motherBrandBody:
+      'FusionStructure sostiene navegación, foco y evidencia compartida. No cuenta como una familia de producto.',
+    families: 'Seis familias de producto',
+    familyBody:
+      'Emparentadas con las señales, pero más profundas: la señal pertenece al dato y la familia a la herramienta. Nunca se usan como resultado.',
     neutrals: 'Neutros',
-    neutralBody: 'Una sola rampa cálida para día y noche. Cada paso tiene un papel; ninguno se usa «porque se ve bien».',
+    neutralBody:
+      'Una sola rampa cálida para día y noche. Cada paso tiene un papel; ninguno se usa «porque se ve bien».',
     day: 'Día · papel técnico',
     dayTitle: 'Fondo tranquilo, tinta densa.',
-    dayBody: 'El papel cálido baja el brillo sin apagar el trazo. La señal aparece en tono profundo para sostener 4.5:1 sobre fondo claro.',
+    dayBody:
+      'El papel cálido baja el brillo sin apagar el trazo. La señal aparece en tono profundo para sostener 4.5:1 sobre fondo claro.',
     night: 'Noche · carbón',
     nightTitle: 'Carbón neutro, nunca negro puro.',
-    nightBody: 'En noche la misma señal sube de luminosidad. El significado no cambia: cambia el valor para conservar la lectura.',
+    nightBody:
+      'En noche la misma señal sube de luminosidad. El significado no cambia: cambia el valor para conservar la lectura.',
     insufficient: 'insuficiente',
     graphic: 'AA · gráfico',
     rule: 'Si el color no explica una relación del dominio, se elimina antes de discutirlo.',
@@ -391,16 +418,23 @@ export const COLOR_COPY = {
     contrast: 'contrast',
     usageValue: 'line · point · state · label',
     avoidValue: 'full background · decorative fill · long text',
-    families: 'Families',
-    familyBody: 'Related to signals but deeper: a signal belongs to data and a family belongs to a tool. Never use them as results.',
+    motherBrand: 'Parent brand',
+    motherBrandBody:
+      'FusionStructure carries navigation, focus, and shared evidence. It does not count as a product family.',
+    families: 'Six product families',
+    familyBody:
+      'Related to signals but deeper: a signal belongs to data and a family belongs to a tool. Never use them as results.',
     neutrals: 'Neutrals',
-    neutralBody: 'One warm ramp for day and night. Every step has a role; none is used just because it looks good.',
+    neutralBody:
+      'One warm ramp for day and night. Every step has a role; none is used just because it looks good.',
     day: 'Day · technical paper',
     dayTitle: 'Quiet background, dense ink.',
-    dayBody: 'Warm paper lowers glare without muting the stroke. The signal uses a deeper tone to keep 4.5:1 on a light background.',
+    dayBody:
+      'Warm paper lowers glare without muting the stroke. The signal uses a deeper tone to keep 4.5:1 on a light background.',
     night: 'Night · charcoal',
     nightTitle: 'Neutral charcoal, never pure black.',
-    nightBody: 'At night the same signal gains luminosity. Meaning does not change; value does, to preserve reading.',
+    nightBody:
+      'At night the same signal gains luminosity. Meaning does not change; value does, to preserve reading.',
     insufficient: 'insufficient',
     graphic: 'AA · graphic',
     rule: 'If color does not explain a domain relationship, remove it before discussing it.',
@@ -415,14 +449,16 @@ export const TYPOGRAPHY_COPY = {
     display: 'títulos, marca y una idea por pantalla',
     interface: 'controles, listas y lectura larga',
     data: 'unidad, versión, coordenada y token',
-    fallback: 'Las tres respaldan con la pila del sistema. Si la fuente no carga, la jerarquía sigue en pie porque vive en el tamaño y el espacio.',
+    fallback:
+      'Las tres respaldan con la pila del sistema. Si la fuente no carga, la jerarquía sigue en pie porque vive en el tamaño y el espacio.',
     line: 'línea',
     displayLabel: 'Display · Space Grotesk',
     interfaceLabel: 'Interfaz · Inter',
     dataLabel: 'Dato · IBM Plex Mono',
     numbers: 'Números',
     numbersTitle: 'Un dato mal escrito es un dato equivocado.',
-    numbersBody: 'La tipografía de datos usa cifras tabulares para que las columnas se puedan comparar sin leer cada renglón.',
+    numbersBody:
+      'La tipografía de datos usa cifras tabulares para que las columnas se puedan comparar sin leer cada renglón.',
     yes: 'así',
     no: 'así no',
     rule: 'Si el texto necesita explicarse dos veces, el problema es la jerarquía, no el tamaño.',
@@ -434,14 +470,16 @@ export const TYPOGRAPHY_COPY = {
     display: 'headings, mark, and one idea per screen',
     interface: 'controls, lists, and long reading',
     data: 'unit, version, coordinate, and token',
-    fallback: 'All three are backed by the system stack. If a font fails to load, hierarchy still stands because it lives in size and space.',
+    fallback:
+      'All three are backed by the system stack. If a font fails to load, hierarchy still stands because it lives in size and space.',
     line: 'line',
     displayLabel: 'Display · Space Grotesk',
     interfaceLabel: 'Interface · Inter',
     dataLabel: 'Data · IBM Plex Mono',
     numbers: 'Numbers',
     numbersTitle: 'A badly written value is a wrong value.',
-    numbersBody: 'Data type uses tabular figures so columns can be compared without reading every row.',
+    numbersBody:
+      'Data type uses tabular figures so columns can be compared without reading every row.',
     yes: 'this way',
     no: 'not this way',
     rule: 'If text needs explaining twice, hierarchy is the problem—not size.',
@@ -469,46 +507,64 @@ export const DRAWING_RULE_COPY: Record<
 > = {
   '01': {
     title: { es: 'Retícula de 48', en: '48 grid' },
-    body: { es: 'Todo glifo se dibuja en 48u con 8u de aire. Las líneas caen en múltiplos de 1u.', en: 'Every glyph is drawn on 48u with 8u of air. Lines land on 1u multiples.' },
+    body: {
+      es: 'Todo glifo se dibuja en 48u con 8u de aire. Las líneas caen en múltiplos de 1u.',
+      en: 'Every glyph is drawn on 48u with 8u of air. Lines land on 1u multiples.',
+    },
   },
   '02': {
     title: { es: 'Trazo 2.6', en: '2.6 stroke' },
-    body: { es: 'Un solo grosor, extremos redondos y uniones a inglete. El peso no jerarquiza: lo hace la posición.', en: 'One weight, round ends, and mitered joins. Position creates hierarchy, not weight.' },
+    body: {
+      es: 'Un solo grosor, extremos redondos y uniones a inglete. El peso no jerarquiza: lo hace la posición.',
+      en: 'One weight, round ends, and mitered joins. Position creates hierarchy, not weight.',
+    },
   },
   '03': {
     title: { es: 'Dos tintas', en: 'Two inks' },
-    body: { es: 'Color de familia para la estructura del glifo; grafito para el dato que la ocupa.', en: 'Family color for the glyph structure; graphite for the data it carries.' },
+    body: {
+      es: 'Color de familia para la estructura del glifo; grafito para el dato que la ocupa.',
+      en: 'Family color for the glyph structure; graphite for the data it carries.',
+    },
   },
   '04': {
     title: { es: 'Nudo visible', en: 'Visible joint' },
-    body: { es: 'Donde dos miembros se encuentran hay un punto. El encuentro es información.', en: 'Where two members meet there is a point. The meeting is information.' },
+    body: {
+      es: 'Donde dos miembros se encuentran hay un punto. El encuentro es información.',
+      en: 'Where two members meet there is a point. The meeting is information.',
+    },
   },
   '05': {
     title: { es: 'Sin metáforas prestadas', en: 'No borrowed metaphors' },
-    body: { es: 'Nada de estetoscopios, libros ni cascos: el glifo dibuja el objeto real del dominio.', en: 'No stethoscopes, books, or hard hats: the glyph draws the domain’s real object.' },
+    body: {
+      es: 'Nada de estetoscopios, libros ni cascos: el glifo dibuja el objeto real del dominio.',
+      en: 'No stethoscopes, books, or hard hats: the glyph draws the domain’s real object.',
+    },
   },
   '06': {
     title: { es: 'Prueba a 20 px', en: '20 px test' },
-    body: { es: 'Si a 20 px dos glifos se confunden, se rediseña el que llegó después.', en: 'If two glyphs blur together at 20 px, redesign the one that arrived later.' },
+    body: {
+      es: 'Si a 20 px dos glifos se confunden, se rediseña el que llegó después.',
+      en: 'If two glyphs blur together at 20 px, redesign the one that arrived later.',
+    },
   },
 };
 
 export const HERO_COPY = {
   es: {
-    eyebrow: 'FusionStructure · sistema visual y verbal',
-    lead: 'Un modelo, un resultado y una decisión deben leerse igual en pantalla, en papel y en obra. Este documento fija cómo se ve, cómo se mueve y cómo habla esa continuidad.',
+    eyebrow: 'Capítulo 01 · orientación',
+    lead: 'Un modelo, un resultado y una decisión deben leerse igual en pantalla, en papel y en obra. La marca convierte complejidad técnica en evidencia navegable.',
     // El eslogan es una firma de marca y no se traduce.
     titleLines: ['Make', 'complexity', 'legible.'],
-    tools: 'Ver las 25 superficies',
+    tools: 'Ver las 6 familias',
     identity: 'Empezar por la marca',
     state: 'estado verificable, no promesa comercial',
     alt: 'Referencia Clay–Minimal para la portada del brandbook',
   },
   en: {
-    eyebrow: 'FusionStructure · visual and verbal system',
-    lead: 'A model, a result, and a decision should read the same on screen, on paper, and on site. This document fixes how that continuity looks, moves, and speaks.',
+    eyebrow: 'Chapter 01 · orientation',
+    lead: 'A model, a result, and a decision should read the same on screen, on paper, and on site. The brand turns technical complexity into navigable evidence.',
     titleLines: ['Make', 'complexity', 'legible.'],
-    tools: 'View the 25 surfaces',
+    tools: 'View the 6 families',
     identity: 'Start with the mark',
     state: 'verifiable status, never a sales promise',
     alt: 'Clay–Minimal reference for the brandbook cover',
@@ -619,17 +675,31 @@ export const IDENTITY_COPY = {
     misuseIntro:
       'Seis usos que la vuelven ilegible o le hacen prometer algo que no es.',
     misuse: {
-      girar: { label: 'No girar', note: 'la ménsula trabaja apoyada en su columna' },
-      estirar: { label: 'No deformar', note: 'el peralte es una proporción, no un adorno' },
-      recolorear: { label: 'No teñir', note: 'la marca madre no adopta color de herramienta' },
-      contorno: { label: 'No contornear', note: 'el trazo hueco desaparece a 16 px' },
-      sombra: { label: 'No dar volumen', note: 'la profundidad vive en la superficie, no en la marca' },
+      girar: {
+        label: 'No girar',
+        note: 'la ménsula trabaja apoyada en su columna',
+      },
+      estirar: {
+        label: 'No deformar',
+        note: 'el peralte es una proporción, no un adorno',
+      },
+      recolorear: {
+        label: 'No teñir',
+        note: 'la marca madre no adopta color de herramienta',
+      },
+      contorno: {
+        label: 'No contornear',
+        note: 'el trazo hueco desaparece a 16 px',
+      },
+      sombra: {
+        label: 'No dar volumen',
+        note: 'la profundidad vive en la superficie, no en la marca',
+      },
       ruido: { label: 'No sobre imagen', note: 'sin contraste no hay lectura' },
     },
-    rule:
-      'El glifo identifica, el color agrupa y el nombre confirma. Si quitar el color deja dos herramientas iguales, el glifo está mal dibujado.',
+    rule: 'El glifo identifica, el color agrupa y el nombre confirma. Si quitar el color deja dos herramientas iguales, el glifo está mal dibujado.',
     familyTag: 'Marca respaldada',
-    familyTitle: 'Una madre neutra. Siete familias reconocibles.',
+    familyTitle: 'Una madre neutra. Seis familias reconocibles.',
     familyBody:
       'Cada superficie hereda la retícula, el trazo y el nudo de la ménsula. Lo que cambia es el glifo funcional y el tono de familia; el estado real lo sigue definiendo el código.',
     noColor: 'Sin color',
@@ -677,17 +747,34 @@ export const IDENTITY_COPY = {
     misuseIntro:
       'Six uses that make it illegible or make it promise something it is not.',
     misuse: {
-      girar: { label: 'Do not rotate', note: 'the cantilever works from its column' },
-      estirar: { label: 'Do not distort', note: 'depth is a proportion, not decoration' },
-      recolorear: { label: 'Do not tint', note: 'the parent mark does not adopt a tool color' },
-      contorno: { label: 'Do not outline', note: 'the hollow stroke disappears at 16 px' },
-      sombra: { label: 'Do not add volume', note: 'depth lives in the surface, not the mark' },
-      ruido: { label: 'Do not place over noise', note: 'without contrast there is no reading' },
+      girar: {
+        label: 'Do not rotate',
+        note: 'the cantilever works from its column',
+      },
+      estirar: {
+        label: 'Do not distort',
+        note: 'depth is a proportion, not decoration',
+      },
+      recolorear: {
+        label: 'Do not tint',
+        note: 'the parent mark does not adopt a tool color',
+      },
+      contorno: {
+        label: 'Do not outline',
+        note: 'the hollow stroke disappears at 16 px',
+      },
+      sombra: {
+        label: 'Do not add volume',
+        note: 'depth lives in the surface, not the mark',
+      },
+      ruido: {
+        label: 'Do not place over noise',
+        note: 'without contrast there is no reading',
+      },
     },
-    rule:
-      'The glyph identifies, color groups, and the name confirms. If removing color leaves two tools looking alike, the glyph is drawn wrong.',
+    rule: 'The glyph identifies, color groups, and the name confirms. If removing color leaves two tools looking alike, the glyph is drawn wrong.',
     familyTag: 'Backed mark',
-    familyTitle: 'One neutral parent. Seven recognizable families.',
+    familyTitle: 'One neutral parent. Six recognizable families.',
     familyBody:
       'Every surface inherits the cantilever’s grid, stroke, and joint. What changes is the functional glyph and family tone; code still defines the real state.',
     noColor: 'No color',
@@ -714,33 +801,63 @@ export const SURFACE_LEVEL_COPY: Record<
 > = {
   plano: {
     name: { es: 'Plano', en: 'Flat' },
-    use: { es: 'rejilla, tablas y filas técnicas', en: 'grid, tables, and technical rows' },
-    rule: { es: 'filete suave, sin volumen: el dato se queda plano', en: 'soft rule, no volume: data stays flat' },
+    use: {
+      es: 'rejilla, tablas y filas técnicas',
+      en: 'grid, tables, and technical rows',
+    },
+    rule: {
+      es: 'filete suave, sin volumen: el dato se queda plano',
+      en: 'soft rule, no volume: data stays flat',
+    },
   },
   interior: {
     name: { es: 'Interior', en: 'Inset' },
     use: { es: 'cavidad de interacción', en: 'interaction cavity' },
-    rule: { es: 'la luz se invierte: se hunde por arriba-izquierda', en: 'light inverts: it sinks from the top left' },
+    rule: {
+      es: 'la luz se invierte: se hunde por arriba-izquierda',
+      en: 'light inverts: it sinks from the top left',
+    },
   },
   elevado: {
     name: { es: 'Elevado', en: 'Raised' },
-    use: { es: 'paneles, barras e inspector', en: 'panels, bars, and inspector' },
-    rule: { es: 'un escalón: sombra abajo-derecha, contacto arriba-izquierda', en: 'one step: shadow bottom right, contact top left' },
+    use: {
+      es: 'paneles, barras e inspector',
+      en: 'panels, bars, and inspector',
+    },
+    rule: {
+      es: 'un escalón: sombra abajo-derecha, contacto arriba-izquierda',
+      en: 'one step: shadow bottom right, contact top left',
+    },
   },
   flotante: {
     name: { es: 'Flotante', en: 'Floating' },
     use: { es: 'menús, popovers y avisos', en: 'menus, popovers, and notices' },
-    rule: { es: 'dos escalones, misma luz: se despega sin cambiar de material', en: 'two steps, same light: it lifts without changing material' },
+    rule: {
+      es: 'dos escalones, misma luz: se despega sin cambiar de material',
+      en: 'two steps, same light: it lifts without changing material',
+    },
   },
   hoja: {
     name: { es: 'Hoja', en: 'Sheet' },
-    use: { es: 'superficies que nacen de un borde', en: 'surfaces that originate at an edge' },
-    rule: { es: 'entra desde su origen y proyecta hacia él: la única sombra que sube', en: 'enters from its origin and projects toward it: the only shadow that rises' },
+    use: {
+      es: 'superficies que nacen de un borde',
+      en: 'surfaces that originate at an edge',
+    },
+    rule: {
+      es: 'entra desde su origen y proyecta hacia él: la única sombra que sube',
+      en: 'enters from its origin and projects toward it: the only shadow that rises',
+    },
   },
   modal: {
     name: { es: 'Modal', en: 'Modal' },
-    use: { es: 'interrupciones que exigen decisión', en: 'interruptions that require a decision' },
-    rule: { es: 'velo, foco atrapado y salida evidente', en: 'scrim, trapped focus, and an obvious exit' },
+    use: {
+      es: 'interrupciones que exigen decisión',
+      en: 'interruptions that require a decision',
+    },
+    rule: {
+      es: 'velo, foco atrapado y salida evidente',
+      en: 'scrim, trapped focus, and an obvious exit',
+    },
   },
 };
 
@@ -752,7 +869,8 @@ export const MATERIAL_COPY = {
     level: 'Nivel',
     components: 'Componentes',
     geometry: 'La geometría no cambia entre temas.',
-    geometryBody: 'Cambian el papel, la tinta y la profundidad. Nunca la altura ni el trazo.',
+    geometryBody:
+      'Cambian el papel, la tinta y la profundidad. Nunca la altura ni el trazo.',
     buttons: '01 · botones',
     inputs: '02 · entradas',
     visibleUnit: 'unidad visible',
@@ -761,7 +879,8 @@ export const MATERIAL_COPY = {
     detail: 'Ver detalle',
     delete: 'Eliminar 12 miembros',
     noResults: 'Sin resultados',
-    buttonRule: 'La etiqueta anticipa el resultado. Lo destructivo cuenta cuánto destruye.',
+    buttonRule:
+      'La etiqueta anticipa el resultado. Lo destructivo cuenta cuánto destruye.',
     load: 'Carga distribuida',
     length: 'Longitud',
     unitRule: 'Declara la unidad antes de analizar.',
@@ -777,7 +896,8 @@ export const MATERIAL_COPY = {
     member: 'Miembro',
     result: 'Resultado',
     check: 'revisar',
-    tableRule: 'El equilibrio de un resultado no es el estado de una superficie del producto:',
+    tableRule:
+      'El equilibrio de un resultado no es el estado de una superficie del producto:',
     tableCalculation: 'verificado',
     tableReview: 'revisar',
     and: 'y',
@@ -804,7 +924,8 @@ export const MATERIAL_COPY = {
     detail: 'View details',
     delete: 'Delete 12 members',
     noResults: 'No results',
-    buttonRule: 'The label anticipates the outcome. Destructive actions state how much they destroy.',
+    buttonRule:
+      'The label anticipates the outcome. Destructive actions state how much they destroy.',
     load: 'Distributed load',
     length: 'Length',
     unitRule: 'Declare the unit before analyzing.',
@@ -840,32 +961,53 @@ export const MOTION_DEMO_COPY: Record<
   llegar: {
     label: { es: 'Llegar', en: 'Arrive' },
     note: { es: 'entrada desde su origen', en: 'entry from its origin' },
-    rule: { es: 'Un panel entra desde el borde que lo generó, nunca desde el centro.', en: 'A panel enters from the edge that generated it, never from the center.' },
+    rule: {
+      es: 'Un panel entra desde el borde que lo generó, nunca desde el centro.',
+      en: 'A panel enters from the edge that generated it, never from the center.',
+    },
   },
   conectar: {
     label: { es: 'Conectar', en: 'Connect' },
-    note: { es: 'relación entre superficies', en: 'relationship between surfaces' },
-    rule: { es: 'La línea de relación se dibuja antes de que aparezca el detalle.', en: 'The relationship line draws before the detail appears.' },
+    note: {
+      es: 'relación entre superficies',
+      en: 'relationship between surfaces',
+    },
+    rule: {
+      es: 'La línea de relación se dibuja antes de que aparezca el detalle.',
+      en: 'The relationship line draws before the detail appears.',
+    },
   },
   confirmar: {
     label: { es: 'Confirmar', en: 'Confirm' },
     note: { es: 'estado guardado', en: 'saved state' },
-    rule: { es: 'La confirmación ocupa el lugar del control, no una esquina lejana.', en: 'The confirmation takes the control’s place, not a distant corner.' },
+    rule: {
+      es: 'La confirmación ocupa el lugar del control, no una esquina lejana.',
+      en: 'The confirmation takes the control’s place, not a distant corner.',
+    },
   },
   comparar: {
     label: { es: 'Comparar', en: 'Compare' },
     note: { es: 'dos revisiones', en: 'two revisions' },
-    rule: { es: 'La comparación mantiene ejes y escala; solo cambia el trazo.', en: 'Comparison keeps axes and scale; only the stroke changes.' },
+    rule: {
+      es: 'La comparación mantiene ejes y escala; solo cambia el trazo.',
+      en: 'Comparison keeps axes and scale; only the stroke changes.',
+    },
   },
   deshacer: {
     label: { es: 'Deshacer', en: 'Undo' },
     note: { es: 'volver sin castigo', en: 'return without penalty' },
-    rule: { es: 'Deshacer devuelve la geometría por el mismo camino que la trajo.', en: 'Undo returns the geometry along the same path that brought it in.' },
+    rule: {
+      es: 'Deshacer devuelve la geometría por el mismo camino que la trajo.',
+      en: 'Undo returns the geometry along the same path that brought it in.',
+    },
   },
   esperar: {
     label: { es: 'Esperar', en: 'Wait' },
     note: { es: 'proceso en curso', en: 'process in progress' },
-    rule: { es: 'La espera muestra avance real o dice que no puede estimarlo.', en: 'Waiting shows real progress or says it cannot estimate it.' },
+    rule: {
+      es: 'La espera muestra avance real o dice que no puede estimarlo.',
+      en: 'Waiting shows real progress or says it cannot estimate it.',
+    },
   },
 };
 
@@ -912,7 +1054,10 @@ export const MOTION_COPY = {
   },
 } as const;
 
-export const MOTION_TOKEN_COPY: Record<string, { name: Localized; use: Localized }> = {
+export const MOTION_TOKEN_COPY: Record<
+  string,
+  { name: Localized; use: Localized }
+> = {
   '--fs-instant': {
     name: { es: 'Instante', en: 'Instant' },
     use: { es: 'presionar y soltar', en: 'press and release' },
@@ -939,22 +1084,26 @@ export const MOTION_TOKEN_COPY: Record<string, { name: Localized; use: Localized
   },
 };
 
-export const EASING_COPY: Record<string, { name: Localized; use: Localized }> = {
-  '--fs-ease': {
-    name: { es: 'Salida', en: 'Ease out' },
-    use: { es: 'casi todo', en: 'almost everything' },
-  },
-  '--fs-ease-in': {
-    name: { es: 'Entrada', en: 'Ease in' },
-    use: { es: 'algo que se va', en: 'something leaving' },
-  },
-  '--fs-ease-firm': {
-    name: { es: 'Firme', en: 'Firm' },
-    use: { es: 'estados y conmutadores', en: 'states and toggles' },
-  },
-};
+export const EASING_COPY: Record<string, { name: Localized; use: Localized }> =
+  {
+    '--fs-ease': {
+      name: { es: 'Salida', en: 'Ease out' },
+      use: { es: 'casi todo', en: 'almost everything' },
+    },
+    '--fs-ease-in': {
+      name: { es: 'Entrada', en: 'Ease in' },
+      use: { es: 'algo que se va', en: 'something leaving' },
+    },
+    '--fs-ease-firm': {
+      name: { es: 'Firme', en: 'Firm' },
+      use: { es: 'estados y conmutadores', en: 'states and toggles' },
+    },
+  };
 
-export const TYPE_SCALE_COPY: Record<string, { role: Localized; use: Localized }> = {
+export const TYPE_SCALE_COPY: Record<
+  string,
+  { role: Localized; use: Localized }
+> = {
   Display: {
     role: { es: 'Display', en: 'Display' },
     use: { es: 'una idea que abre', en: 'an idea that opens' },
@@ -977,7 +1126,10 @@ export const TYPE_SCALE_COPY: Record<string, { role: Localized; use: Localized }
   },
   Dato: {
     role: { es: 'Dato', en: 'Data' },
-    use: { es: 'mono: unidad, versión, coordenada', en: 'mono: unit, version, coordinate' },
+    use: {
+      es: 'mono: unidad, versión, coordenada',
+      en: 'mono: unit, version, coordinate',
+    },
   },
   Etiqueta: {
     role: { es: 'Etiqueta', en: 'Label' },
@@ -990,7 +1142,10 @@ export const NUMBER_RULE_COPY: Record<
   { rule: Localized; good: Localized; bad: Localized }
 > = {
   '0': {
-    rule: { es: 'La unidad viaja con el número', en: 'The unit travels with the number' },
+    rule: {
+      es: 'La unidad viaja con el número',
+      en: 'The unit travels with the number',
+    },
     good: { es: '248.2 kN', en: '248.2 kN' },
     bad: { es: '248.2', en: '248.2' },
   },
@@ -1010,7 +1165,10 @@ export const NUMBER_RULE_COPY: Record<
     bad: { es: 'deformada', en: 'deformed' },
   },
   '4': {
-    rule: { es: 'La versión acompaña al resultado', en: 'The version travels with the result' },
+    rule: {
+      es: 'La versión acompaña al resultado',
+      en: 'The version travels with the result',
+    },
     good: { es: 'v4 · 23/05', en: 'v4 · 23/05' },
     bad: { es: 'actual', en: 'current' },
   },
@@ -1034,7 +1192,8 @@ export const PATTERN_COPY = {
     deformed: 'Deformada',
     openTrace: 'Abrir traza',
     states: 'Cuatro estados obligatorios',
-    statesBody: 'Toda superficie debe diseñar los cuatro antes de considerarse terminada.',
+    statesBody:
+      'Toda superficie debe diseñar los cuatro antes de considerarse terminada.',
     stateLegend: 'Estado de la superficie',
     rule: 'Orientar, actuar, comprobar y continuar. Si una pantalla no permite las cuatro, le falta una.',
     snap: 'ajuste 0.25 m',
@@ -1056,7 +1215,8 @@ export const PATTERN_COPY = {
     deformed: 'Deformed',
     openTrace: 'Open trace',
     states: 'Four required states',
-    statesBody: 'Every surface must design all four before it is considered complete.',
+    statesBody:
+      'Every surface must design all four before it is considered complete.',
     stateLegend: 'Surface state',
     rule: 'Orient, act, verify, and continue. If a screen cannot do all four, one is missing.',
     snap: 'snap 0.25 m',
@@ -1078,7 +1238,10 @@ export const PATTERN_STATE_COPY: Record<
   },
   proceso: {
     label: { es: 'En proceso', en: 'In progress' },
-    title: { es: 'Resolviendo 148 grados de libertad', en: 'Solving 148 degrees of freedom' },
+    title: {
+      es: 'Resolviendo 148 grados de libertad',
+      en: 'Solving 148 degrees of freedom',
+    },
     body: {
       es: 'Se puede seguir editando; el resultado quedará marcado como desactualizado.',
       en: 'Editing can continue; the result will be marked stale.',
@@ -1118,7 +1281,8 @@ export const VOICE_COPY = {
     supports: 'sostiene',
     why: 'Por qué:',
     glossary: 'Glosario',
-    glossaryBody: 'Seis palabras que significan lo mismo en la interfaz, en la documentación y en una conversación con quien revisa.',
+    glossaryBody:
+      'Seis palabras que significan lo mismo en la interfaz, en la documentación y en una conversación con quien revisa.',
     rule: 'FusionStructure no sustituye el criterio de una persona responsable, la revisión independiente ni la normativa aplicable. Escribir como si lo hiciera es un error de marca.',
   },
   en: {
@@ -1130,7 +1294,8 @@ export const VOICE_COPY = {
     supports: 'supports',
     why: 'Why:',
     glossary: 'Glossary',
-    glossaryBody: 'Six words that mean the same thing in the interface, documentation, and a conversation with a reviewer.',
+    glossaryBody:
+      'Six words that mean the same thing in the interface, documentation, and a conversation with a reviewer.',
     rule: 'FusionStructure does not replace the judgment of a responsible person, independent review, or applicable regulation. Writing as if it did is a brand error.',
   },
 } as const;
@@ -1147,7 +1312,10 @@ export const VOICE_PRINCIPLE_COPY: Record<
     },
   },
   limite: {
-    title: { es: 'El límite es parte del dato', en: 'The limit is part of the data' },
+    title: {
+      es: 'El límite es parte del dato',
+      en: 'The limit is part of the data',
+    },
     body: {
       es: 'Un número llega con unidad, método y supuesto. Un resultado sin límites no está terminado.',
       en: 'A number arrives with a unit, method, and assumption. A result without limits is unfinished.',
@@ -1175,51 +1343,117 @@ export const VOICE_REWRITE_COPY: Record<
 > = {
   certificado: {
     context: { es: 'Resultado de análisis', en: 'Analysis result' },
-    before: { es: 'Análisis certificado y listo para construcción.', en: 'Certified analysis ready for construction.' },
-    after: { es: 'Análisis lineal resuelto. Requiere revisión profesional antes de usarse en obra.', en: 'Linear analysis solved. Requires professional review before use on site.' },
-    why: { es: 'Ninguna puerta del repositorio certifica un resultado ni autoriza una obra.', en: 'No repository gate certifies a result or authorizes construction.' },
+    before: {
+      es: 'Análisis certificado y listo para construcción.',
+      en: 'Certified analysis ready for construction.',
+    },
+    after: {
+      es: 'Análisis lineal resuelto. Requiere revisión profesional antes de usarse en obra.',
+      en: 'Linear analysis solved. Requires professional review before use on site.',
+    },
+    why: {
+      es: 'Ninguna puerta del repositorio certifica un resultado ni autoriza una obra.',
+      en: 'No repository gate certifies a result or authorizes construction.',
+    },
   },
   exacto: {
     context: { es: 'Precisión', en: 'Precision' },
-    before: { es: 'Cálculo exacto con precisión garantizada.', en: 'Exact calculation with guaranteed precision.' },
-    after: { es: 'Equilibrio verificado con tolerancia 1e-6. El modelo y sus hipótesis siguen siendo tuyos.', en: 'Equilibrium verified with tolerance 1e-6. The model and its assumptions are still yours.' },
-    why: { es: 'La exactitud depende del modelo, no del motor.', en: 'Accuracy depends on the model, not the engine.' },
+    before: {
+      es: 'Cálculo exacto con precisión garantizada.',
+      en: 'Exact calculation with guaranteed precision.',
+    },
+    after: {
+      es: 'Equilibrio verificado con tolerancia 1e-6. El modelo y sus hipótesis siguen siendo tuyos.',
+      en: 'Equilibrium verified with tolerance 1e-6. The model and its assumptions are still yours.',
+    },
+    why: {
+      es: 'La exactitud depende del modelo, no del motor.',
+      en: 'Accuracy depends on the model, not the engine.',
+    },
   },
   error: {
     context: { es: 'Error de modelo', en: 'Model error' },
-    before: { es: 'Ocurrió un error inesperado.', en: 'An unexpected error occurred.' },
-    after: { es: 'El nudo B4 no tiene apoyo ni continuidad: la estructura es un mecanismo. Revisa B4.', en: 'Joint B4 has neither support nor continuity: the structure is a mechanism. Check B4.' },
-    why: { es: 'Un error debe nombrar el objeto y la siguiente acción.', en: 'An error should name the object and the next action.' },
+    before: {
+      es: 'Ocurrió un error inesperado.',
+      en: 'An unexpected error occurred.',
+    },
+    after: {
+      es: 'El nudo B4 no tiene apoyo ni continuidad: la estructura es un mecanismo. Revisa B4.',
+      en: 'Joint B4 has neither support nor continuity: the structure is a mechanism. Check B4.',
+    },
+    why: {
+      es: 'Un error debe nombrar el objeto y la siguiente acción.',
+      en: 'An error should name the object and the next action.',
+    },
   },
   vacio: {
     context: { es: 'Estado vacío', en: 'Empty state' },
     before: { es: 'No hay datos disponibles.', en: 'No data is available.' },
-    after: { es: 'Todavía no hay resultados. Analiza el modelo para ver reacciones y diagramas.', en: 'There are no results yet. Analyze the model to see reactions and diagrams.' },
-    why: { es: 'Un vacío explica qué falta y ofrece la acción que lo llena.', en: 'An empty state explains what is missing and offers the action that fills it.' },
+    after: {
+      es: 'Todavía no hay resultados. Analiza el modelo para ver reacciones y diagramas.',
+      en: 'There are no results yet. Analyze the model to see reactions and diagrams.',
+    },
+    why: {
+      es: 'Un vacío explica qué falta y ofrece la acción que lo llena.',
+      en: 'An empty state explains what is missing and offers the action that fills it.',
+    },
   },
   ia: {
     context: { es: 'Asistencia', en: 'Assistance' },
-    before: { es: 'La IA optimizó tu estructura automáticamente.', en: 'AI optimized your structure automatically.' },
-    after: { es: 'Propuesta de asistencia: reducir IPE 300 a IPE 270 en 4 miembros. Revisa y confirma.', en: 'Assistance proposal: reduce IPE 300 to IPE 270 in 4 members. Review and confirm.' },
-    why: { es: 'La asistencia propone; ejecutar sin confirmación oculta la decisión.', en: 'Assistance proposes; executing without confirmation hides the decision.' },
+    before: {
+      es: 'La IA optimizó tu estructura automáticamente.',
+      en: 'AI optimized your structure automatically.',
+    },
+    after: {
+      es: 'Propuesta de asistencia: reducir IPE 300 a IPE 270 en 4 miembros. Revisa y confirma.',
+      en: 'Assistance proposal: reduce IPE 300 to IPE 270 in 4 members. Review and confirm.',
+    },
+    why: {
+      es: 'La asistencia propone; ejecutar sin confirmación oculta la decisión.',
+      en: 'Assistance proposes; executing without confirmation hides the decision.',
+    },
   },
   destructivo: {
     context: { es: 'Acción destructiva', en: 'Destructive action' },
     before: { es: '¿Continuar?', en: 'Continue?' },
-    after: { es: 'Eliminar 12 miembros y sus cargas. Se puede deshacer en esta sesión.', en: 'Delete 12 members and their loads. This can be undone in this session.' },
-    why: { es: 'Antes de destruir se dice qué se pierde y si hay regreso.', en: 'Before destroying, say what is lost and whether there is a way back.' },
+    after: {
+      es: 'Eliminar 12 miembros y sus cargas. Se puede deshacer en esta sesión.',
+      en: 'Delete 12 members and their loads. This can be undone in this session.',
+    },
+    why: {
+      es: 'Antes de destruir se dice qué se pierde y si hay regreso.',
+      en: 'Before destroying, say what is lost and whether there is a way back.',
+    },
   },
   planeado: {
     context: { es: 'Módulo futuro', en: 'Future module' },
-    before: { es: 'Presupuestos integrados con tu modelo.', en: 'Budgets integrated with your model.' },
-    after: { es: 'Cantidades y costos: planeado. Hoy no existe medición derivada del modelo.', en: 'Quantities and costs: planned. Model-derived measurement does not exist today.' },
-    why: { es: 'Una intención no se escribe en presente.', en: 'An intention is not written in the present tense.' },
+    before: {
+      es: 'Presupuestos integrados con tu modelo.',
+      en: 'Budgets integrated with your model.',
+    },
+    after: {
+      es: 'Cantidades y costos: planeado. Hoy no existe medición derivada del modelo.',
+      en: 'Quantities and costs: planned. Model-derived measurement does not exist today.',
+    },
+    why: {
+      es: 'Una intención no se escribe en presente.',
+      en: 'An intention is not written in the present tense.',
+    },
   },
   norma: {
     context: { es: 'Normativa', en: 'Regulation' },
-    before: { es: 'Cumple con la norma aplicable.', en: 'Complies with the applicable standard.' },
-    after: { es: 'Se evaluó fluencia por tensión axial. Faltan pandeo, aplastamiento y ruptura neta.', en: 'Yield in axial tension was evaluated. Buckling, crushing, and net-section rupture remain.' },
-    why: { es: 'Cumplir se demuestra estado límite por estado límite.', en: 'Compliance is demonstrated limit state by limit state.' },
+    before: {
+      es: 'Cumple con la norma aplicable.',
+      en: 'Complies with the applicable standard.',
+    },
+    after: {
+      es: 'Se evaluó fluencia por tensión axial. Faltan pandeo, aplastamiento y ruptura neta.',
+      en: 'Yield in axial tension was evaluated. Buckling, crushing, and net-section rupture remain.',
+    },
+    why: {
+      es: 'Cumplir se demuestra estado límite por estado límite.',
+      en: 'Compliance is demonstrated limit state by limit state.',
+    },
   },
 };
 
@@ -1230,28 +1464,106 @@ export const MICROCOPY_COPY: Record<
   botones: {
     group: { es: 'Botones', en: 'Buttons' },
     items: [
-      { label: { es: 'Analizar', en: 'Analyze' }, note: { es: 'la acción principal nombra el verbo del dominio', en: 'the primary action names the domain verb' } },
-      { label: { es: 'Comparar revisiones', en: 'Compare revisions' }, note: { es: 'el objeto aparece cuando hay más de uno posible', en: 'the object appears when more than one is possible' } },
-      { label: { es: 'Guardar versión local', en: 'Save local version' }, note: { es: 'dice dónde queda', en: 'says where it goes' } },
-      { label: { es: 'Eliminar 12 miembros', en: 'Delete 12 members' }, note: { es: 'lo destructivo cuenta cuánto', en: 'the destructive action says how much' } },
+      {
+        label: { es: 'Analizar', en: 'Analyze' },
+        note: {
+          es: 'la acción principal nombra el verbo del dominio',
+          en: 'the primary action names the domain verb',
+        },
+      },
+      {
+        label: { es: 'Comparar revisiones', en: 'Compare revisions' },
+        note: {
+          es: 'el objeto aparece cuando hay más de uno posible',
+          en: 'the object appears when more than one is possible',
+        },
+      },
+      {
+        label: { es: 'Guardar versión local', en: 'Save local version' },
+        note: { es: 'dice dónde queda', en: 'says where it goes' },
+      },
+      {
+        label: { es: 'Eliminar 12 miembros', en: 'Delete 12 members' },
+        note: {
+          es: 'lo destructivo cuenta cuánto',
+          en: 'the destructive action says how much',
+        },
+      },
     ],
   },
   estados: {
     group: { es: 'Estados vacíos', en: 'Empty states' },
     items: [
-      { label: { es: 'Sin resultados todavía', en: 'No results yet' }, note: { es: 'temporal, no negativo', en: 'temporary, not negative' } },
-      { label: { es: 'Analiza para ver diagramas', en: 'Analyze to see diagrams' }, note: { es: 'la salida está en la misma frase', en: 'the outcome is in the same sentence' } },
-      { label: { es: 'Este proyecto no tiene cargas', en: 'This project has no loads' }, note: { es: 'nombra el objeto que falta', en: 'names the missing object' } },
-      { label: { es: 'Importación DXF parcial', en: 'Partial DXF import' }, note: { es: 'declara el alcance real', en: 'states the real scope' } },
+      {
+        label: { es: 'Sin resultados todavía', en: 'No results yet' },
+        note: { es: 'temporal, no negativo', en: 'temporary, not negative' },
+      },
+      {
+        label: {
+          es: 'Analiza para ver diagramas',
+          en: 'Analyze to see diagrams',
+        },
+        note: {
+          es: 'la salida está en la misma frase',
+          en: 'the outcome is in the same sentence',
+        },
+      },
+      {
+        label: {
+          es: 'Este proyecto no tiene cargas',
+          en: 'This project has no loads',
+        },
+        note: {
+          es: 'nombra el objeto que falta',
+          en: 'names the missing object',
+        },
+      },
+      {
+        label: { es: 'Importación DXF parcial', en: 'Partial DXF import' },
+        note: { es: 'declara el alcance real', en: 'states the real scope' },
+      },
     ],
   },
   avisos: {
     group: { es: 'Avisos', en: 'Notices' },
     items: [
-      { label: { es: 'Revisa la unidad de la carga', en: 'Check the load unit' }, note: { es: 'la revisión es una tarea, no un regaño', en: 'review is a task, not a reprimand' } },
-      { label: { es: 'Resultado desactualizado respecto al modelo', en: 'Result is stale relative to the model' }, note: { es: 'relación, no alarma', en: 'relationship, not alarm' } },
-      { label: { es: 'Solver 3D: dominio experimental', en: 'Solver 3D: experimental domain' }, note: { es: 'el estado precede al contenido', en: 'status precedes content' } },
-      { label: { es: 'Sin conexión: guardado local', en: 'Offline: saved locally' }, note: { es: 'confirma que no se perdió nada', en: 'confirms nothing was lost' } },
+      {
+        label: {
+          es: 'Revisa la unidad de la carga',
+          en: 'Check the load unit',
+        },
+        note: {
+          es: 'la revisión es una tarea, no un regaño',
+          en: 'review is a task, not a reprimand',
+        },
+      },
+      {
+        label: {
+          es: 'Resultado desactualizado respecto al modelo',
+          en: 'Result is stale relative to the model',
+        },
+        note: { es: 'relación, no alarma', en: 'relationship, not alarm' },
+      },
+      {
+        label: {
+          es: 'Solver 3D: dominio experimental',
+          en: 'Solver 3D: experimental domain',
+        },
+        note: {
+          es: 'el estado precede al contenido',
+          en: 'status precedes content',
+        },
+      },
+      {
+        label: {
+          es: 'Sin conexión: guardado local',
+          en: 'Offline: saved locally',
+        },
+        note: {
+          es: 'confirma que no se perdió nada',
+          en: 'confirms nothing was lost',
+        },
+      },
     ],
   },
 };
@@ -1260,12 +1572,48 @@ export const GLOSSARY_COPY: Record<
   string,
   { term: Localized; meaning: Localized }
 > = {
-  Modelo: { term: { es: 'Modelo', en: 'Model' }, meaning: { es: 'la representación editable: nudos, miembros, apoyos y cargas.', en: 'the editable representation: joints, members, supports, and loads.' } },
-  Resultado: { term: { es: 'Resultado', en: 'Result' }, meaning: { es: 'lo derivado de un análisis; se versiona, no se edita.', en: 'what is derived from an analysis; it is versioned, not edited.' } },
-  Procedencia: { term: { es: 'Procedencia', en: 'Provenance' }, meaning: { es: 'de qué modelo, motor, versión y supuestos nació un dato.', en: 'which model, engine, version, and assumptions produced a datum.' } },
-  Revisión: { term: { es: 'Revisión', en: 'Revision' }, meaning: { es: 'un estado congelado del proyecto que se puede comparar.', en: 'a frozen project state that can be compared.' } },
-  Traza: { term: { es: 'Traza', en: 'Trace' }, meaning: { es: 'el camino visible entre entrada, método y conclusión.', en: 'the visible path between input, method, and conclusion.' } },
-  Puerta: { term: { es: 'Puerta', en: 'Gate' }, meaning: { es: 'la comprobación mínima que un módulo debe pasar para cambiar de estado.', en: 'the minimum check a module must pass to change state.' } },
+  Modelo: {
+    term: { es: 'Modelo', en: 'Model' },
+    meaning: {
+      es: 'la representación editable: nudos, miembros, apoyos y cargas.',
+      en: 'the editable representation: joints, members, supports, and loads.',
+    },
+  },
+  Resultado: {
+    term: { es: 'Resultado', en: 'Result' },
+    meaning: {
+      es: 'lo derivado de un análisis; se versiona, no se edita.',
+      en: 'what is derived from an analysis; it is versioned, not edited.',
+    },
+  },
+  Procedencia: {
+    term: { es: 'Procedencia', en: 'Provenance' },
+    meaning: {
+      es: 'de qué modelo, motor, versión y supuestos nació un dato.',
+      en: 'which model, engine, version, and assumptions produced a datum.',
+    },
+  },
+  Revisión: {
+    term: { es: 'Revisión', en: 'Revision' },
+    meaning: {
+      es: 'un estado congelado del proyecto que se puede comparar.',
+      en: 'a frozen project state that can be compared.',
+    },
+  },
+  Traza: {
+    term: { es: 'Traza', en: 'Trace' },
+    meaning: {
+      es: 'el camino visible entre entrada, método y conclusión.',
+      en: 'the visible path between input, method, and conclusion.',
+    },
+  },
+  Puerta: {
+    term: { es: 'Puerta', en: 'Gate' },
+    meaning: {
+      es: 'la comprobación mínima que un módulo debe pasar para cambiar de estado.',
+      en: 'the minimum check a module must pass to change state.',
+    },
+  },
 };
 
 type ToolId = (typeof TOOLS)[number]['id'];
@@ -1294,8 +1642,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   proyecto: {
     name: 'Local project',
     role: 'the unit everything shares',
-    summary: 'A project with identity, units, configuration, local versions, and recovery. Every surface reads and writes here.',
-    today: 'Project, configuration, units, local persistence, recovery, versions, and reversible changes.',
+    summary:
+      'A project with identity, units, configuration, local versions, and recovery. Every surface reads and writes here.',
+    today:
+      'Project, configuration, units, local persistence, recovery, versions, and reversible changes.',
     next: 'Stable identity across domains, permissions, and optional sync without breaking the local flow.',
     gate: 'Save, recover, and undo without silently losing information.',
     reference: 'Desktop project managers',
@@ -1303,8 +1653,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   calidad: {
     name: 'Result quality',
     role: 'audit before trust',
-    summary: 'Load audit, diagnostics, a limited numerical certificate, and traceability for every result.',
-    today: 'Load audit, diagnostics, reliability, and result trace within the 2D solver scope.',
+    summary:
+      'Load audit, diagnostics, a limited numerical certificate, and traceability for every result.',
+    today:
+      'Load audit, diagnostics, reliability, and result trace within the 2D solver scope.',
     next: 'More pathological cases, declared tolerances, and comparison between revisions.',
     gate: 'A result without visible units, method, and limits is not presented as a conclusion.',
     reference: 'Numerical verification practices',
@@ -1312,8 +1664,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   memoria: {
     name: 'Technical report',
     role: 'the calculation, written down',
-    summary: 'PDF report with appendices, diagrams, procedure, and materials, plus a portable record and preview.',
-    today: 'PDF report, appendices, diagrams, procedure, materials, portable record, and preview.',
+    summary:
+      'PDF report with appendices, diagrams, procedure, and materials, plus a portable record and preview.',
+    today:
+      'PDF report, appendices, diagrams, procedure, materials, portable record, and preview.',
     next: 'Jurisdiction templates, review signature, and comparison between deliveries.',
     gate: 'The document declares generator, model version, and status; it does not simulate a sealed drawing.',
     reference: 'Firm calculation reports',
@@ -1321,8 +1675,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   intercambio: {
     name: 'Current exchange',
     role: 'leave without lock-in',
-    summary: 'Project JSON, SVG, PNG, CSV, shareable links, and ASCII DXF import for a subset.',
-    today: 'JSON/SVG/PNG/CSV export, shareable links, and DXF import for a subset.',
+    summary:
+      'Project JSON, SVG, PNG, CSV, shareable links, and ASCII DXF import for a subset.',
+    today:
+      'JSON/SVG/PNG/CSV export, shareable links, and DXF import for a subset.',
     next: 'Wider DXF coverage, loss report, and tested round-trip.',
     gate: 'Every import declares what it understood, ignored, and which units it used.',
     reference: 'DXF, CSV, JSON',
@@ -1330,7 +1686,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   biblioteca: {
     name: 'Personal library',
     role: 'what you already solved',
-    summary: 'Sections, views, favorites, and local preferences that follow a person across projects.',
+    summary:
+      'Sections, views, favorites, and local preferences that follow a person across projects.',
     today: 'Sections, views, favorites, and local preferences.',
     next: 'Shareable catalogs with provenance and a version for every profile.',
     gate: 'A saved section preserves origin, units, and date.',
@@ -1339,7 +1696,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   offline: {
     name: 'Offline work',
     role: 'the workshop does not always have a network',
-    summary: 'PWA shell, local storage, and a controlled update notice: offline work is a core capability.',
+    summary:
+      'PWA shell, local storage, and a controlled update notice: offline work is a core capability.',
     today: 'PWA shell, local storage, and controlled update notice.',
     next: 'Conflict resolution on reconnect and explicit backup.',
     gate: 'No update discards local work without warning.',
@@ -1348,7 +1706,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   asistencia: {
     name: 'Local assistance',
     role: 'proposes, does not decide',
-    summary: 'Local command proposals. It must not hide or execute ambiguous actions without confirmation.',
+    summary:
+      'Local command proposals. It must not hide or execute ambiguous actions without confirmation.',
     today: 'Command proposals for the open model, always confirmable.',
     next: 'Explain why, preview the effect, and guarantee undo.',
     gate: 'No ambiguous action executes without explicit confirmation.',
@@ -1357,8 +1716,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-a01': {
     name: 'FStructure',
     role: '2D solver · frames, trusses, and beams',
-    summary: 'The available core: model, analyze, and read results with the procedure in view, in the browser. FStructure is the module name; 2D Solver is its family role.',
-    today: 'Joints, members, supports, properties, loads, cases, and combinations; linear and P-Delta analysis; reactions, deformation, N-V-M, envelopes, influence, buckling, and modal studies.',
+    summary:
+      'The available core: model, analyze, and read results with the procedure in view, in the browser. FStructure is the module name; 2D Solver is its family role.',
+    today:
+      'Joints, members, supports, properties, loads, cases, and combinations; linear and P-Delta analysis; reactions, deformation, N-V-M, envelopes, influence, buckling, and modal studies.',
     next: 'Independent numerical suite, more pathological cases, sign and unit contracts, and external oracles.',
     gate: 'Equilibrium, compatibility, reactions, and displacements against manual cases and an independent oracle.',
     reference: 'FTOOL, Edubeam, RFEM',
@@ -1366,8 +1727,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-a02': {
     name: '3D Solver',
     role: 'separate spatial frame',
-    summary: 'A spatial domain isolated from 2D. It exists, solves linear elastic cases, and does not share contracts yet.',
-    today: 'Linear elastic spatial frame, six degrees of freedom per node, nodal loads, and end forces.',
+    summary:
+      'A spatial domain isolated from 2D. It exists, solves linear elastic cases, and does not share contracts yet.',
+    today:
+      'Linear elastic spatial frame, six degrees of freedom per node, nodal loads, and end forces.',
     next: 'Transformations, releases, springs, distributed loads, diaphragms, mass, dynamics, and stability.',
     gate: 'Spatial frames with rigid rotations, symmetry, and 3D equilibrium; deterministic rejection of singular models.',
     reference: 'ETABS, SAP2000, RFEM, OpenSees',
@@ -1375,7 +1738,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-a03': {
     name: 'Finite elements',
     role: 'fields, meshes, and convergence',
-    summary: '2D/3D meshes with linear and later nonlinear materials. Structural, mechanical, and geotechnical families are not faked as one constitutive model.',
+    summary:
+      '2D/3D meshes with linear and later nonlinear materials. Structural, mechanical, and geotechnical families are not faked as one constitutive model.',
     today: 'No implementation yet.',
     next: 'Meshes, contacts, boundaries, stages, adaptivity, convergence, and result fields.',
     gate: 'Patch tests, mesh refinement, equilibrium conservation, and comparison with analytical solutions.',
@@ -1384,8 +1748,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-a04': {
     name: 'Materials design',
     role: 'demand versus capacity',
-    summary: 'Today there is one deliberately incomplete steel limit state in axial tension. It is not integral design.',
-    today: 'A component separate from the analysis result, with material, section, standard source, and explicit blockers.',
+    summary:
+      'Today there is one deliberately incomplete steel limit state in axial tension. It is not integral design.',
+    today:
+      'A component separate from the analysis result, with material, section, standard source, and explicit blockers.',
     next: 'Concrete, timber, and masonry; versioned standards packages; evaluated and missing limit states made visible.',
     gate: 'Reproduce every clause by hand and block the conclusion when a limit state is missing.',
     reference: 'ETABS, Osdag, StructuralCodes',
@@ -1393,7 +1759,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-m01': {
     name: 'CAD drawing',
     role: 'precise, open geometry',
-    summary: '2D/3D geometry with layers, blocks, references, dimensions, and constraints. A line can represent, but it cannot silently replace a project entity.',
+    summary:
+      '2D/3D geometry with layers, blocks, references, dimensions, and constraints. A line can represent, but it cannot silently replace a project entity.',
     today: 'No implementation yet.',
     next: 'Layers, blocks, external references, dimensions, constraints, styles, layouts, and open export.',
     gate: 'Tolerances, snapping, undo, format round-trip, and zero silent coordinate changes.',
@@ -1402,7 +1769,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-m02': {
     name: 'BIM model',
     role: 'physical and analytical, related',
-    summary: 'Levels, axes, spaces, elements, phases, and views. IFC will be an exchange contract, not the entire internal model.',
+    summary:
+      'Levels, axes, spaces, elements, phases, and views. IFC will be an exchange contract, not the entire internal model.',
     today: 'No implementation yet.',
     next: 'Construction elements, classifications, tables, and an explicit relationship between physical and analytical models.',
     gate: 'Stable identity, migrations, version comparison, and declared information loss.',
@@ -1411,7 +1779,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-m03': {
     name: 'Detailing',
     role: 'from calculation to fabrication',
-    summary: 'Connections, plates, bolts, welds, and reinforcement. An analysis result does not automatically become an approved detail.',
+    summary:
+      'Connections, plates, bolts, welds, and reinforcement. An analysis result does not automatically become an approved detail.',
     today: 'No implementation yet.',
     next: 'Numbering, shop drawings, assemblies, bill of materials, and fabrication packages.',
     gate: 'Consistency between model, views, bill of materials, and exported file.',
@@ -1420,7 +1789,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-c01': {
     name: 'Terrain',
     role: 'the site as data',
-    summary: 'Surveys, surfaces, alignments, and volumes with coordinates, source, and accuracy as first-class data.',
+    summary:
+      'Surveys, surfaces, alignments, and volumes with coordinates, source, and accuracy as first-class data.',
     today: 'No implementation yet.',
     next: 'Points, TIN, contours, parcels, alignments, profiles, corridors, and cut/fill.',
     gate: 'CRS, datum, units, accuracy, source, and volume balance recorded.',
@@ -1429,7 +1799,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-c02': {
     name: 'Geotechnics',
     role: 'soil, water, and stages',
-    summary: 'Strata, water table, excavations, and staged stability, with visible constitutive assumptions.',
+    summary:
+      'Strata, water table, excavations, and staged stability, with visible constitutive assumptions.',
     today: 'No implementation yet.',
     next: 'Support, flow, consolidation, and soil-structure interaction by phase.',
     gate: 'Academic benchmarks, mesh studies, and clear warnings about missing field data.',
@@ -1438,7 +1809,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-c03': {
     name: 'Water and drainage',
     role: 'networks, basins, and scenarios',
-    summary: 'Pressurized networks, drainage, rainfall, runoff, and storage with reproducible balances.',
+    summary:
+      'Pressurized networks, drainage, rainfall, runoff, and storage with reproducible balances.',
     today: 'No implementation yet.',
     next: 'Basins, pumps, water quality, and scenario comparison.',
     gate: 'Mass and energy continuity, temporal stability, and comparison against official example files.',
@@ -1447,8 +1819,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-p01': {
     name: 'Documents',
     role: 'every mark points somewhere',
-    summary: 'Sheets, marks, revisions, issues, and final record where each issue points to an object, view, and revision.',
-    today: 'The current technical report is an available base; the coordinated surface does not yet exist.',
+    summary:
+      'Sheets, marks, revisions, issues, and final record where each issue points to an object, view, and revision.',
+    today:
+      'The current technical report is an available base; the coordinated surface does not yet exist.',
     next: 'Sheet comparison, transmittals, RFI, submittals, and owners.',
     gate: 'Every document preserves generator, model version, status, checksum, and difference.',
     reference: 'Bluebeam, Navisworks',
@@ -1456,7 +1830,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-p02': {
     name: 'Quantities and costs',
     role: 'measure before estimating',
-    summary: 'Takeoff, catalogs, unit-price analyses, and budget, always distinguishing derived measurement from manual entry.',
+    summary:
+      'Takeoff, catalogs, unit-price analyses, and budget, always distinguishing derived measurement from manual entry.',
     today: 'No implementation yet.',
     next: 'Items, materials, labor, equipment, indirects, and comparisons by revision.',
     gate: 'Currency, price date, unit, production rate, formula, rounding, and source visible.',
@@ -1465,7 +1840,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-p03': {
     name: 'Schedule and field',
     role: 'construction against the plan',
-    summary: 'WBS, critical path, resources, progress, and field evidence joined to the element and its cost.',
+    summary:
+      'WBS, critical path, resources, progress, and field evidence joined to the element and its cost.',
     today: 'No implementation yet.',
     next: 'Calendars, risks, 4D, daily reports, safety, photos, and issues.',
     gate: 'Verified critical path, explicit time zones, offline operation, and evidence linked to activity and version.',
@@ -1474,8 +1850,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-i01': {
     name: 'Connectors',
     role: 'exchange with checkpoint',
-    summary: 'Versioned adapters with preview, differences, confirmation, and a return point. The current base is not a hub.',
-    today: 'Partial DXF import and existing exports; the versioned hub is still a vision.',
+    summary:
+      'Versioned adapters with preview, differences, confirmation, and a return point. The current base is not a hub.',
+    today:
+      'Partial DXF import and existing exports; the versioned hub is still a vision.',
     next: 'Revit, AutoCAD, IFC, BCF, IDS, and authoring APIs adapters.',
     gate: 'Immutable source snapshot, added-changed-deleted diff, idempotence, and reversible checkpoint.',
     reference: 'IFC, BCF, IDS, APS',
@@ -1483,8 +1861,10 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-l01': {
     name: 'Structural classroom',
     role: 'predict before revealing',
-    summary: 'Guided exercises on the same model and analysis, with a personal prediction before the result.',
-    today: 'Beam, cantilever, frame, and truss exercises; parameters with units; build, define, analyze, compare, and conclude path.',
+    summary:
+      'Guided exercises on the same model and analysis, with a personal prediction before the result.',
+    today:
+      'Beam, cantilever, frame, and truss exercises; parameters with units; build, define, analyze, compare, and conclude path.',
     next: 'Versioned exercise library, rubrics, and portable teaching packages.',
     gate: 'Every exercise includes a manual answer or oracle, conventions, tolerances, and a conclusion distinguishing prediction from result.',
     reference: 'FTOOL, Edubeam, IndeterminateBeam',
@@ -1492,7 +1872,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-l02': {
     name: 'Research workshop',
     role: 'the question and its evidence',
-    summary: 'Problem, hypothesis, variables, method, sources, and decisions linked to project snapshots.',
+    summary:
+      'Problem, hypothesis, variables, method, sources, and decisions linked to project snapshots.',
     today: 'No implementation yet.',
     next: 'Versioned protocol, milestones, ethics, and decision log.',
     gate: 'The report can be reconstructed from versioned sources, decisions, data, and executions.',
@@ -1501,7 +1882,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-l03': {
     name: 'Reproducible lab',
     role: 'same number on another machine',
-    summary: 'Data, parameters, engine, version, tolerance, and artifacts for each run, tied to a project snapshot.',
+    summary:
+      'Data, parameters, engine, version, tolerance, and artifacts for each run, tied to a project snapshot.',
     today: 'No implementation yet.',
     next: 'Notebooks, datasets, environments, hashes, metrics, and versioned figures.',
     gate: 'Another machine reconstructs the result or explains why it cannot.',
@@ -1510,7 +1892,8 @@ const TOOL_ENGLISH: Record<ToolId, ToolEnglishFields> = {
   'fs-l04': {
     name: 'Mentoring and trajectory',
     role: 'agreements with evidence',
-    summary: 'Sessions, agreements, milestones, and blockers evaluated by evidence from real work, not gamification.',
+    summary:
+      'Sessions, agreements, milestones, and blockers evaluated by evidence from real work, not gamification.',
     today: 'No implementation yet.',
     next: 'Agenda, owners, criteria, alerts, and next actions linked to the project.',
     gate: 'Every agreement can be closed, reopened, and audited; removing the external connector does not destroy the record.',
@@ -1591,43 +1974,73 @@ export const MOCKUP_COPY: Record<
 > = {
   'day-analysis': {
     title: { es: 'Mesa de análisis', en: 'Analysis workbench' },
-    note: { es: 'Modelo, resultados e inspector comparten un solo campo de trabajo.', en: 'Model, results, and inspector share one work field.' },
+    note: {
+      es: 'Modelo, resultados e inspector comparten un solo campo de trabajo.',
+      en: 'Model, results, and inspector share one work field.',
+    },
   },
   'day-projects': {
     title: { es: 'Continuidad de proyecto', en: 'Project continuity' },
-    note: { es: 'Fases, versiones y siguiente acción sin convertir el inicio en un tablero genérico.', en: 'Phases, versions, and next action without turning the start into a generic dashboard.' },
+    note: {
+      es: 'Fases, versiones y siguiente acción sin convertir el inicio en un tablero genérico.',
+      en: 'Phases, versions, and next action without turning the start into a generic dashboard.',
+    },
   },
   'day-model': {
     title: { es: 'Modelado directo', en: 'Direct modeling' },
-    note: { es: 'La carga nace del elemento seleccionado y la profundidad explica la relación.', en: 'The load originates at the selected element and depth explains the relationship.' },
+    note: {
+      es: 'La carga nace del elemento seleccionado y la profundidad explica la relación.',
+      en: 'The load originates at the selected element and depth explains the relationship.',
+    },
   },
   'day-compare': {
     title: { es: 'Comparación estructural', en: 'Structural comparison' },
-    note: { es: 'Las señales se alinean por significado: comparar no obliga a traducir.', en: 'Signals align by meaning: comparison does not require translation.' },
+    note: {
+      es: 'Las señales se alinean por significado: comparar no obliga a traducir.',
+      en: 'Signals align by meaning: comparison does not require translation.',
+    },
   },
   'day-field': {
     title: { es: 'Revisión de campo', en: 'Field review' },
-    note: { es: 'Una incidencia, su evidencia y un siguiente paso visible en móvil.', en: 'One issue, its evidence, and a visible next step on mobile.' },
+    note: {
+      es: 'Una incidencia, su evidencia y un siguiente paso visible en móvil.',
+      en: 'One issue, its evidence, and a visible next step on mobile.',
+    },
   },
   'night-model': {
     title: { es: 'Modelo en carbón', en: 'Charcoal model' },
-    note: { es: 'Carbón neutro con superficies elevadas y señal de alta legibilidad.', en: 'Neutral charcoal with raised surfaces and a highly legible signal.' },
+    note: {
+      es: 'Carbón neutro con superficies elevadas y señal de alta legibilidad.',
+      en: 'Neutral charcoal with raised surfaces and a highly legible signal.',
+    },
   },
   'night-results': {
     title: { es: 'Explorador de resultados', en: 'Results explorer' },
-    note: { es: 'Diagramas sincronizados, estación seleccionada y deformada vinculada.', en: 'Synchronized diagrams, selected station, and linked deformation.' },
+    note: {
+      es: 'Diagramas sincronizados, estación seleccionada y deformada vinculada.',
+      en: 'Synchronized diagrams, selected station, and linked deformation.',
+    },
   },
   'night-trace': {
     title: { es: 'Traza de decisión', en: 'Decision trace' },
-    note: { es: 'Modelo, análisis, incidencia y evidencia dentro de una secuencia reversible.', en: 'Model, analysis, issue, and evidence within a reversible sequence.' },
+    note: {
+      es: 'Modelo, análisis, incidencia y evidencia dentro de una secuencia reversible.',
+      en: 'Model, analysis, issue, and evidence within a reversible sequence.',
+    },
   },
   'night-report': {
     title: { es: 'Reporte y procedencia', en: 'Report and provenance' },
-    note: { es: 'El documento conserva vínculos visibles con modelo, resultado y versión.', en: 'The document keeps visible links to model, result, and version.' },
+    note: {
+      es: 'El documento conserva vínculos visibles con modelo, resultado y versión.',
+      en: 'The document keeps visible links to model, result, and version.',
+    },
   },
   'night-mobile': {
     title: { es: 'Resultados móviles', en: 'Mobile results' },
-    note: { es: 'Foco táctil y significado estructural en poco espacio.', en: 'Touch focus and structural meaning in little space.' },
+    note: {
+      es: 'Foco táctil y significado estructural en poco espacio.',
+      en: 'Touch focus and structural meaning in little space.',
+    },
   },
 };
 
@@ -1635,11 +2048,14 @@ export const HANDOFF_COPY = {
   es: {
     tokens: 'Hoja de tokens · propuesta',
     copySheet: 'Copiar la hoja completa',
-    tokensNote: 'Valores propuestos por el brandbook. La aplicación conserva los de',
-    tokensRest: 'hasta que exista una migración con capturas comparables y revisión de accesibilidad.',
+    tokensNote:
+      'Valores propuestos por el brandbook. La aplicación conserva los de',
+    tokensRest:
+      'hasta que exista una migración con capturas comparables y revisión de accesibilidad.',
     checks: 'Antes de cerrar un cambio',
     checksNote: 'Las puertas del repositorio',
-    checksRest: 'no certifican una función: solo dicen que lo automatizado pasó.',
+    checksRest:
+      'no certifican una función: solo dicen que lo automatizado pasó.',
     assets: 'Activos',
     assetNote: 'Los 25 glifos de herramienta viven en',
     assetRest: 'con el identificador de cada superficie. Se regeneran con',
@@ -1653,16 +2069,20 @@ export const HANDOFF_COPY = {
     changelog: 'Changelog',
     changelogValue: 'Atlas Clay–Minimal · primera edición',
     closingTitle: 'Make complexity legible.',
-    closing: 'FusionStructure es experimental. Este documento describe cómo se ve y cómo habla el producto, no promete cumplimiento normativo, exactitud para una obra real ni módulos terminados. Lo que existe está marcado como disponible; lo demás está dibujado, no prometido.',
+    closing:
+      'FusionStructure es experimental. Este documento describe cómo se ve y cómo habla el producto, no promete cumplimiento normativo, exactitud para una obra real ni módulos terminados. Lo que existe está marcado como disponible; lo demás está dibujado, no prometido.',
   },
   en: {
     tokens: 'Token sheet · proposal',
     copySheet: 'Copy the complete sheet',
-    tokensNote: 'Values proposed by the brandbook. The application keeps those in',
-    tokensRest: 'until a migration with comparable captures and accessibility review exists.',
+    tokensNote:
+      'Values proposed by the brandbook. The application keeps those in',
+    tokensRest:
+      'until a migration with comparable captures and accessibility review exists.',
     checks: 'Before closing a change',
     checksNote: 'Repository gates',
-    checksRest: 'do not certify a feature: they only say automated checks passed.',
+    checksRest:
+      'do not certify a feature: they only say automated checks passed.',
     assets: 'Assets',
     assetNote: 'The 25 tool glyphs live in',
     assetRest: 'with each surface identifier. Regenerate them with',
@@ -1676,7 +2096,8 @@ export const HANDOFF_COPY = {
     changelog: 'Changelog',
     changelogValue: 'Atlas Clay–Minimal · first edition',
     closingTitle: 'Make complexity legible.',
-    closing: 'FusionStructure is experimental. This document describes how the product looks and speaks; it does not promise regulatory compliance, accuracy for real construction, or completed modules. What exists is marked available; the rest is drawn, not promised.',
+    closing:
+      'FusionStructure is experimental. This document describes how the product looks and speaks; it does not promise regulatory compliance, accuracy for real construction, or completed modules. What exists is marked available; the rest is drawn, not promised.',
   },
 } as const;
 
@@ -1686,11 +2107,17 @@ export const BRAND_ASSET_COPY: Record<
 > = {
   signal: {
     name: { es: 'Marca · señal', en: 'Mark · signal' },
-    note: { es: 'uso general, brazo en color de señal', en: 'general use, arm in signal color' },
+    note: {
+      es: 'uso general, brazo en color de señal',
+      en: 'general use, arm in signal color',
+    },
   },
   mono: {
     name: { es: 'Marca · mono', en: 'Mark · mono' },
-    note: { es: 'documento, impresión y grabado', en: 'document, print, and engraving' },
+    note: {
+      es: 'documento, impresión y grabado',
+      en: 'document, print, and engraving',
+    },
   },
   inverse: {
     name: { es: 'Marca · inversa', en: 'Mark · inverse' },
@@ -1698,7 +2125,10 @@ export const BRAND_ASSET_COPY: Record<
   },
   icon: {
     name: { es: 'Icono de aplicación', en: 'App icon' },
-    note: { es: 'carbón con esquina de 11u', en: 'charcoal with an 11u corner' },
+    note: {
+      es: 'carbón con esquina de 11u',
+      en: 'charcoal with an 11u corner',
+    },
   },
   lockup: {
     name: { es: 'Firma horizontal', en: 'Horizontal lockup' },
@@ -1711,13 +2141,34 @@ export const BRAND_ASSET_COPY: Record<
 };
 
 export const HANDOFF_CHECK_COPY: Localized[] = [
-  { es: 'El color usado explica una relación del dominio.', en: 'The color used explains a domain relationship.' },
-  { es: 'El estado (Disponible, Experimental, Planeado) aparece antes que la promesa.', en: 'Status (Available, Experimental, Planned) appears before the promise.' },
-  { es: 'Cada número lleva unidad, signo y precisión declarada.', en: 'Every number carries a unit, sign, and declared precision.' },
-  { es: 'La animación se puede apagar sin perder información.', en: 'Animation can be turned off without losing information.' },
-  { es: 'El foco es visible con teclado en día y en noche.', en: 'Focus is visible with a keyboard in day and night.' },
-  { es: 'El glifo distingue la herramienta incluso sin color.', en: 'The glyph distinguishes the tool even without color.' },
-  { es: 'La profundidad usa la luz del sistema y no tiñe: ninguna pieza se ilumina sola.', en: 'Depth uses the system light and does not tint: no piece lights itself.' },
+  {
+    es: 'El color usado explica una relación del dominio.',
+    en: 'The color used explains a domain relationship.',
+  },
+  {
+    es: 'El estado (Disponible, Experimental, Planeado) aparece antes que la promesa.',
+    en: 'Status (Available, Experimental, Planned) appears before the promise.',
+  },
+  {
+    es: 'Cada número lleva unidad, signo y precisión declarada.',
+    en: 'Every number carries a unit, sign, and declared precision.',
+  },
+  {
+    es: 'La animación se puede apagar sin perder información.',
+    en: 'Animation can be turned off without losing information.',
+  },
+  {
+    es: 'El foco es visible con teclado en día y en noche.',
+    en: 'Focus is visible with a keyboard in day and night.',
+  },
+  {
+    es: 'El glifo distingue la herramienta incluso sin color.',
+    en: 'The glyph distinguishes the tool even without color.',
+  },
+  {
+    es: 'La profundidad usa la luz del sistema y no tiñe: ninguna pieza se ilumina sola.',
+    en: 'Depth uses the system light and does not tint: no piece lights itself.',
+  },
 ];
 
 export const STATUS_COPY = {
@@ -1765,71 +2216,116 @@ export const STATUS_RULE_COPY: Record<StatusId, Localized> = {
   },
 };
 
-export const FAMILY_COPY: Record<FamilyId, { label: Localized; purpose: Localized }> = {
+export const FAMILY_COPY: Record<
+  FamilyId,
+  { label: Localized; purpose: Localized }
+> = {
   nucleo: {
-    label: { es: 'Núcleo', en: 'Core' },
-    purpose: { es: 'proyecto, unidades, versiones y evidencia compartida', en: 'project, units, versions, and shared evidence' },
+    label: { es: 'FusionStructure', en: 'FusionStructure' },
+    purpose: {
+      es: 'marca madre, proyecto, unidades, versiones y evidencia compartida',
+      en: 'parent brand, project, units, versions, and shared evidence',
+    },
   },
   analisis: {
     label: { es: 'Análisis', en: 'Analysis' },
-    purpose: { es: 'solvers, comprobaciones y calidad numérica', en: 'solvers, checks, and numerical quality' },
+    purpose: {
+      es: 'solvers, comprobaciones y calidad numérica',
+      en: 'solvers, checks, and numerical quality',
+    },
   },
   modelo: {
     label: { es: 'Modelo', en: 'Model' },
-    purpose: { es: 'dibujo, modelo constructivo y detallado', en: 'drawing, construction model, and detailing' },
+    purpose: {
+      es: 'dibujo, modelo constructivo y detallado',
+      en: 'drawing, construction model, and detailing',
+    },
   },
   civil: {
     label: { es: 'Civil', en: 'Civil' },
-    purpose: { es: 'terreno, suelo y sistemas físicos del sitio', en: 'terrain, soil, and site physical systems' },
+    purpose: {
+      es: 'terreno, suelo y sistemas físicos del sitio',
+      en: 'terrain, soil, and site physical systems',
+    },
   },
   proyecto: {
     label: { es: 'Proyecto', en: 'Project' },
-    purpose: { es: 'documentos, cantidades, costo, programa y campo', en: 'documents, quantities, cost, schedule, and field' },
+    purpose: {
+      es: 'documentos, cantidades, costo, programa y campo',
+      en: 'documents, quantities, cost, schedule, and field',
+    },
   },
   interop: {
-    label: { es: 'Interoperabilidad', en: 'Interoperability' },
-    purpose: { es: 'intercambio versionado con otras aplicaciones', en: 'versioned exchange with other applications' },
+    label: { es: 'Conexiones', en: 'Connections' },
+    purpose: {
+      es: 'intercambio versionado con otras aplicaciones',
+      en: 'versioned exchange with other applications',
+    },
   },
   aprendizaje: {
     label: { es: 'Aprendizaje', en: 'Learning' },
-    purpose: { es: 'aula, investigación, laboratorio y trayectoria', en: 'classroom, research, lab, and learning path' },
+    purpose: {
+      es: 'aula, investigación, laboratorio y trayectoria',
+      en: 'classroom, research, lab, and learning path',
+    },
   },
 };
 
 export const TOOL_CODE_COPY: Record<string, Localized> = {
-  NÚCLEO: { es: 'NÚCLEO', en: 'CORE' },
+  NÚCLEO: { es: 'FS', en: 'FS' },
 };
 
-export const SIGNAL_COPY: Record<SignalId, { name: Localized; use: Localized; description: Localized }> = {
+export const SIGNAL_COPY: Record<
+  SignalId,
+  { name: Localized; use: Localized; description: Localized }
+> = {
   axial: {
     name: { es: 'Axial', en: 'Axial' },
     use: { es: 'fuerza normal', en: 'normal force' },
-    description: { es: 'Tensión y compresión a lo largo del miembro.', en: 'Tension and compression along the member.' },
+    description: {
+      es: 'Tensión y compresión a lo largo del miembro.',
+      en: 'Tension and compression along the member.',
+    },
   },
   moment: {
     name: { es: 'Momento', en: 'Moment' },
     use: { es: 'flexión', en: 'bending' },
-    description: { es: 'Diagramas de momento, giros y zonas dominadas por flexión.', en: 'Moment diagrams, rotations, and bending-dominated zones.' },
+    description: {
+      es: 'Diagramas de momento, giros y zonas dominadas por flexión.',
+      en: 'Moment diagrams, rotations, and bending-dominated zones.',
+    },
   },
   shear: {
     name: { es: 'Cortante', en: 'Shear' },
     use: { es: 'fuerza transversal', en: 'transverse force' },
-    description: { es: 'Cortante y transferencia entre elementos.', en: 'Shear and transfer between elements.' },
+    description: {
+      es: 'Cortante y transferencia entre elementos.',
+      en: 'Shear and transfer between elements.',
+    },
   },
   deformed: {
     name: { es: 'Deformada', en: 'Deformed' },
     use: { es: 'geometría desplazada', en: 'displaced geometry' },
-    description: { es: 'Distingue la forma desplazada de la geometría original.', en: 'Distinguishes displaced shape from original geometry.' },
+    description: {
+      es: 'Distingue la forma desplazada de la geometría original.',
+      en: 'Distinguishes displaced shape from original geometry.',
+    },
   },
   yield: {
     name: { es: 'Fluencia', en: 'Yield' },
     use: { es: 'estado límite local', en: 'local limit state' },
-    description: { es: 'Plastificación, líneas de fluencia y estados límite locales.', en: 'Plasticity, yield lines, and local limit states.' },
+    description: {
+      es: 'Plastificación, líneas de fluencia y estados límite locales.',
+      en: 'Plasticity, yield lines, and local limit states.',
+    },
   },
   attention: {
     name: { es: 'Atención', en: 'Attention' },
     use: { es: 'dato incompleto', en: 'incomplete data' },
-    description: { es: 'Pide revisión, marca supuestos y señala información faltante.', en: 'Requests review, marks assumptions, and flags missing information.' },
+    description: {
+      es: 'Pide revisión, marca supuestos y señala información faltante.',
+      en: 'Requests review, marks assumptions, and flags missing information.',
+    },
   },
 };
 

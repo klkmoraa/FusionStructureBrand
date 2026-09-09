@@ -2,8 +2,12 @@
 
 import { useMemo } from 'react';
 import { MiniDiagram } from '../brand/marks';
-import { NEUTRALS, SIGNALS } from '../brand/system';
-import { FAMILY_COLORS, type FamilyId } from '../brand/generated/palette';
+import { BRAND_COLORS, NEUTRALS, SIGNALS } from '../brand/system';
+import {
+  FAMILY_COLORS,
+  MOTHER_BRAND_ID,
+  PRODUCT_FAMILY_IDS,
+} from '../brand/generated/palette';
 import {
   COLOR_COPY,
   FAMILY_COPY,
@@ -43,6 +47,7 @@ export const Color = () => {
 
   const signal = SIGNALS.find((item) => item.id === activeSignal) ?? SIGNALS[0];
   const signalHex = isNight ? signal.night : signal.day;
+  const motherBrandHex = isNight ? BRAND_COLORS.night : BRAND_COLORS.day;
   const copy = COLOR_COPY[language];
   const contrastLabel = (ratio: number) => {
     if (ratio >= 7) return 'AAA';
@@ -53,7 +58,7 @@ export const Color = () => {
 
   const families = useMemo(
     () =>
-      (Object.keys(FAMILY_COLORS) as FamilyId[]).map((id) => {
+      PRODUCT_FAMILY_IDS.map((id) => {
         const hex = isNight ? FAMILY_COLORS[id].night : FAMILY_COLORS[id].day;
         return { id, hex, ratio: contrastRatio(hex, paper) };
       }),
@@ -70,11 +75,7 @@ export const Color = () => {
       />
 
       <div className="signal-lab">
-        <div
-          className="signal-list"
-          role="tablist"
-          aria-label={copy.signals}
-        >
+        <div className="signal-list" role="tablist" aria-label={copy.signals}>
           {SIGNALS.map((item) => (
             <button
               key={item.id}
@@ -105,7 +106,8 @@ export const Color = () => {
         >
           <div className="signal-stage__top">
             <span>
-              {copy.active} · {SIGNAL_COPY[signal.id].name[language]} <code>{SIGNAL_UNIT_COPY[signal.id][language]}</code>
+              {copy.active} · {SIGNAL_COPY[signal.id].name[language]}{' '}
+              <code>{SIGNAL_UNIT_COPY[signal.id][language]}</code>
             </span>
             <div className="signal-stage__chips">
               <CopyChip value={signal.token} />
@@ -117,7 +119,9 @@ export const Color = () => {
             <MiniDiagram type={signal.id} />
           </div>
 
-          <p className="signal-stage__description">{SIGNAL_COPY[signal.id].description[language]}</p>
+          <p className="signal-stage__description">
+            {SIGNAL_COPY[signal.id].description[language]}
+          </p>
 
           <dl className="signal-stage__rules">
             <div>
@@ -140,6 +144,37 @@ export const Color = () => {
       </div>
 
       <RuleStrip index={`${RULE_LABEL[language]} 04`}>{copy.rule}</RuleStrip>
+
+      <div className="palette-block">
+        <div className="palette-block__head">
+          <span className="tag">{copy.motherBrand}</span>
+          <p>{copy.motherBrandBody}</p>
+        </div>
+        <ul className="family-palette">
+          <li className={`family--${MOTHER_BRAND_ID}`}>
+            <span className="family-palette__chip" aria-hidden="true" />
+            <div>
+              <strong>{FAMILY_COPY[MOTHER_BRAND_ID].label[language]}</strong>
+              <small>{FAMILY_COPY[MOTHER_BRAND_ID].purpose[language]}</small>
+            </div>
+            <div className="family-palette__data">
+              <CopyChip value={motherBrandHex} />
+              <span
+                className={
+                  contrastRatio(motherBrandHex, paper) >= 4.5
+                    ? 'is-pass'
+                    : contrastRatio(motherBrandHex, paper) >= 3
+                      ? 'is-warn'
+                      : 'is-fail'
+                }
+              >
+                {contrastRatio(motherBrandHex, paper).toFixed(2)}:1 ·{' '}
+                {contrastLabel(contrastRatio(motherBrandHex, paper))}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
 
       <div className="palette-block">
         <div className="palette-block__head">

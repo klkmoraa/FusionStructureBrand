@@ -10,7 +10,10 @@ export default defineConfig({
   base,
   plugins: [react()],
   define: {
-    'process.env.NEXT_PUBLIC_BASE_PATH': JSON.stringify(base.replace(/\/$/, '')),
+    __FS_PUBLIC_BASE_PATH__: JSON.stringify(base.replace(/\/$/, '')),
+    'process.env.NEXT_PUBLIC_BASE_PATH': JSON.stringify(
+      base.replace(/\/$/, ''),
+    ),
   },
   build: {
     outDir: resolve(__dirname, 'dist-pages'),

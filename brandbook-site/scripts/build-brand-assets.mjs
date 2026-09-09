@@ -19,6 +19,8 @@ import {
   FAMILY_COLORS,
   GLYPHS,
   MARK,
+  MOTHER_BRAND_ID,
+  PRODUCT_FAMILY_IDS,
   TOOL_BINDINGS,
 } from './glyph-library.mjs';
 
@@ -26,8 +28,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const INK = '#14171A';
 const PAPER = '#F7F6F1';
 const CHALK = '#F2F4F3';
-const BRAND_DAY = '#0B7C7E';
-const BRAND_NIGHT = '#6FE7E0';
+const BRAND_DAY = '#1AA57A';
+const BRAND_NIGHT = '#53E0B2';
 const BANNER =
   '/* Generado por scripts/build-brand-assets.mjs. No editar a mano. */';
 
@@ -137,6 +139,14 @@ ${Object.keys(FAMILY_COLORS)
 export const FAMILY_COLORS: Record<FamilyId, { day: string; night: string; label: string }> = {
 ${entries}
 };
+
+export const MOTHER_BRAND_ID: FamilyId = '${MOTHER_BRAND_ID}';
+
+export const PRODUCT_FAMILY_IDS = [
+${PRODUCT_FAMILY_IDS.map((id) => `  '${id}',`).join('\n')}
+] as const satisfies readonly FamilyId[];
+
+export type ProductFamilyId = (typeof PRODUCT_FAMILY_IDS)[number];
 
 export const TOOL_BINDINGS: Record<string, { glyph: GlyphId; family: FamilyId }> = {
 ${bindings}

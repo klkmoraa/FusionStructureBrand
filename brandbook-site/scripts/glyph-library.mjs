@@ -14,14 +14,27 @@
  * carbón.
  */
 export const FAMILY_COLORS = {
-  nucleo: { day: '#3F4A50', night: '#AEB9BE', label: 'Núcleo' },
-  analisis: { day: '#1B75B0', night: '#63C5FF', label: 'Análisis' },
-  modelo: { day: '#B8412F', night: '#FF8E80', label: 'Modelo' },
-  civil: { day: '#277654', night: '#55C990', label: 'Civil' },
-  proyecto: { day: '#8A6110', night: '#F3C553', label: 'Proyecto' },
-  interop: { day: '#6A57C8', night: '#9B87FF', label: 'Interoperabilidad' },
-  aprendizaje: { day: '#B44A7E', night: '#EF7AB9', label: 'Aprendizaje' },
+  nucleo: { day: '#1AA57A', night: '#53E0B2', label: 'FusionStructure' },
+  analisis: { day: '#ED4B46', night: '#FF8E80', label: 'Análisis' },
+  modelo: { day: '#7657D5', night: '#A990FF', label: 'Modelo' },
+  civil: { day: '#468C09', night: '#72CF4A', label: 'Civil' },
+  proyecto: { day: '#D9720A', night: '#F3C553', label: 'Proyecto' },
+  interop: { day: '#3A72E3', night: '#72A1FF', label: 'Conexiones' },
+  aprendizaje: { day: '#C94A8F', night: '#F07DB5', label: 'Aprendizaje' },
 };
+
+/** La marca madre sostiene el sistema; no cuenta como familia de producto. */
+export const MOTHER_BRAND_ID = 'nucleo';
+
+/** Las seis familias que se presentan en el atlas maestro de Figma. */
+export const PRODUCT_FAMILY_IDS = [
+  'analisis',
+  'modelo',
+  'civil',
+  'proyecto',
+  'interop',
+  'aprendizaje',
+];
 
 /**
  * Enlace herramienta -> glifo -> familia, usado para escribir los SVG de

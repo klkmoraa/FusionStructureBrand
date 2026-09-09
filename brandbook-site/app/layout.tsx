@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'FusionStructure · Brandbook',
   description:
-    'Sistema visual y verbal de FusionStructure: marca, color con significado, movimiento que explica y un catálogo de 25 superficies con su estado real.',
+    'Sistema visual y verbal de FusionStructure: marca estructural, seis familias, color con significado y movimiento que explica.',
   icons: { icon: publicAsset('/favicon.svg') },
   openGraph: {
     title: 'FusionStructure · Brandbook',
     description:
-      'Make complexity legible. Marca, señales, movimiento, voz y 25 superficies con estado verificable.',
+      'Make complexity legible. Marca, seis familias, señales, movimiento y voz con estado verificable.',
     images: [
       {
         url: '/og.png',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'FusionStructure · Brandbook',
     description:
-      'Make complexity legible. Marca, señales, movimiento, voz y 25 superficies con estado verificable.',
+      'Make complexity legible. Marca, seis familias, señales, movimiento y voz con estado verificable.',
     images: ['/og.png'],
   },
 };

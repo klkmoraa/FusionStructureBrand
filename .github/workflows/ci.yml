@@ -25,6 +25,7 @@ jobs:
           cache-dependency-path: brandbook-site/package-lock.json
       - run: npm ci
       - run: npm run brand:assets
+      - run: npm run test:brandbook
       - run: npm run lint
       - run: npm run build:pages
         env:
