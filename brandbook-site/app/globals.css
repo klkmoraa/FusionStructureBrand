@@ -1,7 +1,6 @@
-/* Tipografías del sistema: Space Grotesk para display, Inter para interfaz
-   e IBM Plex Mono para datos. Si la petición falla, las pilas de respaldo
-   declaradas en `--fs-font-*` conservan la jerarquía. */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400..700&family=Space+Grotesk:wght@400..700&display=swap');
+/* Tipografías del sistema: Space Grotesk para display, Plus Jakarta Sans para
+   acentos editoriales, Inter para interfaz e IBM Plex Mono para datos. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Space+Grotesk:wght@400..700&display=swap');
 @import './atlas.css';
 
 /* ==========================================================================
@@ -92,9 +91,10 @@
   color: var(--ink);
 }
 .reference-explorer [data-theme='dia'] {
-  --clay-light: rgb(255 255 255 / 82%);
-  --clay-dark: rgb(20 23 26 / 18%);
-  --clay-dark-strong: rgb(20 23 26 / 26%);
+  --clay-light: rgb(255 255 255 / 85%);
+  --clay-dark: rgb(20 23 26 / 14%);
+  --clay-dark-soft: rgb(20 23 26 / 8%);
+  --clay-dark-strong: rgb(20 23 26 / 22%);
   --paper: #f7f6f1;
   --surface: #fffefa;
   --surface-sunken: #edefe9;
@@ -109,9 +109,10 @@
   --fs-brand-accent: #1aa57a;
 }
 .reference-explorer [data-theme='noche'] {
-  --clay-light: rgb(142 153 158 / 20%);
-  --clay-dark: rgb(0 0 0 / 54%);
-  --clay-dark-strong: rgb(0 0 0 / 66%);
+  --clay-light: rgb(255 255 255 / 16%);
+  --clay-dark: rgb(0 0 0 / 55%);
+  --clay-dark-soft: rgb(0 0 0 / 35%);
+  --clay-dark-strong: rgb(0 0 0 / 70%);
   --paper: #14171a;
   --surface: #1b1f22;
   --surface-sunken: #252a2e;
@@ -123,7 +124,7 @@
   --line-soft: #333a3e;
   --line-strong: #465055;
   --success: #55c990;
-  --fs-brand-accent: #53e0b2;
+  --fs-brand-accent: #1aa57a;
 }
 .reference-explorer [data-viewport='390'] .product-mockup__body {
   grid-template-columns: 32px minmax(0, 1fr);
@@ -202,6 +203,138 @@
   color: var(--ink-muted);
   font-size: 13px;
 }
+
+/* --- Laboratorio Táctil Clay --------------------------------------------- */
+.clay-bench {
+  display: grid;
+  gap: 20px;
+  margin-block: 24px;
+}
+
+.clay-bench__deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.clay-bench__card {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-raised);
+}
+
+.clay-bench__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--fs-font-data);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.clay-bench__button-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.clay-bench__haptic-meter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  box-shadow: var(--shadow-inset);
+  font-family: var(--fs-font-data);
+  font-size: 12px;
+  color: var(--ink-secondary);
+}
+
+.clay-bench__levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.clay-level-tile {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition: transform var(--fs-instant) var(--fs-ease);
+}
+
+.clay-level-tile--plano {
+  background: transparent;
+  box-shadow: none;
+  border-radius: var(--radius-xs);
+}
+
+.clay-level-tile--interior {
+  background: var(--surface-sunken);
+  box-shadow: var(--shadow-inset);
+  border-color: transparent;
+}
+
+.clay-level-tile--elevado {
+  box-shadow: var(--shadow-raised);
+}
+
+.clay-level-tile--flotante {
+  box-shadow: var(--shadow-float);
+  transform: translateY(-2px);
+}
+
+/* --- Muestrario de Glifos en Arcilla ------------------------------------- */
+.clay-glyph-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-block: 20px;
+}
+
+.clay-glyph-card {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  padding: 20px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-raised);
+  transition:
+    transform var(--fs-instant) var(--fs-ease),
+    box-shadow var(--fs-quick) var(--fs-ease);
+}
+
+.clay-glyph-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-float);
+}
+
+.clay-glyph-card__icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-inline: auto;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  box-shadow: var(--shadow-inset);
+  color: var(--family);
+}
+
 .brandbook--calma .interaction-stage .motion-screen {
   transform: none;
 }
@@ -346,6 +479,8 @@ table {
   /* tipografía */
   --fs-font-display:
     'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --fs-font-editorial:
+    'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --fs-font-ui:
     'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fs-font-data:
@@ -369,10 +504,12 @@ table {
   --line: var(--n-300);
   --line-soft: var(--n-200);
   --line-strong: var(--n-400);
+
   --ink: var(--n-900);
+  --ink-secondary: var(--n-600);
+  --ink-muted: var(--n-500);
+  --ink-faint: var(--n-400);
   --ink-strong: var(--n-700);
-  --ink-muted: var(--n-600);
-  --ink-faint: var(--n-500);
 
   /* aliases canónicos compartidos con Figma y la hoja de handoff */
   --fs-neutral-paper: var(--n-050);
@@ -395,6 +532,8 @@ table {
 
   /* marca */
   --fs-brand-accent: #1aa57a;
+  --fs-brand-contrast: #0e1113;
+  --fs-contrast-on-signal: #0e1113;
 
   /* señales de resultado */
   --fs-signal-axial: #0f95d1;
@@ -419,25 +558,23 @@ table {
   --fs-status-planeado: #5c6a6f;
   --fs-status-no-comprometido: #a7b1a9;
 
-  /* materia · arcilla leve
-     Un solo escalón de volumen. La luz entra por arriba-izquierda: la sombra
-     cae abajo-derecha y el brillo de contacto queda arriba-izquierda. Las dos
-     capas son acromáticas —tinta neutra y papel— porque aquí el color
-     significa dominio, nunca profundidad.
-     `xs` queda fuera de la familia a propósito: es el escalón del dato
-     —rejilla, tabla, muestra de rampa— y por eso no crece con el resto. La
-     escala misma es la que sostiene que el dato se queda plano. */
+  /* materia · arcilla leve táctil
+     Un modelo volumétrico de luz arriba-izquierda (315°):
+     - Resalte interior cenital arriba-izquierda (luz incidente)
+     - Sombra interior de oclusión abajo-derecha (curvatura de arcilla)
+     - Sombra de contacto exterior acotada con desenfoque contenido (no niebla) */
   --radius-xs: 6px;
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 24px;
   --radius-pill: 999px;
 
-  --clay-light: rgb(255 255 255 / 82%);
-  --clay-dark: rgb(20 23 26 / 18%);
-  --clay-dark-strong: rgb(20 23 26 / 26%);
+  --clay-light: rgb(255 255 255 / 85%);
+  --clay-dark: rgb(20 23 26 / 14%);
+  --clay-dark-soft: rgb(20 23 26 / 8%);
+  --clay-dark-strong: rgb(20 23 26 / 22%);
   --clay-veil: rgb(20 23 26 / 45%);
-  --press: translateY(1px);
+  --press: translateY(1.5px);
 
   /* movimiento */
   --fs-instant: 90ms;
@@ -466,7 +603,7 @@ table {
 }
 
 .brandbook--noche {
-  --fs-brand-accent: #53e0b2;
+  --fs-brand-accent: #1aa57a;
   --n-000: #0e1113;
   --n-050: #14171a;
   --n-100: #1b1f22;
@@ -492,7 +629,7 @@ table {
   --fs-signal-yield: #ef7ab9;
   --fs-signal-attention: #f3c553;
 
-  --fs-family-nucleo: #53e0b2;
+  --fs-family-nucleo: #1aa57a;
   --fs-family-analisis: #ff8e80;
   --fs-family-modelo: #a990ff;
   --fs-family-civil: #72cf4a;
@@ -505,14 +642,10 @@ table {
   --fs-status-planeado: #8b9599;
   --fs-status-no-comprometido: #5e6a6f;
 
-  /* La luz de contacto no puede ser blanca sobre carbón: lo que recoge un
-     canto de noche no es una fuente, es ambiente. Gris de ambiente, y la capa
-     oscura sube de opacidad porque tiene menos rango donde separarse. */
-  --clay-light: rgb(142 153 158 / 20%);
-  --clay-dark: rgb(0 0 0 / 54%);
-  --clay-dark-strong: rgb(0 0 0 / 66%);
-  /* De noche el papel ES carbón, así que un velo de la misma tinta sobre la
-     misma tinta no vela nada: el velo nocturno tiene que ser negro. */
+  --clay-light: rgb(255 255 255 / 16%);
+  --clay-dark: rgb(0 0 0 / 55%);
+  --clay-dark-soft: rgb(0 0 0 / 35%);
+  --clay-dark-strong: rgb(0 0 0 / 70%);
   --clay-veil: rgb(0 0 0 / 62%);
 }
 
@@ -522,22 +655,27 @@ table {
 .reference-explorer [data-theme],
 .device-study--noche {
   --shadow-raised:
-    -2px -2px 0 var(--clay-light), 3px 3px 0 var(--clay-dark),
-    inset 1px 1px 0 var(--clay-light);
+    2px 4px 7px -1px var(--clay-dark), 1px 1px 2px var(--clay-dark),
+    inset 1.5px 1.5px 2px var(--clay-light),
+    inset -2px -2px 4px var(--clay-dark-soft);
   --shadow-float:
-    -3px -3px 0 var(--clay-light), 5px 5px 0 var(--clay-dark-strong),
-    inset 1px 1px 0 var(--clay-light);
+    4px 8px 14px -2px var(--clay-dark-strong), 1px 2px 4px var(--clay-dark),
+    inset 1.5px 1.5px 2px var(--clay-light),
+    inset -2px -2px 4px var(--clay-dark-soft);
   --shadow-lifted:
-    -4px -4px 0 var(--clay-light), 7px 7px 0 var(--clay-dark-strong);
+    5px 10px 16px -2px var(--clay-dark-strong), 2px 3px 5px var(--clay-dark),
+    inset 2px 2px 3px var(--clay-light);
   --shadow-inset:
-    inset 2px 2px 0 var(--clay-dark), inset -2px -2px 0 var(--clay-light);
+    inset 2px 2.5px 5px var(--clay-dark), inset -1.5px -1.5px 3px var(--clay-light);
   --shadow-selected:
-    inset 2px 2px 0 var(--clay-dark), inset -1px -1px 0 var(--clay-light),
-    0 0 0 1px color-mix(in srgb, var(--active-signal) 55%, transparent);
+    inset 2px 2.5px 5px var(--clay-dark), inset -1px -1px 2px var(--clay-light),
+    0 0 0 1.5px var(--active-signal);
   --shadow-sheet:
-    0 -5px 0 var(--clay-dark-strong), inset 1px 1px 0 var(--clay-light);
+    0 -6px 12px -2px var(--clay-dark-strong), inset 1px 1px 2px var(--clay-light);
   --shadow-veil: 0 0 0 2000px var(--clay-veil);
-  --shadow-chip: -1px -1px 0 var(--clay-light), 1px 1px 0 var(--clay-dark);
+  --shadow-chip:
+    1px 2px 4px -1px var(--clay-dark), inset 1px 1px 1.5px var(--clay-light),
+    inset -1px -1px 2px var(--clay-dark-soft);
   --fs-shadow-interior: var(--shadow-inset);
   --fs-shadow-elevated: var(--shadow-raised);
   --fs-shadow-floating: var(--shadow-float);
@@ -2667,8 +2805,12 @@ table {
 .signal-row__swatch {
   width: 26px;
   height: 26px;
-  border-radius: 7px;
+  border-radius: 8px;
   background: var(--row);
+  box-shadow:
+    1px 2px 4px -1px var(--clay-dark),
+    inset 1px 1px 1.5px rgb(255 255 255 / 45%),
+    inset -1px -1px 2px rgb(0 0 0 / 25%);
 }
 
 .signal-row__copy {
@@ -2804,8 +2946,12 @@ table {
 .family-palette__chip {
   width: 34px;
   height: 34px;
-  border-radius: 9px;
+  border-radius: 10px;
   background: var(--family);
+  box-shadow:
+    1px 2px 5px -1px var(--clay-dark),
+    inset 1px 1.5px 2px rgb(255 255 255 / 45%),
+    inset -1px -1.5px 3px rgb(0 0 0 / 25%);
 }
 
 .family-palette strong {

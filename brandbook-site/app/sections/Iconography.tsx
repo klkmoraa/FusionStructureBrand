@@ -12,11 +12,29 @@ import { SectionIntro, useBrandbook } from '../brand/ui';
 
 const DRAWING_RULES = ['01', '02', '03', '04', '05', '06'] as const;
 
+const FLAGSHIP_IDS = ['solver2d', 'space3d', 'bridge', 'gantt', 'nodes', 'manual'];
+
 export const Iconography = () => {
   const { language } = useBrandbook();
+  const flagships = TOOLS.filter((tool) => FLAGSHIP_IDS.includes(tool.id));
+
   return (
     <section id="iconografia" className="section iconography">
       <SectionIntro index="08" compact />
+
+      <div className="clay-glyph-showcase">
+        {flagships.map((tool) => (
+          <article key={tool.id} className={`clay-glyph-card family--${tool.family}`}>
+            <div className="clay-glyph-card__icon" aria-hidden="true">
+              <Glyph id={tool.glyph} size={32} />
+            </div>
+            <strong style={{ fontSize: 13.5 }}>{TOOL_COPY[tool.id].name[language]}</strong>
+            <code style={{ fontSize: 11, color: 'var(--ink-secondary)' }}>
+              {TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}
+            </code>
+          </article>
+        ))}
+      </div>
 
       <details className="content-disclosure">
         <summary>{EXPLORER_COPY[language].glyphs}</summary>

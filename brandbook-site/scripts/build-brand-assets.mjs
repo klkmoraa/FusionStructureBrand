@@ -29,7 +29,7 @@ const INK = '#14171A';
 const PAPER = '#F7F6F1';
 const CHALK = '#F2F4F3';
 const BRAND_DAY = '#1AA57A';
-const BRAND_NIGHT = '#53E0B2';
+const BRAND_NIGHT = '#1AA57A';
 const BANNER =
   '/* Generado por scripts/build-brand-assets.mjs. No editar a mano. */';
 

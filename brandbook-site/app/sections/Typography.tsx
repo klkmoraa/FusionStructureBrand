@@ -16,6 +16,7 @@ const WEIGHTS = [400, 500, 600, 700] as const;
 export const Typography = () => {
   const { language } = useBrandbook();
   const [weight, setWeight] = useState<number>(600);
+  const [fontFamily, setFontFamily] = useState<'space' | 'jakarta'>('space');
   const copy = TYPOGRAPHY_COPY[language];
   const controls = EXPLORER_COPY[language];
   const [iconSize, setIconSize] = useState(24);
@@ -27,15 +28,43 @@ export const Typography = () => {
 
       <div className="type-lab">
         <div className="type-canvas">
-          <span className="type-canvas__label">Space Grotesk · display</span>
-          <p className="type-display" style={{ fontWeight: weight }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <span className="type-canvas__label">
+              {fontFamily === 'space' ? 'Space Grotesk · display' : 'Plus Jakarta Sans · editorial'}
+            </span>
+            <fieldset className="segmented segmented--tight" style={{ margin: 0 }}>
+              <legend className="visually-hidden">Familia tipográfica</legend>
+              <button
+                type="button"
+                className={fontFamily === 'space' ? 'is-active' : ''}
+                onClick={() => setFontFamily('space')}
+              >
+                Space Grotesk
+              </button>
+              <button
+                type="button"
+                className={fontFamily === 'jakarta' ? 'is-active' : ''}
+                onClick={() => setFontFamily('jakarta')}
+              >
+                Plus Jakarta Sans
+              </button>
+            </fieldset>
+          </div>
+
+          <p
+            className="type-display"
+            style={{
+              fontWeight: weight,
+              fontFamily: fontFamily === 'space' ? 'var(--fs-font-display)' : 'var(--fs-font-editorial)',
+            }}
+          >
             One clear
             <br />
             <em>next step.</em>
           </p>
           <div className="type-canvas__foot">
             <span>{copy.character}</span>
-            <code>wght {weight}</code>
+            <code>{fontFamily === 'space' ? 'Space Grotesk' : 'Plus Jakarta Sans'} · wght {weight}</code>
           </div>
         </div>
 
@@ -95,6 +124,10 @@ export const Typography = () => {
             <li>
               <strong>{copy.displayLabel}</strong>
               <small>{copy.display}</small>
+            </li>
+            <li>
+              <strong>Editorial</strong>
+              <small>Plus Jakarta Sans · Acentos de marca y fichas</small>
             </li>
             <li>
               <strong>{copy.interfaceLabel}</strong>

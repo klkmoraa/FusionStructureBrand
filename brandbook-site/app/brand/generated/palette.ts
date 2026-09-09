@@ -14,7 +14,7 @@ export const FAMILY_COLORS: Record<
   FamilyId,
   { day: string; night: string; label: string }
 > = {
-  nucleo: { day: '#1AA57A', night: '#53E0B2', label: 'FusionStructure' },
+  nucleo: { day: '#1AA57A', night: '#1AA57A', label: 'FusionStructure' },
   analisis: { day: '#ED4B46', night: '#FF8E80', label: 'Análisis' },
   modelo: { day: '#7657D5', night: '#A990FF', label: 'Modelo' },
   civil: { day: '#468C09', night: '#72CF4A', label: 'Civil' },

@@ -108,9 +108,9 @@ export const BRANDBOOK_BLOCKS = [
 /** Acento de marca: estable y separado de cualquier resultado técnico. */
 export const BRAND_COLORS = {
   day: '#1AA57A',
-  night: '#53E0B2',
+  night: '#1AA57A',
   token: '--fs-brand-accent',
-  label: 'Aqua estructural',
+  label: 'Verde estructural StructureCo',
   use: 'marca, navegación, foco y controles activos',
 } as const;
 
@@ -273,26 +273,32 @@ export const MATERIAL_TOKENS = [
   {
     token: '--active-signal',
     value: '#1AA57A',
-    night: '#53E0B2',
-    role: 'señal activa: marca por defecto, reemplazable por el dominio',
+    night: '#1AA57A',
+    role: 'señal activa: marca StructureCo, compartida e invariante día/noche',
   },
   {
     token: '--clay-light',
-    value: 'rgb(255 255 255 / 82%)',
-    night: 'rgb(142 153 158 / 20%)',
-    role: 'contacto arriba-izquierda',
+    value: 'rgb(255 255 255 / 85%)',
+    night: 'rgb(255 255 255 / 16%)',
+    role: 'resalte volumétrico interior y luz cenital arriba-izquierda',
   },
   {
     token: '--clay-dark',
-    value: 'rgb(20 23 26 / 18%)',
-    night: 'rgb(0 0 0 / 54%)',
-    role: 'canto de contacto',
+    value: 'rgb(20 23 26 / 14%)',
+    night: 'rgb(0 0 0 / 55%)',
+    role: 'canto de contacto y sombra base',
+  },
+  {
+    token: '--clay-dark-soft',
+    value: 'rgb(20 23 26 / 8%)',
+    night: 'rgb(0 0 0 / 35%)',
+    role: 'sombra interior suave de oclusión de arcilla',
   },
   {
     token: '--clay-dark-strong',
-    value: 'rgb(20 23 26 / 26%)',
-    night: 'rgb(0 0 0 / 66%)',
-    role: 'canto de superficies flotantes',
+    value: 'rgb(20 23 26 / 22%)',
+    night: 'rgb(0 0 0 / 70%)',
+    role: 'sombra profunda para elevación flotante',
   },
   {
     token: '--clay-veil',
@@ -303,37 +309,38 @@ export const MATERIAL_TOKENS = [
   {
     token: '--shadow-raised',
     value:
-      '-2px -2px 0 var(--clay-light), 3px 3px 0 var(--clay-dark), inset 1px 1px 0 var(--clay-light)',
-    role: 'elevado: un escalón',
+      '2px 4px 7px -1px var(--clay-dark), 1px 1px 2px var(--clay-dark), inset 1.5px 1.5px 2px var(--clay-light), inset -2px -2px 4px var(--clay-dark-soft)',
+    role: 'elevado: un escalón con volumen interior y contacto acotado',
   },
   {
     token: '--shadow-float',
     value:
-      '-3px -3px 0 var(--clay-light), 5px 5px 0 var(--clay-dark-strong), inset 1px 1px 0 var(--clay-light)',
-    role: 'flotante: dos escalones',
+      '4px 8px 14px -2px var(--clay-dark-strong), 1px 2px 4px var(--clay-dark), inset 1.5px 1.5px 2px var(--clay-light), inset -2px -2px 4px var(--clay-dark-soft)',
+    role: 'flotante: dos escalones de profundidad',
   },
   {
     token: '--shadow-lifted',
-    value: '-4px -4px 0 var(--clay-light), 7px 7px 0 var(--clay-dark-strong)',
-    role: 'modal: separación máxima',
+    value:
+      '5px 10px 16px -2px var(--clay-dark-strong), 2px 3px 5px var(--clay-dark), inset 2px 2px 3px var(--clay-light)',
+    role: 'modal: separación máxima para decisiones',
   },
   {
     token: '--shadow-inset',
     value:
-      'inset 2px 2px 0 var(--clay-dark), inset -2px -2px 0 var(--clay-light)',
-    role: 'interior: la misma luz, invertida',
+      'inset 2px 2.5px 5px var(--clay-dark), inset -1.5px -1.5px 3px var(--clay-light)',
+    role: 'interior: la misma luz, invertida en cavidad tallada',
   },
   {
     token: '--shadow-selected',
     value:
-      'inset 2px 2px 0 var(--clay-dark), inset -1px -1px 0 var(--clay-light), 0 0 0 1px color-mix(in srgb, var(--active-signal) 55%, transparent)',
-    role: 'selección persistente',
+      'inset 2px 2.5px 5px var(--clay-dark), inset -1px -1px 2px var(--clay-light), 0 0 0 1.5px var(--active-signal)',
+    role: 'selección persistente con resalte de señal',
   },
   {
     token: '--shadow-sheet',
     value:
-      '0 -5px 0 var(--clay-dark-strong), inset 1px 1px 0 var(--clay-light)',
-    role: 'hoja: la única que sube',
+      '0 -6px 12px -2px var(--clay-dark-strong), inset 1px 1px 2px var(--clay-light)',
+    role: 'hoja: la única que sube proyectando a su origen',
   },
   {
     token: '--shadow-veil',
@@ -342,8 +349,9 @@ export const MATERIAL_TOKENS = [
   },
   {
     token: '--shadow-chip',
-    value: '-1px -1px 0 var(--clay-light), 1px 1px 0 var(--clay-dark)',
-    role: 'filtro compacto',
+    value:
+      '1px 2px 4px -1px var(--clay-dark), inset 1px 1px 1.5px var(--clay-light), inset -1px -1px 2px var(--clay-dark-soft)',
+    role: 'filtro compacto con micro-arcilla para alta densidad',
   },
   {
     token: '--fs-shadow-interior',
@@ -362,8 +370,8 @@ export const MATERIAL_TOKENS = [
   },
   {
     token: '--press',
-    value: 'translateY(1px)',
-    role: 'el hundido de un pulsado',
+    value: 'translateY(1.5px)',
+    role: 'el hundido físico de un pulsado elástico',
   },
 ] as const;
 
