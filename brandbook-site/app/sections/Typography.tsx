@@ -28,12 +28,12 @@ export const Typography = () => {
 
       <div className="type-lab">
         <div className="type-canvas">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+          <div className="type-canvas__top">
             <span className="type-canvas__label">
-              {fontFamily === 'space' ? 'Space Grotesk · display' : 'Plus Jakarta Sans · editorial'}
+              {fontFamily === 'space' ? copy.displayLabel : copy.editorialLabel}
             </span>
-            <fieldset className="segmented segmented--tight" style={{ margin: 0 }}>
-              <legend className="visually-hidden">Familia tipográfica</legend>
+            <fieldset className="segmented segmented--tight">
+              <legend className="visually-hidden">{copy.fontFamilyLegend}</legend>
               <button
                 type="button"
                 className={fontFamily === 'space' ? 'is-active' : ''}

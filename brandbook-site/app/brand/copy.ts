@@ -499,6 +499,8 @@ export const TYPOGRAPHY_COPY = {
     fallback: 'Respaldo: fuentes del sistema; conserva tamaño y espaciado.',
     line: 'línea',
     displayLabel: 'Display · Space Grotesk',
+    editorialLabel: 'Editorial · Plus Jakarta Sans',
+    fontFamilyLegend: 'Familia tipográfica',
     interfaceLabel: 'Interfaz · Inter',
     dataLabel: 'Dato · IBM Plex Mono',
     numbers: 'Números',
@@ -519,6 +521,8 @@ export const TYPOGRAPHY_COPY = {
       'All three are backed by the system stack. If a font fails to load, hierarchy still stands because it lives in size and space.',
     line: 'line',
     displayLabel: 'Display · Space Grotesk',
+    editorialLabel: 'Editorial · Plus Jakarta Sans',
+    fontFamilyLegend: 'Type family',
     interfaceLabel: 'Interface · Inter',
     dataLabel: 'Data · IBM Plex Mono',
     numbers: 'Numbers',
@@ -2354,6 +2358,9 @@ export const EXPLORER_COPY = {
     iconSize: 'Tamaño del icono',
     inspector: 'Inspector estructural',
     microcopy: 'Ejemplos de interfaz',
+    identityClearspace: '48u · 8u de aire',
+    canonicalMint: 'Verde canónico · AA 4.64:1',
+    geometrySpec: 'Geometría estructural',
   },
   en: {
     scene: 'Scene',
@@ -2376,20 +2383,23 @@ export const EXPLORER_COPY = {
     iconSize: 'Icon size',
     inspector: 'Structural inspector',
     microcopy: 'Interface examples',
+    identityClearspace: '48u · 8u clear space',
+    canonicalMint: 'Canonical mint · AA 4.64:1',
+    geometrySpec: 'Structural geometry',
   },
 } as const;
 
 export const CLAY_SCENE_COPY = {
   cover: {
-    title: { es: 'Marca como estructura', en: 'Mark as structure' },
+    title: { es: 'Identidad', en: 'Identity' },
     note: {
-      es: 'Conserva la silueta y el espacio libre.',
-      en: 'Preserve silhouette and clearspace.',
+      es: 'Ficha de identidad de marca sobre arcilla física y proporciones seguras.',
+      en: 'Brand identity specimen on physical clay and safe proportions.',
     },
-    proof: { es: 'Identidad', en: 'Identity' },
+    proof: { es: 'Cotas y aire', en: 'Bounds & clear space' },
   },
   spread: {
-    title: { es: 'Campo editorial', en: 'Editorial field' },
+    title: { es: 'Editorial', en: 'Editorial' },
     note: {
       es: 'Ordena con retícula, cotas y aire.',
       en: 'Organize with grid, dimensions, and space.',
@@ -2397,7 +2407,7 @@ export const CLAY_SCENE_COPY = {
     proof: { es: 'Jerarquía', en: 'Hierarchy' },
   },
   product: {
-    title: { es: 'Materia en producto', en: 'Material in product' },
+    title: { es: 'Producto', en: 'Product' },
     note: {
       es: 'Mantén dato, estado y procedencia al cambiar de tema.',
       en: 'Preserve data, status, and provenance across themes.',

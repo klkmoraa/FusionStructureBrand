@@ -44,6 +44,7 @@ const ToolDetail = ({
 
   useEffect(() => {
     panel.current?.focus();
+    panel.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, [tool.id]);
 
   return (
@@ -54,8 +55,8 @@ const ToolDetail = ({
       aria-label={`${copy.detail} ${toolCopy.name[language]}`}
     >
       <div className="tool-detail__head">
-        <ToolTile glyph={tool.glyph} family={tool.family} size={54} />
-        <div>
+        <ToolTile glyph={tool.glyph} family={tool.family} size={48} />
+        <div className="tool-detail__title-block">
           <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
           <h3>{toolCopy.name[language]}</h3>
           <p>
@@ -64,7 +65,7 @@ const ToolDetail = ({
         </div>
         <button
           type="button"
-          className="icon-button"
+          className="icon-button tool-detail__close"
           onClick={onClose}
           aria-label={copy.close}
         >

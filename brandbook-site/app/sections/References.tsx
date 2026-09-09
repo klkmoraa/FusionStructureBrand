@@ -2,7 +2,6 @@
 
 import { useState, type CSSProperties } from 'react';
 import { SIGNALS } from '../brand/system';
-import { ClayRelief } from '../brand/ClayRelief';
 import { BrandMark } from '../brand/marks';
 import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
 import {
@@ -17,8 +16,8 @@ import {
 const CLAY_REFERENCES = [
   {
     id: 'cover',
-    scene: 'relief',
-    token: '--fs-radius-lg · --fs-shadow-elevated',
+    scene: 'identity',
+    token: '--fs-brand-accent · --fs-radius-lg',
   },
   {
     id: 'spread',
@@ -94,6 +93,54 @@ const EditorialScene = ({ language }: { language: Language }) => {
         <span>{copy.decision}</span>
       </div>
       <code>8u / 48u</code>
+    </div>
+  );
+};
+
+const BrandIdentityScene = ({ language }: { language: Language }) => {
+  const copy = EXPLORER_COPY[language];
+  return (
+    <div className="brand-specimen">
+      <div className="brand-specimen__header">
+        <div className="brand-specimen__badge">
+          <BrandMark size={24} />
+        </div>
+        <div className="brand-specimen__meta">
+          <strong>FusionStructure</strong>
+          <small>Make complexity legible.</small>
+        </div>
+        <code>{copy.identityClearspace}</code>
+      </div>
+      <div className="brand-specimen__stage">
+        <div className="brand-specimen__canvas" aria-hidden="true">
+          <div className="brand-specimen__mark-zone">
+            <span className="brand-specimen__guide brand-specimen__guide--top">8u</span>
+            <span className="brand-specimen__guide brand-specimen__guide--left">8u</span>
+            <BrandMark size={64} />
+          </div>
+        </div>
+        <div className="brand-specimen__palette">
+          <div className="brand-specimen__chip-box">
+            <span className="brand-specimen__swatch" style={{ background: '#1AA57A' }} />
+            <div>
+              <strong>#1AA57A</strong>
+              <small>{copy.canonicalMint}</small>
+            </div>
+          </div>
+          <div className="brand-specimen__dots" aria-hidden="true">
+            <span className="brand-dot" style={{ background: '#ED4B46' }} />
+            <span className="brand-dot" style={{ background: '#7657D5' }} />
+            <span className="brand-dot" style={{ background: '#468C09' }} />
+            <span className="brand-dot" style={{ background: '#D9720A' }} />
+            <span className="brand-dot" style={{ background: '#3A72E3' }} />
+            <span className="brand-dot" style={{ background: '#C94A8F' }} />
+          </div>
+        </div>
+      </div>
+      <div className="brand-specimen__footer">
+        <span>{copy.geometrySpec}</span>
+        <code>Space Grotesk · Inter · IBM Plex Mono</code>
+      </div>
     </div>
   );
 };
@@ -182,8 +229,8 @@ export const References = () => {
           data-viewport={viewport}
         >
           <div className="clay-reference__image" style={{ maxWidth: viewport }}>
-            {item.scene === 'relief' ? (
-              <ClayRelief label={sceneCopy.title[language]} />
+            {item.scene === 'identity' ? (
+              <BrandIdentityScene language={language} />
             ) : item.scene === 'editorial' ? (
               <EditorialScene language={language} />
             ) : (

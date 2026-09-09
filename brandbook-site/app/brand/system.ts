@@ -277,6 +277,12 @@ export const MATERIAL_TOKENS = [
     role: 'señal activa: marca StructureCo, compartida e invariante día/noche',
   },
   {
+    token: '--fs-brand-accent',
+    value: '#1AA57A',
+    night: '#1AA57A',
+    role: 'acento institucional de marca StructureCo, compartido e invariante',
+  },
+  {
     token: '--clay-light',
     value: 'rgb(255 255 255 / 85%)',
     night: 'rgb(255 255 255 / 16%)',
@@ -333,8 +339,8 @@ export const MATERIAL_TOKENS = [
   {
     token: '--shadow-selected',
     value:
-      'inset 2px 2.5px 5px var(--clay-dark), inset -1px -1px 2px var(--clay-light), 0 0 0 1.5px var(--active-signal)',
-    role: 'selección persistente con resalte de señal',
+      'inset 2px 2.5px 5px var(--clay-dark), inset -1px -1px 2px var(--clay-light), 0 0 0 1.5px var(--fs-brand-accent)',
+    role: 'selección persistente con resalte institucional',
   },
   {
     token: '--shadow-sheet',

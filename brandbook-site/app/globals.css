@@ -135,6 +135,196 @@
 .reference-explorer [data-viewport='390'] .editorial-scene {
   grid-template-columns: 1fr;
 }
+
+/* Brand Identity Specimen */
+.brand-specimen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: clamp(16px, 3vw, 24px);
+  background: var(--surface);
+  border-radius: var(--fs-radius-md);
+}
+
+.brand-specimen__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.brand-specimen__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow:
+    inset 1px 1.5px 2px var(--clay-light),
+    inset -1px -2px 3px var(--clay-dark-soft),
+    0 2px 4px var(--clay-dark);
+}
+
+.brand-specimen__meta strong {
+  display: block;
+  font-family: var(--fs-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.brand-specimen__meta small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+}
+
+.brand-specimen__header code {
+  font-family: var(--fs-font-data);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+}
+
+.brand-specimen__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.brand-specimen__canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-specimen__mark-zone {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px dashed var(--fs-brand-accent);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--fs-brand-accent) 6%, transparent);
+}
+
+.brand-specimen__guide {
+  position: absolute;
+  font-family: var(--fs-font-data);
+  font-size: 9.5px;
+  color: var(--fs-brand-accent);
+  letter-spacing: 0.05em;
+}
+
+.brand-specimen__guide--top {
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.brand-specimen__guide--left {
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.brand-specimen__palette {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brand-specimen__chip-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-specimen__swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow:
+    inset 1px 1px 2px rgb(255 255 255 / 40%),
+    inset -1px -1.5px 2px rgb(0 0 0 / 25%),
+    0 1px 3px var(--clay-dark);
+}
+
+.brand-specimen__chip-box strong {
+  display: block;
+  font-family: var(--fs-font-data);
+  font-size: 12px;
+}
+
+.brand-specimen__chip-box small {
+  display: block;
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+
+.brand-specimen__dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.brand-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow:
+    inset 0.8px 0.8px 1px rgb(255 255 255 / 50%),
+    0 1px 2px var(--clay-dark);
+}
+
+.brand-specimen__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.brand-specimen__footer code {
+  font-family: var(--fs-font-data);
+  font-size: 10px;
+}
+
+@media (max-width: 540px) {
+  .brand-specimen__stage {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    justify-items: center;
+    text-align: center;
+  }
+  .brand-specimen__palette {
+    align-items: center;
+  }
+  .brand-specimen__footer {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}
+
+.type-canvas__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
 .inspector-specimen {
   display: grid;
   gap: 18px;
@@ -669,7 +859,7 @@ table {
     inset 2px 2.5px 5px var(--clay-dark), inset -1.5px -1.5px 3px var(--clay-light);
   --shadow-selected:
     inset 2px 2.5px 5px var(--clay-dark), inset -1px -1px 2px var(--clay-light),
-    0 0 0 1.5px var(--active-signal);
+    0 0 0 1.5px var(--fs-brand-accent);
   --shadow-sheet:
     0 -6px 12px -2px var(--clay-dark-strong), inset 1px 1px 2px var(--clay-light);
   --shadow-veil: 0 0 0 2000px var(--clay-veil);
@@ -1280,22 +1470,33 @@ table {
    de la pista, «elevado dentro de un hueco» no se lee. */
 .segmented {
   display: inline-flex;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface-sunken);
   box-shadow: var(--shadow-inset);
 }
+.segmented::-webkit-scrollbar {
+  display: none;
+}
 
 .segmented button {
   display: inline-flex;
   gap: 6px;
   align-items: center;
-  height: 30px;
-  padding: 0 14px;
+  justify-content: center;
+  min-height: 32px;
+  height: auto;
+  padding: 6px 14px;
   border-radius: 999px;
   color: var(--ink-muted);
-  font-size: 12.5px;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
   transition:
     background-color var(--fs-quick) var(--fs-ease),
     color var(--fs-quick) var(--fs-ease);
@@ -1308,10 +1509,13 @@ table {
 }
 
 .segmented--tight button {
-  height: 27px;
-  padding: 0 12px;
+  min-height: 28px;
+  height: auto;
+  padding: 4px 12px;
   font-family: var(--fs-font-data);
   font-size: 11.5px;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .chip {
@@ -5313,11 +5517,65 @@ table {
   }
 
   .tool-detail__head {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: 44px minmax(0, 1fr) 32px;
+    gap: 10px;
+    align-items: start;
   }
 
   .tool-detail__head .tool-tile {
-    grid-row: 1;
+    width: 44px;
+    height: 44px;
+  }
+
+  .tool-detail__title-block {
+    min-width: 0;
+  }
+
+  .tool-detail__head h3 {
+    margin: 2px 0 4px;
+    font-size: 15px;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .tool-detail__head p {
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+
+  .tool-detail__close {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    justify-self: end;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tool-grid li.tool-grid__detail {
+    grid-column: 1 / -1;
+  }
+
+  .tool-card {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+
+  .tool-card .tool-tile {
+    width: 38px;
+    height: 38px;
+  }
+
+  .tool-card__name strong {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .tool-card__name small {
+    font-size: 10px;
   }
 
   .workbench {
@@ -5332,6 +5590,35 @@ table {
   .workbench__brand {
     display: none;
   }
+
+  .atlas .section {
+    padding-block: clamp(20px, 4.5vw, 36px);
+  }
+
+  .atlas .section-intro {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .chapter-intro {
+    margin: 0 auto 20px;
+    gap: 12px;
+  }
+
+  .hero {
+    padding-top: 14px;
+  }
+
+  .hero__stage {
+    margin-top: 16px;
+  }
+}
+
+.section,
+.atlas-block,
+.section h2,
+.chapter-intro h2 {
+  scroll-margin-top: 96px;
 }
 
 /* --- 21. Movimiento reducido ---------------------------------------------- */
