@@ -407,6 +407,43 @@
   border: 1px solid var(--line-soft);
   border-radius: var(--fs-radius-md);
   background: var(--surface);
+  box-shadow: var(--fs-shadow-elevated);
+  transition:
+    transform var(--fs-motion-quick) var(--fs-ease),
+    box-shadow var(--fs-motion-quick) var(--fs-ease);
+}
+
+@keyframes atlas-clay-arrive {
+  from {
+    transform: translateY(8px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.brandbook:not(.brandbook--calma) .clay-reference {
+  animation: atlas-clay-arrive var(--fs-motion-quick) var(--fs-ease) both;
+}
+
+.brandbook:not(.brandbook--calma) .clay-reference:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.brandbook:not(.brandbook--calma) .clay-reference:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brandbook:not(.brandbook--calma) .clay-reference:hover {
+    box-shadow: var(--fs-shadow-floating);
+    transform: translateY(-1px);
+  }
+}
+
+.clay-reference:active {
+  box-shadow: var(--fs-shadow-interior);
+  transform: translateY(1px);
 }
 
 .clay-reference__image {
@@ -420,10 +457,6 @@
   height: 100%;
   object-fit: cover;
   transition: transform var(--fs-motion-slow) var(--fs-ease);
-}
-
-.clay-reference:hover img {
-  transform: scale(1.025);
 }
 
 .clay-reference figcaption {
@@ -740,7 +773,10 @@
   .atlas .ui-button:hover,
   .atlas .chip:hover,
   .atlas .copy-chip:hover,
-  .atlas .clay-reference:hover img {
+  .clay-reference,
+  .clay-reference:hover,
+  .clay-reference:active {
+    animation: none;
     transform: none;
   }
 }
@@ -812,7 +848,7 @@
     var(--active-signal)
   );
   box-shadow: var(--fs-shadow-interior);
-  transform: translateY(1px) scale(0.99);
+  transform: translateY(1px);
 }
 
 .atlas .tool-card,

@@ -5057,7 +5057,10 @@ table {
 .brandbook--calma .ui-button:active:not(:disabled),
 .brandbook--calma .tool-card:hover,
 .brandbook--calma .tool-card:active,
-.brandbook--calma .chip:active {
+.brandbook--calma .chip:active,
+.brandbook--calma .clay-reference,
+.brandbook--calma .clay-reference:hover,
+.brandbook--calma .clay-reference:active {
   transform: none;
 }
 
@@ -5098,7 +5101,10 @@ table {
   .ui-button:active:not(:disabled),
   .tool-card:hover,
   .tool-card:active,
-  .chip:active {
+  .chip:active,
+  .clay-reference,
+  .clay-reference:hover,
+  .clay-reference:active {
     transform: none;
   }
 }
