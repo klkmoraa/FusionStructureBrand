@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import * as glyphLibrary from '../scripts/glyph-library.mjs';
 
@@ -34,24 +34,19 @@ test('keeps the mother brand separate from the six product families', () => {
   assert.equal(glyphLibrary.FAMILY_COLORS.interop.label, 'Conexiones');
 });
 
-test('publishes local clay references without visual blur', async () => {
-  const [references, copy, atlas, globals] = await Promise.all([
+test('keeps the live Clay Atlas tactile and image-free', async () => {
+  const [references, atlas, globals] = await Promise.all([
     read('../app/sections/References.tsx'),
-    read('../app/brand/copy.ts'),
     read('../app/atlas.css'),
     read('../app/globals.css'),
   ]);
-  const assets = [
-    '../public/brandbook/clay/mark-relief-day.avif',
-    '../public/brandbook/clay/field-editorial-day.avif',
-    '../public/brandbook/clay/results-console-night.avif',
-  ];
 
-  await Promise.all(assets.map((asset) => access(new URL(asset, import.meta.url))));
-  assert.match(references, /import \{ publicAsset \} from '..\/brand\/paths';/);
-  assert.match(references, /publicAsset\(item\.image\)/);
-  assert.match(references, /loading="lazy"/);
-  assert.match(references, /decoding="async"/);
-  assert.match(copy, /clayAlt:/);
+  assert.match(references, /<ClayRelief/);
+  assert.match(references, /<EditorialScene/);
+  assert.match(references, /<ProductMockup kind="results" compact/);
+  assert.doesNotMatch(references, /brandbook\/clay|publicAsset\(/);
+  assert.match(atlas, /@keyframes atlas-clay-arrive/);
+  assert.match(atlas, /\.clay-reference:hover\s*\{[^}]*translateY\(-1px\)/s);
+  assert.match(atlas, /\.clay-reference:active\s*\{[^}]*translateY\(1px\)/s);
   assert.doesNotMatch(`${atlas}\n${globals}`, /(?:backdrop-filter|filter:\s*[^n]|\bblur\()/i);
 });
