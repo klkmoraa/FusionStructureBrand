@@ -1,7 +1,6 @@
 'use client';
 
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { SIGNALS, type SectionId, type SignalId } from '../brand/system';
+import { SIGNALS, type SignalId } from '../brand/system';
 import { HERO_BOARD_COPY, HERO_COPY } from '../brand/copy';
 import { Eyebrow, useBrandbook } from '../brand/ui';
 
@@ -187,7 +186,7 @@ const AnalysisBoard = ({ beat }: { beat: number }) => {
   );
 };
 
-export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
+export const Hero = () => {
   const { language } = useBrandbook();
   const heroCopy = HERO_COPY[language];
 
@@ -203,36 +202,6 @@ export const Hero = ({ onGoTo }: { onGoTo: (id: SectionId) => void }) => {
           ))}
         </h1>
         <p className="hero__lead">{heroCopy.lead}</p>
-        <div className="hero__actions">
-          <button
-            type="button"
-            className="action action--primary"
-            onClick={() => onGoTo('herramientas')}
-          >
-            {heroCopy.tools} <ArrowUpRight size={16} />
-          </button>
-          <button
-            type="button"
-            className="action"
-            onClick={() => onGoTo('identidad')}
-          >
-            {heroCopy.identity} <ArrowDown size={16} />
-          </button>
-        </div>
-        <ul className="hero__ledger" aria-label="Resumen del sistema">
-          <li>
-            <strong>6</strong>
-            <small>{language === 'es' ? 'Familias' : 'Families'}</small>
-          </li>
-          <li>
-            <strong>3</strong>
-            <small>{language === 'es' ? 'Capas' : 'Layers'}</small>
-          </li>
-          <li>
-            <strong>1</strong>
-            <small>{language === 'es' ? 'Sistema' : 'System'}</small>
-          </li>
-        </ul>
       </div>
       <div className="hero__stage">
         <AnalysisBoard beat={2} />

@@ -28,18 +28,15 @@ export const Voice = () => {
 
   return (
     <section id="voz" className="section voice">
-      <SectionIntro
-        index="11"
-        eyebrow="Voz · verdad del producto"
-        title="Claro sobre lo que existe. Preciso sobre lo que falta."
-        body="La confianza no se construye con adjetivos: se construye declarando el estado, nombrando el límite y diciendo qué información está conectada con qué. Una frase que no se puede sostener con el código es una frase que hay que reescribir."
-      />
+      <SectionIntro index="11" compact />
 
       <div className="voice-principles">
         {VOICE_PRINCIPLES.map((principle, index) => (
           <article key={principle.id}>
             <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{VOICE_PRINCIPLE_COPY[principle.id].title[language]}</strong>
+            <strong>
+              {VOICE_PRINCIPLE_COPY[principle.id].title[language]}
+            </strong>
             <p>{VOICE_PRINCIPLE_COPY[principle.id].body[language]}</p>
           </article>
         ))}
@@ -53,11 +50,7 @@ export const Voice = () => {
         </div>
 
         <div className="rewriter__body">
-          <ul
-            className="rewriter__list"
-            role="tablist"
-            aria-label={copy.tabs}
-          >
+          <ul className="rewriter__list" role="tablist" aria-label={copy.tabs}>
             {VOICE_REWRITES.map((item) => (
               <li key={item.id}>
                 <button
@@ -111,13 +104,19 @@ export const Voice = () => {
         {MICROCOPY.map((group) => (
           <article key={group.id}>
             <div className="microcopy__head">
-              <span className="tag">{MICROCOPY_COPY[group.id].group[language]}</span>
+              <span className="tag">
+                {MICROCOPY_COPY[group.id].group[language]}
+              </span>
             </div>
             <ul>
               {group.items.map((item, index) => (
                 <li key={item.label}>
-                  <strong>{MICROCOPY_COPY[group.id].items[index].label[language]}</strong>
-                  <small>{MICROCOPY_COPY[group.id].items[index].note[language]}</small>
+                  <strong>
+                    {MICROCOPY_COPY[group.id].items[index].label[language]}
+                  </strong>
+                  <small>
+                    {MICROCOPY_COPY[group.id].items[index].note[language]}
+                  </small>
                 </li>
               ))}
             </ul>
@@ -140,9 +139,7 @@ export const Voice = () => {
         </dl>
       </div>
 
-      <RuleStrip index={`${RULE_LABEL[language]} 11`}>
-        {copy.rule}
-      </RuleStrip>
+      <RuleStrip index={`${RULE_LABEL[language]} 11`}>{copy.rule}</RuleStrip>
     </section>
   );
 };

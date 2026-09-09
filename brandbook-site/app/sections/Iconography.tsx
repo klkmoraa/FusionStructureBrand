@@ -51,57 +51,52 @@ export const Iconography = () => {
   const { language } = useBrandbook();
   const copy = ICONOGRAPHY_COPY[language];
   return (
-  <section id="iconografia" className="section iconography">
-    <SectionIntro
-      index="08"
-      eyebrow="Iconografía · gramática"
-      title="Dibujar como se calcula."
-      body="Los veinticinco glifos usan la misma retícula, el mismo trazo y el mismo nudo. Ninguno toma prestada una metáfora de otra categoría: si la superficie mide cantidades, el glifo mide; si detalla una conexión, el glifo tiene pernos."
-    />
+    <section id="iconografia" className="section iconography">
+      <SectionIntro index="08" compact />
 
-    <ul className="glyph-grid">
-      {TOOLS.map((tool) => (
-        <li key={tool.id} className={`glyph-cell family--${tool.family}`}>
-          <Glyph id={tool.glyph} size={38} />
-          <strong>{TOOL_COPY[tool.id].name[language]}</strong>
-          <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
-        </li>
-      ))}
-    </ul>
+      <ul className="glyph-grid">
+        {TOOLS.map((tool) => (
+          <li key={tool.id} className={`glyph-cell family--${tool.family}`}>
+            <Glyph id={tool.glyph} size={38} />
+            <strong>{TOOL_COPY[tool.id].name[language]}</strong>
+            <code>{TOOL_CODE_COPY[tool.code]?.[language] ?? tool.code}</code>
+          </li>
+        ))}
+      </ul>
 
-    <div className="drawing-rules">
-      {DRAWING_RULES.map((rule) => (
-        <article key={rule.index}>
-          <span>{rule.index}</span>
-          <strong>{DRAWING_RULE_COPY[rule.index].title[language]}</strong>
-          <p>{DRAWING_RULE_COPY[rule.index].body[language]}</p>
-        </article>
-      ))}
-    </div>
-
-    <div className="diagram-language">
-      <div className="diagram-language__head">
-        <span className="tag">{copy.diagrams}</span>
-        <h3>{copy.title}</h3>
-        <p>{copy.body}</p>
-      </div>
-      <div className="diagram-grid">
-        {SIGNALS.map((signal) => (
-          <figure key={signal.id} className={`signal--${signal.id}`}>
-            <figcaption>
-              <strong>{SIGNAL_COPY[signal.id].name[language]}</strong>
-              <code>
-                {signal.short} · {SIGNAL_UNIT_COPY[signal.id][language]}
-              </code>
-            </figcaption>
-            <MiniDiagram type={signal.id} />
-            <small>{SIGNAL_COPY[signal.id].description[language]}</small>
-          </figure>
+      <div className="drawing-rules">
+        {DRAWING_RULES.map((rule) => (
+          <article key={rule.index}>
+            <span>{rule.index}</span>
+            <strong>{DRAWING_RULE_COPY[rule.index].title[language]}</strong>
+            <p>{DRAWING_RULE_COPY[rule.index].body[language]}</p>
+          </article>
         ))}
       </div>
-    </div>
 
-    <RuleStrip index={`${RULE_LABEL[language]} 08`}>{copy.rule}</RuleStrip>
-  </section>
+      <div className="diagram-language">
+        <div className="diagram-language__head">
+          <span className="tag">{copy.diagrams}</span>
+          <h3>{copy.title}</h3>
+          <p>{copy.body}</p>
+        </div>
+        <div className="diagram-grid">
+          {SIGNALS.map((signal) => (
+            <figure key={signal.id} className={`signal--${signal.id}`}>
+              <figcaption>
+                <strong>{SIGNAL_COPY[signal.id].name[language]}</strong>
+                <code>
+                  {signal.short} · {SIGNAL_UNIT_COPY[signal.id][language]}
+                </code>
+              </figcaption>
+              <MiniDiagram type={signal.id} />
+              <small>{SIGNAL_COPY[signal.id].description[language]}</small>
+            </figure>
+          ))}
+        </div>
+      </div>
+
+      <RuleStrip index={`${RULE_LABEL[language]} 08`}>{copy.rule}</RuleStrip>
+    </section>
   );
 };

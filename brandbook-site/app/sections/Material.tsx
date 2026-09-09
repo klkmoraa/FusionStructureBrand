@@ -22,12 +22,7 @@ export const Material = () => {
 
   return (
     <section id="materia" className="section material">
-      <SectionIntro
-        index="07"
-        eyebrow="Materia · profundidad"
-        title="La profundidad también comunica."
-        body="Un solo material a seis distancias. La sombra cae abajo-derecha y el contacto queda arriba-izquierda, siempre, así que la profundidad dice qué está arriba, qué se puede presionar y qué contiene la decisión actual. Seis niveles, ni uno más: apilar tarjetas no es jerarquía."
-      />
+      <SectionIntro index="07" compact />
 
       <div className="material-lab">
         <div className="material-stage">
@@ -104,9 +99,7 @@ export const Material = () => {
                 {copy.noResults}
               </button>
             </div>
-            <p>
-              {copy.buttonRule}
-            </p>
+            <p>{copy.buttonRule}</p>
           </article>
 
           <article className="component-block">
@@ -199,7 +192,9 @@ export const Material = () => {
                   <td>44.10</td>
                   <td>−61.30</td>
                   <td>
-                    <span className="cell-state cell-state--warn">{copy.check}</span>
+                    <span className="cell-state cell-state--warn">
+                      {copy.check}
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -222,8 +217,8 @@ export const Material = () => {
       <p className="table-demo__note">
         {copy.tableRule} <code>{copy.tableCalculation}</code> {copy.and}{' '}
         <code>{copy.tableReview}</code> {copy.describeCalculation}{' '}
-        <code>{copy.moduleAvailable}</code> {copy.and} <code>{copy.moduleExperimental}</code>{' '}
-        {copy.describeModule}
+        <code>{copy.moduleAvailable}</code> {copy.and}{' '}
+        <code>{copy.moduleExperimental}</code> {copy.describeModule}
       </p>
 
       <RuleStrip index={`${RULE_LABEL[language]} 07`}>{copy.rule}</RuleStrip>

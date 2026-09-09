@@ -67,12 +67,7 @@ export const Color = () => {
 
   return (
     <section id="color" className="section color">
-      <SectionIntro
-        index="04"
-        eyebrow="Color · tres escalas"
-        title="El color explica una relación o no se usa."
-        body="Las señales pertenecen al resultado, las familias a la herramienta y los estados a la verdad del producto. Los fondos se quedan quietos para que las tres escalas sigan significando algo."
-      />
+      <SectionIntro index="04" compact />
 
       <div className="signal-lab">
         <div className="signal-list" role="tablist" aria-label={copy.signals}>

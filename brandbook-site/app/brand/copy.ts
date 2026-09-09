@@ -1,4 +1,10 @@
-import type { MotionDemoId, SectionId, SignalId, SurfaceLevel } from './system';
+import type {
+  BrandbookBlockId,
+  MotionDemoId,
+  SectionId,
+  SignalId,
+  SurfaceLevel,
+} from './system';
 import type { FamilyId } from './generated/palette';
 import { TOOLS, type StatusId } from './catalog';
 
@@ -60,6 +66,47 @@ export const CHAPTERS: readonly Chapter[] = [
     },
   },
 ] as const;
+
+export const BLOCK_COPY: Record<
+  BrandbookBlockId,
+  { label: Localized; detail: Localized }
+> = {
+  norte: {
+    label: { es: 'Norte', en: 'North star' },
+    detail: { es: 'la dirección del sistema', en: 'the system direction' },
+  },
+  identidad: {
+    label: { es: 'Identidad', en: 'Identity' },
+    detail: { es: 'marca madre y familias', en: 'mother brand and families' },
+  },
+  sistema: {
+    label: { es: 'Sistema', en: 'System' },
+    detail: {
+      es: 'herramientas, señal y color',
+      en: 'tools, signal, and color',
+    },
+  },
+  lenguaje: {
+    label: { es: 'Lenguaje', en: 'Language' },
+    detail: { es: 'tipo, iconos y voz', en: 'type, icons, and voice' },
+  },
+  interaccion: {
+    label: { es: 'Interacción', en: 'Interaction' },
+    detail: { es: 'movimiento y materia', en: 'motion and material' },
+  },
+  patrones: {
+    label: { es: 'Patrones', en: 'Patterns' },
+    detail: { es: 'orden que se adapta', en: 'adaptive order' },
+  },
+  casos: {
+    label: { es: 'Casos', en: 'Cases' },
+    detail: { es: 'el sistema en producto', en: 'the system in product' },
+  },
+  entrega: {
+    label: { es: 'Entrega', en: 'Handoff' },
+    detail: { es: 'tokens y guardas', en: 'tokens and guardrails' },
+  },
+};
 
 export const SECTION_COPY: Record<
   SectionId,

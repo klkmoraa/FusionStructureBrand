@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  Fragment,
   useMemo,
   useRef,
   useState,
@@ -18,18 +19,14 @@ import {
   X,
 } from 'lucide-react';
 import { BrandMark } from './brand/marks';
-import { SECTIONS, type SectionId, type SignalId } from './brand/system';
 import {
-  CHAPTERS,
-  SECTION_COPY,
-  UI_COPY,
-  type Language,
-} from './brand/copy';
-import {
-  BrandbookContext,
-  type MotionMode,
-  type Theme,
-} from './brand/ui';
+  BRANDBOOK_BLOCKS,
+  type BrandbookBlockId,
+  type SectionId,
+  type SignalId,
+} from './brand/system';
+import { BLOCK_COPY, UI_COPY, type Language } from './brand/copy';
+import { BrandbookContext, type MotionMode, type Theme } from './brand/ui';
 import { Hero } from './sections/Hero';
 import { Identity } from './sections/Identity';
 import { Tools } from './sections/Tools';
@@ -67,7 +64,7 @@ export default function Brandbook() {
   const motionMode: MotionMode =
     motionChoice ?? (prefersCalm ? 'calma' : 'activo');
   const copy = UI_COPY[language];
-  const [activeSection, setActiveSection] = useState<SectionId>('norte');
+  const [activeBlock, setActiveBlock] = useState<BrandbookBlockId>('norte');
   const [activeSignal, setActiveSignal] = useState<SignalId>('axial');
   const [copiedValue, setCopiedValue] = useState('');
   const [copiedLabel, setCopiedLabel] = useState('');
@@ -96,12 +93,14 @@ export default function Brandbook() {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible?.target.id)
-          setActiveSection(visible.target.id as SectionId);
+          setActiveBlock(
+            visible.target.id.replace('bloque-', '') as BrandbookBlockId,
+          );
       },
       { rootMargin: '-20% 0px -60% 0px', threshold: [0.02, 0.15, 0.4] },
     );
-    for (const { id } of SECTIONS) {
-      const node = document.getElementById(id);
+    for (const { id } of BRANDBOOK_BLOCKS) {
+      const node = document.getElementById(`bloque-${id}`);
       if (node) observer.observe(node);
     }
     return () => observer.disconnect();
@@ -147,15 +146,44 @@ export default function Brandbook() {
   );
 
   const goTo = useCallback(
-    (id: SectionId) => {
+    (id: BrandbookBlockId) => {
       setMenuOpen(false);
-      document.getElementById(id)?.scrollIntoView({
+      document.getElementById(`bloque-${id}`)?.scrollIntoView({
         behavior: motionMode === 'calma' ? 'auto' : 'smooth',
         block: 'start',
       });
     },
     [motionMode],
   );
+
+  const renderTopic = (id: SectionId) => {
+    switch (id) {
+      case 'norte':
+        return <Hero />;
+      case 'identidad':
+        return <Identity />;
+      case 'herramientas':
+        return <Tools />;
+      case 'color':
+        return <Color />;
+      case 'tipografia':
+        return <Typography />;
+      case 'movimiento':
+        return <Motion />;
+      case 'materia':
+        return <Material />;
+      case 'iconografia':
+        return <Iconography />;
+      case 'patrones':
+        return <Patterns />;
+      case 'referencias':
+        return <References />;
+      case 'voz':
+        return <Voice />;
+      case 'entrega':
+        return <Handoff />;
+    }
+  };
 
   // El aviso muestra una etiqueta corta; el portapapeles se queda con el
   // contenido completo, que puede ser una hoja de tokens entera. Si el
@@ -210,8 +238,8 @@ export default function Brandbook() {
       <div
         className={`brandbook atlas brandbook--${theme} ${motionMode === 'calma' ? 'brandbook--calma' : ''}`}
       >
-          <a className="skip-link" href="#norte">
-            {copy.skip}
+        <a className="skip-link" href="#bloque-norte">
+          {copy.skip}
         </a>
 
         <header className="topbar">
@@ -228,7 +256,7 @@ export default function Brandbook() {
 
           <p className="topbar__center">
             <span className="live-dot" aria-hidden="true" />
-            {copy.edition} · <code>01—12</code>
+            {copy.edition} · <code>01—08</code>
           </p>
 
           <div className="topbar__actions">
@@ -246,9 +274,7 @@ export default function Brandbook() {
               className="top-control"
               aria-pressed={motionMode === 'calma'}
               aria-label={
-                motionMode === 'calma'
-                  ? copy.enableMotion
-                  : copy.reduceMotion
+                motionMode === 'calma' ? copy.enableMotion : copy.reduceMotion
               }
               onClick={() =>
                 setMotionChoice(motionMode === 'activo' ? 'calma' : 'activo')
@@ -287,23 +313,23 @@ export default function Brandbook() {
           <aside className={`index-rail ${menuOpen ? 'is-open' : ''}`}>
             <div className="index-rail__head">
               <span>{copy.index}</span>
-              <code>{SECTIONS.length}</code>
+              <code>{BRANDBOOK_BLOCKS.length}</code>
             </div>
             <nav aria-label={copy.indexAria}>
-              {SECTIONS.map((item) => (
+              {BRANDBOOK_BLOCKS.map((item) => (
                 <button
                   key={item.id}
                   type="button"
-                  className={`index-link ${activeSection === item.id ? 'is-active' : ''}`}
+                  className={`index-link ${activeBlock === item.id ? 'is-active' : ''}`}
                   aria-current={
-                    activeSection === item.id ? 'location' : undefined
+                    activeBlock === item.id ? 'location' : undefined
                   }
                   onClick={() => goTo(item.id)}
                 >
                   <span className="index-link__number">{item.index}</span>
                   <span className="index-link__copy">
-                    <strong>{SECTION_COPY[item.id].label[language]}</strong>
-                    <small>{SECTION_COPY[item.id].detail[language]}</small>
+                    <strong>{BLOCK_COPY[item.id].label[language]}</strong>
+                    <small>{BLOCK_COPY[item.id].detail[language]}</small>
                   </span>
                   <ChevronRight size={13} aria-hidden="true" />
                 </button>
@@ -318,54 +344,15 @@ export default function Brandbook() {
           </aside>
 
           <main className="content">
-            {CHAPTERS.map((chapter, index) => (
+            {BRANDBOOK_BLOCKS.map((block) => (
               <div
-                className={`atlas-chapter atlas-chapter--${chapter.id}`}
-                data-chapter={chapter.id}
-                key={chapter.id}
+                id={`bloque-${block.id}`}
+                className="atlas-block"
+                key={block.id}
               >
-                <div className="chapter-intro">
-                  <span className="chapter-intro__index">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <p>{copy.chapter}</p>
-                    <h2>{chapter.label[language]}</h2>
-                    <span>{chapter.detail[language]}</span>
-                  </div>
-                </div>
-                {chapter.id === 'orientacion' ? (
-                  <>
-                    <Hero onGoTo={goTo} />
-                    <Identity />
-                  </>
-                ) : null}
-                {chapter.id === 'semantica' ? (
-                  <>
-                    <Tools />
-                    <Color />
-                  </>
-                ) : null}
-                {chapter.id === 'lenguaje' ? (
-                  <>
-                    <Typography />
-                    <Iconography />
-                    <Voice />
-                  </>
-                ) : null}
-                {chapter.id === 'comportamiento' ? (
-                  <>
-                    <Motion />
-                    <Material />
-                    <Patterns />
-                  </>
-                ) : null}
-                {chapter.id === 'entrega' ? (
-                  <>
-                    <References />
-                    <Handoff />
-                  </>
-                ) : null}
+                {block.sectionIds.map((sectionId) => (
+                  <Fragment key={sectionId}>{renderTopic(sectionId)}</Fragment>
+                ))}
               </div>
             ))}
 
@@ -375,9 +362,7 @@ export default function Brandbook() {
                 <strong>FusionStructure</strong>
               </div>
               <p>Make complexity legible.</p>
-              <span>
-                Brandbook 2026 · {copy.footerLine}
-              </span>
+              <span>Brandbook 2026 · {copy.footerLine}</span>
             </footer>
           </main>
         </div>

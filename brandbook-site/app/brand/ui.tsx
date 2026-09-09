@@ -38,16 +38,18 @@ export const useBrandbook = () => useContext(BrandbookContext);
 
 export const SectionIntro = ({
   index,
-  eyebrow,
-  title,
-  body,
+  eyebrow = '',
+  title = '',
+  body = '',
   aside,
+  compact = false,
 }: {
   index: string;
-  eyebrow: string;
-  title: string;
-  body: string;
+  eyebrow?: string;
+  title?: string;
+  body?: string;
   aside?: ReactNode;
+  compact?: boolean;
 }) => {
   const { language } = useBrandbook();
   const localized = SECTION_INTROS[index];
@@ -60,13 +62,15 @@ export const SectionIntro = ({
     : { eyebrow, title, body };
 
   return (
-    <header className="section-intro">
+    <header
+      className={`section-intro ${compact ? 'section-intro--compact' : ''}`}
+    >
       <div className="section-intro__meta">
         <span>{index}</span>
         <span>{copy.eyebrow}</span>
       </div>
       <div className="section-intro__body">
-        <h2>{copy.title}</h2>
+        {compact ? <h3>{copy.title}</h3> : <h2>{copy.title}</h2>}
         <p>{copy.body}</p>
       </div>
       {aside ? <div className="section-intro__aside">{aside}</div> : null}

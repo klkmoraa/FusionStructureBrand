@@ -20,6 +20,16 @@ export type SectionId =
   | 'voz'
   | 'entrega';
 
+export type BrandbookBlockId =
+  | 'norte'
+  | 'identidad'
+  | 'sistema'
+  | 'lenguaje'
+  | 'interaccion'
+  | 'patrones'
+  | 'casos'
+  | 'entrega';
+
 export const SECTIONS: readonly {
   id: SectionId;
   index: string;
@@ -27,68 +37,73 @@ export const SECTIONS: readonly {
   detail: string;
 }[] = [
   { id: 'norte', index: '01', label: 'Norte', detail: 'qué debe sentirse' },
-  {
-    id: 'identidad',
+  { id: 'identidad',
     index: '02',
     label: 'Identidad',
     detail: 'la marca y su familia',
   },
-  {
-    id: 'herramientas',
+  { id: 'herramientas',
     index: '03',
     label: 'Herramientas',
     detail: '6 familias de producto',
   },
-  {
-    id: 'color',
+  { id: 'color',
     index: '04',
     label: 'Color',
     detail: 'señal, familia y estado',
   },
-  {
-    id: 'tipografia',
+  { id: 'tipografia',
     index: '05',
     label: 'Tipografía',
     detail: 'leer sin traducir',
   },
-  {
-    id: 'movimiento',
+  { id: 'movimiento',
     index: '06',
     label: 'Movimiento',
     detail: 'respuesta, no ruido',
   },
-  {
-    id: 'materia',
+  { id: 'materia',
     index: '07',
     label: 'Materia',
     detail: 'capas que orientan',
   },
-  {
-    id: 'iconografia',
+  { id: 'iconografia',
     index: '08',
     label: 'Iconografía',
     detail: 'dibujar como se calcula',
   },
-  {
-    id: 'patrones',
+  { id: 'patrones',
     index: '09',
     label: 'Patrones',
     detail: 'orden que se adapta',
   },
-  {
-    id: 'referencias',
+  { id: 'referencias',
     index: '10',
     label: 'Referencias',
     detail: 'el sistema en producto',
   },
-  {
-    id: 'voz',
+  { id: 'voz',
     index: '11',
     label: 'Voz',
     detail: 'lenguaje que no promete de más',
   },
   { id: 'entrega', index: '12', label: 'Entrega', detail: 'tokens y guardas' },
 ];
+
+export const BRANDBOOK_BLOCKS = [
+  { id: 'norte', index: '01', sectionIds: ['norte'] },
+  { id: 'identidad', index: '02', sectionIds: ['identidad'] },
+  { id: 'sistema', index: '03', sectionIds: ['herramientas', 'color'] },
+  { id: 'lenguaje', index: '04', sectionIds: ['tipografia', 'iconografia', 'voz'] },
+  { id: 'interaccion', index: '05', sectionIds: ['movimiento', 'materia'] },
+  { id: 'patrones', index: '06', sectionIds: ['patrones'] },
+  { id: 'casos', index: '07', sectionIds: ['referencias'] },
+  { id: 'entrega', index: '08', sectionIds: ['entrega'] },
+] as const satisfies readonly {
+  id: BrandbookBlockId;
+  index: string;
+  sectionIds: readonly SectionId[];
+}[];
 
 /** Acento de marca: estable y separado de cualquier resultado técnico. */
 export const BRAND_COLORS = {

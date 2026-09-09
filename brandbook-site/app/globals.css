@@ -1402,43 +1402,6 @@ table {
   line-height: 1.6;
 }
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.hero__ledger {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  align-items: center;
-  padding-top: 18px;
-  border-top: 1px solid var(--line-soft);
-}
-
-.hero__ledger li {
-  display: inline-flex;
-  gap: 8px;
-  align-items: baseline;
-}
-
-.hero__ledger strong {
-  font-family: var(--fs-font-display);
-  font-size: 21px;
-}
-
-.hero__ledger small {
-  color: var(--ink-muted);
-  font-size: 12px;
-}
-
-.hero__ledger-note {
-  align-items: center !important;
-  margin-left: auto;
-  color: var(--ink-faint);
-}
-
 .hero__stage {
   display: flex;
   flex-direction: column;
@@ -4967,10 +4930,6 @@ table {
     padding: 0 10px;
   }
 
-  .hero__ledger-note {
-    margin-left: 0;
-  }
-
   .identity__grid,
   .identity__variant-grid,
   .motion-picker,
@@ -5331,6 +5290,14 @@ table {
 .atlas .section:not(.hero) {
   border-top: 1px solid var(--line-soft);
 }
+.atlas .atlas-block > .section + .section {
+  padding-top: clamp(40px, 5vw, 72px);
+  border-top: 0;
+}
+.atlas .atlas-block > .section + .section .section-intro {
+  padding-top: 0;
+  border-top: 0;
+}
 .atlas .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.94fr) minmax(420px, 1.06fr);
@@ -5363,48 +5330,6 @@ table {
   max-width: 490px;
   font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.48;
-}
-.atlas .hero__actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 420px);
-  margin-top: 32px;
-}
-.atlas .hero__actions .action {
-  justify-content: center;
-  width: 100%;
-  min-height: 44px;
-  padding-inline: 14px;
-  white-space: nowrap;
-}
-.atlas .hero__ledger {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  max-width: 330px;
-  margin-top: 48px;
-  padding: 15px 20px;
-  border-radius: 20px;
-  background: var(--surface-sunken);
-}
-.atlas .hero__ledger li {
-  display: grid;
-  gap: 3px;
-  min-width: 0;
-  padding: 0 12px;
-  border-left: 1px solid var(--line-soft);
-}
-.atlas .hero__ledger li:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-.atlas .hero__ledger strong {
-  color: var(--ink);
-  font-size: 25px;
-}
-.atlas .hero__ledger small {
-  color: var(--ink-muted);
-  font-size: 10px;
 }
 .atlas .hero__stage {
   position: relative;
@@ -5458,6 +5383,15 @@ table {
   font-size: clamp(35px, 4.7vw, 68px);
   line-height: 0.99;
   letter-spacing: -0.06em;
+}
+.atlas .section-intro--compact {
+  margin-bottom: clamp(28px, 4vw, 42px);
+}
+.atlas .section-intro--compact .section-intro__body h3 {
+  max-width: 560px;
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
 }
 .atlas .section-intro__body p {
   max-width: 560px;
@@ -5672,11 +5606,6 @@ table {
     font-size: clamp(50px, 16vw, 70px);
   }
 
-  .atlas .hero__actions {
-    grid-template-columns: 1fr;
-    width: min(100%, 360px);
-  }
-
   .atlas .hero .board {
     min-height: 380px;
     border-radius: 28px;
@@ -5689,10 +5618,6 @@ table {
 
   .atlas .hero .board__readout {
     grid-template-columns: 1fr;
-  }
-
-  .atlas .hero__ledger {
-    margin-top: 36px;
   }
 
   .atlas .section-intro__body h2 {
