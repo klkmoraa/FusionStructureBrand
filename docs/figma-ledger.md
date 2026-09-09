@@ -12,7 +12,7 @@ coverage was rebuilt inside the single master.
 - URL: <https://www.figma.com/design/fItlN7p0jk8AtvPSRaIcAq>
 - Page: `116:56` — `FusionStructure · Brandbook 2026 / Single Page`
 - Canonical master: `131:62` — `FusionStructure Brandbook 2026 · Single Page / Canonical`
-- Master size: 1440 × 20450 px
+- Master size: 1440 × 19760 px
 
 ## Continuous sections
 
@@ -25,7 +25,7 @@ coverage was rebuilt inside the single master.
 7. `154:71` — Material / Clay Component Lab
 8. `155:71` — Iconography / Family Glyphs
 9. `156:71` — Patterns / Product Shells
-10. `157:71` — References / Editable Mockups
+10. `157:71` — References / Brand Photography
 11. `158:71` — Voice / Engineering Copy
 12. `159:71` — Handoff / Source of Truth
 
@@ -88,10 +88,8 @@ copy documenting the migration.
 - `207:34` — `Chip / Clay v2`, 3 variants.
 - `207:35` — `Segmented / Clay v2`.
 - `155:121` — FamilyGlyph system, 6 editable variants.
-- `212:162` — `Application / Brand Mockups v2`, 6 editable variants.
 - Six family cards in `153:71` are editable components.
-- Final master inventory: 74 components, 9 component sets and 14 canonical
-  brand-mark instances.
+- Final master inventory: 68 components and 8 component sets.
 
 ## Product evidence
 
@@ -113,8 +111,6 @@ Seven are user-provided brand-application photographs:
 - `233:46` — PPE / helmet and vest
 
 Their source JPEGs are preserved in `docs/brandbook-assets/user-provided/`.
-Section `157:71` also contains six fully editable brand application
-components.
 
 ## Validation record
 
@@ -125,6 +121,8 @@ components.
 - Remaining `#0F95D1` fills are limited to Axial technical evidence.
 - Primary mint with ink is 6.05:1; focus ring on paper is 4.81:1.
 - No descendant exceeds its section bounds.
+- The deprecated six-card editable-mockup board and its empty wrapper were
+  removed on request; no orphan vector/freehand mark remains on the page.
 - Legacy frames `108:2` and `110:2` removed.
 - No remaining instances depend on deleted legacy components.
 - Section screenshots reviewed at high resolution after final consolidation.
