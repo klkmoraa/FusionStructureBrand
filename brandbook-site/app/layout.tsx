@@ -4,7 +4,7 @@ import { publicAsset } from './brand/paths';
 
 const siteUrl =
   process.env.BRANDBOOK_GITHUB_PAGES === '1'
-    ? 'https://klkmoraa.github.io/fusionstructure-web'
+    ? 'https://klkmoraa.github.io/FusionStructureBrand'
     : 'https://fusionstructure-brandbook.crdrawin.chatgpt.site';
 
 export const metadata: Metadata = {

@@ -38,7 +38,7 @@ jobs:
       - name: Build static brandbook
         working-directory: brandbook-site
         env:
-          NEXT_PUBLIC_BASE_PATH: /fusionstructure-web/
+          NEXT_PUBLIC_BASE_PATH: /FusionStructureBrand/
         run: npm run build:pages
 
       - name: Publish to gh-pages

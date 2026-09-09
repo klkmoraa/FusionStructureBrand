@@ -31,4 +31,4 @@ jobs:
       - run: npm run lint
       - run: npm run build:pages
         env:
-          NEXT_PUBLIC_BASE_PATH: /fusionstructure-web/
+          NEXT_PUBLIC_BASE_PATH: /FusionStructureBrand/

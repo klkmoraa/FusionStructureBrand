@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
-const base = process.env.NEXT_PUBLIC_BASE_PATH || '/fusionstructure-web/';
+const base = process.env.NEXT_PUBLIC_BASE_PATH || '/FusionStructureBrand/';
 
 export default defineConfig({
   root: resolve(__dirname, 'pages'),

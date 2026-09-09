@@ -1,6 +1,6 @@
 /**
  * Public asset URLs are rooted in the deployment surface. GitHub Pages serves
- * this site below the repository URL `/fusionstructure-web/`, while
+ * this site below the repository URL `/FusionStructureBrand/`, while
  * local previews and the hosted site use the root. Keeping the prefix in one
  * helper prevents public mockups and downloads from silently falling back to
  * the domain root.
