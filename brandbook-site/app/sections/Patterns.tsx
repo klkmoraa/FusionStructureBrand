@@ -5,37 +5,58 @@ import {
   Activity,
   AlertCircle,
   ArrowDown,
+  ArrowDownToLine,
+  ArrowLeftRight,
+  ArrowUp,
+  Award,
   CheckCircle2,
   ChevronRight,
   CircleDot,
   Clock,
   Columns,
+  Crosshair,
+  Info,
   Layers,
   Minus,
   Monitor,
+  MousePointer,
   Play,
+  RotateCw,
   Ruler,
+  ShieldCheck,
   Smartphone,
   Triangle,
+  X,
 } from 'lucide-react';
 import { BrandMark, StatusPill } from '../brand/marks';
 import { RuleStrip, SectionIntro, useBrandbook } from '../brand/ui';
-import { PATTERN_COPY, PATTERN_STATE_COPY, RULE_LABEL } from '../brand/copy';
+import {
+  PATTERN_COPY,
+  PATTERN_STATE_COPY,
+  RESULT_CARDS_COPY,
+  RULE_LABEL,
+} from '../brand/copy';
 
 type LayoutMode = 'escritorio' | 'movil';
 type LayerMode = 'modelo' | 'cargas' | 'momento' | 'deformada';
 type ModelingTool = 'nudo' | 'miembro' | 'apoyo' | 'cargas' | 'seccion' | 'resolver';
+type InspectorTab = 'modelo' | 'deformada' | 'n' | 'v' | 'm';
+type ShowcaseCategory = 'm' | 'v' | 'n' | 'deformada';
 
 const STATES = ['vacio', 'proceso', 'error', 'exito'] as const;
 
 export const Patterns = () => {
-  const { language } = useBrandbook();
+  const { language, theme } = useBrandbook();
   const [mode, setMode] = useState<LayoutMode>('escritorio');
   const [state, setState] = useState<(typeof STATES)[number]>('exito');
   const [activeLayer, setActiveLayer] = useState<LayerMode>('momento');
   const [activeTool, setActiveTool] = useState<ModelingTool>('miembro');
+  const [inspectorTab, setInspectorTab] = useState<InspectorTab>('m');
+  const [showcaseCat, setShowcaseCat] = useState<ShowcaseCategory>('m');
+  const [cardsTheme, setCardsTheme] = useState<'dia' | 'noche'>(theme);
   const copy = PATTERN_COPY[language];
   const stateCopy = PATTERN_STATE_COPY[state];
+  const cardsCopy = RESULT_CARDS_COPY[language];
 
   const tools: { id: ModelingTool; label: string; icon: typeof CircleDot }[] = [
     { id: 'nudo', label: copy.node, icon: CircleDot },
@@ -441,33 +462,192 @@ export const Patterns = () => {
 
           {state === 'exito' ? (
             <div className="workbench__results-box">
-              <dl className="workbench__metrics">
-                <div>
-                  <dt>{copy.length}</dt>
-                  <dd>12.00 m</dd>
-                </div>
-                <div>
-                  <dt>{copy.section}</dt>
-                  <dd>IPE 300 · A992</dd>
-                </div>
-                <div>
-                  <dt>{copy.moment}</dt>
-                  <dd className="is-highlight-moment">−148.60 kN·m</dd>
-                </div>
-                <div>
-                  <dt>{copy.shear}</dt>
-                  <dd>+85.50 kN</dd>
-                </div>
-                <div>
-                  <dt>{copy.axial}</dt>
-                  <dd>−24.30 kN</dd>
-                </div>
-                <div>
-                  <dt>{copy.deformed}</dt>
-                  <dd className="is-highlight-deformed">11.70 mm <small>(L/1025)</small></dd>
-                </div>
-              </dl>
+              {/* Selector de sub-hojas de resultados */}
+              <div className="sheet-subtabs" role="tablist">
+                {(['modelo', 'deformada', 'n', 'v', 'm'] as const).map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    role="tab"
+                    aria-selected={inspectorTab === t}
+                    className={`sheet-subtab ${inspectorTab === t ? 'is-active' : ''} sheet-subtab--${t}`}
+                    onClick={() => {
+                      setInspectorTab(t);
+                      if (t === 'm') setActiveLayer('momento');
+                      else if (t === 'v') setActiveLayer('cargas');
+                      else if (t === 'deformada') setActiveLayer('deformada');
+                      else if (t === 'modelo') setActiveLayer('modelo');
+                    }}
+                  >
+                    {t === 'modelo' ? 'Mod' : t === 'deformada' ? 'Def' : t.toUpperCase()}
+                  </button>
+                ))}
+              </div>
 
+              {/* Lista de tarjetas táctiles de resultados */}
+              <div className="sheet-cards">
+                {inspectorTab === 'm' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--moment">
+                        <Activity size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.moment.card1Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--moment">−148.60 kN·m</strong>
+                        <small className="sheet-card__note">• A 6.00 m en centro de vano (L/2)</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--success">
+                        <ShieldCheck size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.moment.card2Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--success">Controlado · OK</strong>
+                        <small className="sheet-card__note">• Cumple AISC 360-22 (D/C 0.68)</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--warn">
+                        <Award size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.moment.card3Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--warn">Alta confiabilidad</strong>
+                        <small className="sheet-card__note">• Tolerancia elástica 1e-6 verificada</small>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {inspectorTab === 'v' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <ArrowUp size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.shear.card1Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--shear">+85.50 kN</strong>
+                        <small className="sheet-card__note">• En el nudo interior N2</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <ArrowDown size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.shear.card2Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--shear">−85.50 kN</strong>
+                        <small className="sheet-card__note">• En el nudo de esquina N3</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <CircleDot size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.shear.card3Title}</span>
+                        <strong className="sheet-card__value">0.00 kN</strong>
+                        <small className="sheet-card__note">• En x = 6.00 m (corte nulo en L/2)</small>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {inspectorTab === 'n' && (
+                  <div className="sheet-card-triple">
+                    <div className="sheet-card-col">
+                      <span className="sheet-card__label">{cardsCopy.axial.maxTitle}</span>
+                      <strong className="sheet-card__value">0.00 kN</strong>
+                      <small className="sheet-card__note">{cardsCopy.axial.maxNote}</small>
+                    </div>
+                    <div className="sheet-card-col">
+                      <span className="sheet-card__label">{cardsCopy.axial.minTitle}</span>
+                      <strong className="sheet-card__value sheet-card__value--axial">−24.30 kN</strong>
+                      <span className="sheet-chip sheet-chip--axial">{cardsCopy.axial.minBadge}</span>
+                    </div>
+                    <div className="sheet-card-col">
+                      <span className="sheet-card__label">{cardsCopy.axial.signTitle}</span>
+                      <strong className="sheet-card__value">← █ →</strong>
+                      <span className="sheet-chip">{cardsCopy.axial.signBadge}</span>
+                    </div>
+                  </div>
+                )}
+
+                {inspectorTab === 'deformada' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--deformed">
+                        <ArrowDownToLine size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card1Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--deformed">11.70 mm</strong>
+                        <small className="sheet-card__note">• En el centro de vano (L/1025)</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--deformed">
+                        <Crosshair size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card2Title}</span>
+                        <strong className="sheet-card__value">6.00 m</strong>
+                        <small className="sheet-card__note">• Desde el nudo inicial N2</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--deformed">
+                        <RotateCw size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card3Title}</span>
+                        <strong className="sheet-card__value">−0.0042 rad</strong>
+                        <small className="sheet-card__note">• Giro simétrico en apoyos</small>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {inspectorTab === 'modelo' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--model">
+                        <Columns size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">Perfil y acero</span>
+                        <strong className="sheet-card__value">IPE 300 · Acero A992</strong>
+                        <small className="sheet-card__note">• fy = 345 MPa · E = 200 GPa</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--model">
+                        <Ruler size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">Longitud de barra</span>
+                        <strong className="sheet-card__value">12.00 m</strong>
+                        <small className="sheet-card__note">• N2 (0, 4.20) → N3 (12.00, 4.20)</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--model">
+                        <Layers size={15} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">Inercia principal</span>
+                        <strong className="sheet-card__value">Ix = 8356 cm⁴</strong>
+                        <small className="sheet-card__note">• Módulo plástico Wx = 557 cm³</small>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Medidor de capacidad D/C */}
               <div className="workbench__capacity">
                 <div className="workbench__capacity-head">
                   <span>{copy.capacityRatio}</span>
@@ -497,6 +677,424 @@ export const Patterns = () => {
           >
             {stateCopy.action[language]} <ChevronRight size={14} />
           </button>
+        </div>
+      </div>
+
+      {/* Apartado dedicado: Sistema de Tarjetas de Resultados */}
+      <div className="cards-showcase">
+        <div className="cards-showcase__head">
+          <div>
+            <span className="tag">{cardsCopy.sectionTag}</span>
+            <h3>{cardsCopy.sectionTitle}</h3>
+            <p>{cardsCopy.sectionDescription}</p>
+          </div>
+          <div className="cards-showcase__actions">
+            <fieldset className="segmented segmented--tight">
+              <legend className="visually-hidden">{cardsCopy.specimenTitle}</legend>
+              <button
+                type="button"
+                className={cardsTheme === 'dia' ? 'is-active' : ''}
+                onClick={() => setCardsTheme('dia')}
+              >
+                {cardsCopy.dayClay}
+              </button>
+              <button
+                type="button"
+                className={cardsTheme === 'noche' ? 'is-active' : ''}
+                onClick={() => setCardsTheme('noche')}
+              >
+                {cardsCopy.nightClay}
+              </button>
+            </fieldset>
+          </div>
+        </div>
+
+        {/* Selector de categoría de tarjeta */}
+        <fieldset className="segmented cards-showcase__picker">
+          <legend className="visually-hidden">{cardsCopy.sectionTitle}</legend>
+          <button
+            type="button"
+            className={showcaseCat === 'm' ? 'is-active' : ''}
+            onClick={() => setShowcaseCat('m')}
+          >
+            {cardsCopy.tabMoment}
+          </button>
+          <button
+            type="button"
+            className={showcaseCat === 'v' ? 'is-active' : ''}
+            onClick={() => setShowcaseCat('v')}
+          >
+            {cardsCopy.tabShear}
+          </button>
+          <button
+            type="button"
+            className={showcaseCat === 'n' ? 'is-active' : ''}
+            onClick={() => setShowcaseCat('n')}
+          >
+            {cardsCopy.tabAxial}
+          </button>
+          <button
+            type="button"
+            className={showcaseCat === 'deformada' ? 'is-active' : ''}
+            onClick={() => setShowcaseCat('deformada')}
+          >
+            {cardsCopy.tabDeformed}
+          </button>
+        </fieldset>
+
+        {/* Escenario con la tarjeta táctil en modo móvil/hoja modal */}
+        <div className="cards-showcase__stage" data-theme={cardsTheme}>
+          <div className="sheet-device">
+            {/* Cabecera superior del móvil */}
+            <div className="sheet-device__bar">
+              <span>9:41</span>
+              <span className="sheet-device__pill" />
+            </div>
+
+            {/* Sub-barra de proyecto */}
+            <div className="sheet-device__nav">
+              <span className="sheet-device__back">‹ Viga en voladizo — ala oeste</span>
+              <span className="sheet-device__badge">
+                <AlertCircle size={11} /> Confiabilidad limitada
+              </span>
+              <span className="sheet-device__run-btn">
+                <Play size={10} />
+              </span>
+            </div>
+
+            {/* Vista previa gráfica del diagrama de barra */}
+            <div className="sheet-device__diagram">
+              <svg viewBox="0 0 320 120" className="sheet-device__svg">
+                {/* Empotramiento en pared izquierda */}
+                <rect x="18" y="24" width="8" height="72" fill="var(--ink-faint)" rx="2" />
+                <line x1="14" y1="20" x2="14" y2="100" stroke="var(--ink-muted)" strokeWidth="2" />
+                {[26, 38, 50, 62, 74, 86, 98].map((y) => (
+                  <line key={y} x1="14" y1={y} x2="8" y2={y - 6} stroke="var(--ink-faint)" strokeWidth="1.2" />
+                ))}
+
+                {/* Viga estructural horizontal */}
+                <rect x="26" y="56" width="240" height="8" rx="2" fill="var(--ink)" />
+                <circle cx="266" cy="60" r="4" fill="var(--surface)" stroke="var(--ink)" strokeWidth="2" />
+
+                {/* Diagrama según la categoría activa */}
+                {showcaseCat === 'm' && (
+                  <g>
+                    <path
+                      d="M 26 60 Q 120 12 210 60 Q 240 76 266 60"
+                      fill="color-mix(in srgb, #ed4b46 16%, transparent)"
+                      stroke="#ed4b46"
+                      strokeWidth="2"
+                    />
+                    <rect x="70" y="8" width="84" height="18" rx="5" fill="var(--surface)" stroke="#ed4b46" strokeWidth="1" />
+                    <text x="112" y="20" textAnchor="middle" fontSize="9" fill="#ed4b46" fontFamily="var(--fs-font-data)" fontWeight="bold">
+                      +24.36 kN·m
+                    </text>
+                    <text x="250" y="86" fontSize="8" fill="#ed4b46" fontFamily="var(--fs-font-data)">−8.12 kN·m</text>
+                  </g>
+                )}
+
+                {showcaseCat === 'v' && (
+                  <g>
+                    <polygon
+                      points="26,26 146,60 266,60 266,94 146,60 26,60"
+                      fill="color-mix(in srgb, #1aa57a 16%, transparent)"
+                      stroke="#1aa57a"
+                      strokeWidth="1.8"
+                    />
+                    <text x="32" y="22" fontSize="9" fill="#1aa57a" fontFamily="var(--fs-font-data)" fontWeight="bold">
+                      +12.80 kN
+                    </text>
+                    <text x="146" y="78" fontSize="8" fill="#1aa57a" fontFamily="var(--fs-font-data)">
+                      −12.80 kN
+                    </text>
+                    <text x="240" y="54" fontSize="8" fill="var(--ink-muted)" fontFamily="var(--fs-font-data)">
+                      0.00 kN
+                    </text>
+                  </g>
+                )}
+
+                {showcaseCat === 'n' && (
+                  <g>
+                    <polygon
+                      points="26,36 266,60 26,60"
+                      fill="color-mix(in srgb, #0f95d1 16%, transparent)"
+                      stroke="#0f95d1"
+                      strokeWidth="1.8"
+                    />
+                    <text x="32" y="32" fontSize="9" fill="#0f95d1" fontFamily="var(--fs-font-data)" fontWeight="bold">
+                      −18.40 kN (Compresión)
+                    </text>
+                    <text x="236" y="52" fontSize="8" fill="var(--ink-muted)" fontFamily="var(--fs-font-data)">
+                      0.00 kN
+                    </text>
+                  </g>
+                )}
+
+                {showcaseCat === 'deformada' && (
+                  <g>
+                    <path
+                      d="M 26 60 Q 146 64 266 88"
+                      fill="none"
+                      stroke="#7657d5"
+                      strokeWidth="3"
+                      strokeDasharray="4 3"
+                    />
+                    <circle cx="266" cy="88" r="4" fill="#7657d5" />
+                    <rect x="230" y="94" width="60" height="16" rx="4" fill="#7657d5" />
+                    <text x="260" y="105" textAnchor="middle" fontSize="8.5" fill="#ffffff" fontFamily="var(--fs-font-data)" fontWeight="bold">
+                      −12.80 mm
+                    </text>
+                  </g>
+                )}
+
+                {/* Cota horizontal */}
+                <line x1="26" y1="112" x2="266" y2="112" stroke="var(--ink-faint)" strokeWidth="1" strokeDasharray="3 3" />
+                <text x="146" y="110" textAnchor="middle" fontSize="8" fill="var(--ink-faint)" fontFamily="var(--fs-font-data)">
+                  3.00 m
+                </text>
+              </svg>
+            </div>
+
+            {/* Hoja modal inferior táctil "Resultados" */}
+            <div className="sheet-modal">
+              <div className="sheet-modal__handle" />
+
+              <div className="sheet-modal__head">
+                <div>
+                  <h4>{cardsCopy.inspectorTitle}</h4>
+                  <p>
+                    {showcaseCat === 'm' && cardsCopy.moment.subtitle}
+                    {showcaseCat === 'v' && cardsCopy.shear.subtitle}
+                    {showcaseCat === 'n' && cardsCopy.axial.subtitle}
+                    {showcaseCat === 'deformada' && cardsCopy.deformed.subtitle}
+                  </p>
+                </div>
+                <button type="button" className="sheet-modal__close" title={cardsCopy.closeCard}>
+                  <X size={14} />
+                </button>
+              </div>
+
+              {/* Subtabs de navegación de la hoja */}
+              <div className="sheet-subtabs sheet-subtabs--modal" role="tablist">
+                {(['modelo', 'deformada', 'n', 'v', 'm'] as const).map((t) => {
+                  const isActive =
+                    (t === 'm' && showcaseCat === 'm') ||
+                    (t === 'v' && showcaseCat === 'v') ||
+                    (t === 'n' && showcaseCat === 'n') ||
+                    (t === 'deformada' && showcaseCat === 'deformada');
+                  return (
+                    <button
+                      key={t}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      className={`sheet-subtab ${isActive ? 'is-active' : ''} sheet-subtab--${t}`}
+                      onClick={() => {
+                        if (t === 'm' || t === 'v' || t === 'n' || t === 'deformada') {
+                          setShowcaseCat(t);
+                        }
+                      }}
+                    >
+                      {t === 'modelo' ? 'Modelo' : t === 'deformada' ? 'Deformada' : t.toUpperCase()}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Tarjetas táctiles hápticas */}
+              <div className="sheet-cards sheet-cards--modal">
+                {showcaseCat === 'm' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--moment">
+                        <Activity size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.moment.card1Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--moment">
+                          {cardsCopy.moment.card1Value} <span className="sheet-card__dot">•</span>
+                        </strong>
+                        <small className="sheet-card__note">{cardsCopy.moment.card1Note}</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--moment">
+                        <ShieldCheck size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.moment.card2Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--moment">
+                          {cardsCopy.moment.card2Value} <span className="sheet-card__dot">•</span>
+                        </strong>
+                        <small className="sheet-card__note">{cardsCopy.moment.card2Note}</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--warn">
+                        <Award size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.moment.card3Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--warn">
+                          {cardsCopy.moment.card3Value} <span className="sheet-card__dot">•</span>
+                        </strong>
+                        <small className="sheet-card__note">{cardsCopy.moment.card3Note}</small>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {showcaseCat === 'v' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <ArrowUp size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.shear.card1Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--shear">
+                          {cardsCopy.shear.card1Value} <span className="sheet-card__dot">•</span>
+                        </strong>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <ArrowDown size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.shear.card2Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--shear">
+                          {cardsCopy.shear.card2Value} <span className="sheet-card__dot">•</span>
+                        </strong>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <CircleDot size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.shear.card3Title}</span>
+                        <strong className="sheet-card__value">
+                          {cardsCopy.shear.card3Value} <span className="sheet-card__dot">•</span>
+                        </strong>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {showcaseCat === 'n' && (
+                  <>
+                    <div className="sheet-card-triple">
+                      <div className="sheet-card-col">
+                        <span className="sheet-card__label">{cardsCopy.axial.maxTitle}</span>
+                        <strong className="sheet-card__value">{cardsCopy.axial.maxValue}</strong>
+                        <small className="sheet-card__note">{cardsCopy.axial.maxNote}</small>
+                      </div>
+                      <div className="sheet-card-col">
+                        <span className="sheet-card__label">{cardsCopy.axial.minTitle}</span>
+                        <strong className="sheet-card__value sheet-card__value--axial">{cardsCopy.axial.minValue}</strong>
+                        <span className="sheet-chip sheet-chip--tension">{cardsCopy.axial.minBadge}</span>
+                      </div>
+                      <div className="sheet-card-col">
+                        <span className="sheet-card__label">{cardsCopy.axial.signTitle}</span>
+                        <strong className="sheet-card__value">{cardsCopy.axial.signValue}</strong>
+                        <span className="sheet-chip sheet-chip--tension">{cardsCopy.axial.signBadge}</span>
+                      </div>
+                    </div>
+                    <div className="sheet-note-box">
+                      <Info size={13} />
+                      <span>{cardsCopy.axial.note}</span>
+                    </div>
+                  </>
+                )}
+
+                {showcaseCat === 'deformada' && (
+                  <>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--deformed">
+                        <ArrowDownToLine size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card1Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--deformed">
+                          {cardsCopy.deformed.card1Value}
+                        </strong>
+                        <small className="sheet-card__note">• {cardsCopy.deformed.card1Note}</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--deformed">
+                        <Crosshair size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card2Title}</span>
+                        <strong className="sheet-card__value">{cardsCopy.deformed.card2Value}</strong>
+                        <small className="sheet-card__note">• {cardsCopy.deformed.card2Note}</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--deformed">
+                        <RotateCw size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card3Title}</span>
+                        <strong className="sheet-card__value">{cardsCopy.deformed.card3Value}</strong>
+                        <small className="sheet-card__note">• {cardsCopy.deformed.card3Note}</small>
+                      </div>
+                    </div>
+                    <div className="sheet-card">
+                      <span className="sheet-card__icon sheet-card__icon--shear">
+                        <ArrowUp size={16} />
+                      </span>
+                      <div className="sheet-card__content">
+                        <span className="sheet-card__label">{cardsCopy.deformed.card4Title}</span>
+                        <strong className="sheet-card__value sheet-card__value--shear">
+                          {cardsCopy.deformed.card4Value}
+                        </strong>
+                        <small className="sheet-card__note">• {cardsCopy.deformed.card4Note}</small>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Tira inferior de metadatos */}
+              <div className="sheet-meta-bar">
+                <div>
+                  <Ruler size={12} />
+                  <span>3.00 m</span>
+                </div>
+                <div>
+                  <ArrowLeftRight size={12} />
+                  <span>{showcaseCat === 'm' ? '+ tracción inf.' : showcaseCat === 'v' ? '+ arriba' : '+ tensión'}</span>
+                </div>
+                <div>
+                  <Layers size={12} />
+                  <span>kN, m, mm</span>
+                </div>
+              </div>
+
+              {/* Barra inferior de acciones móviles */}
+              <div className="sheet-actions-bar">
+                <button type="button" className="sheet-action-item is-active">
+                  <MousePointer size={14} />
+                  <span>Seleccionar</span>
+                </button>
+                <button type="button" className="sheet-action-item">
+                  <CircleDot size={14} />
+                  <span>Geometría</span>
+                </button>
+                <button type="button" className="sheet-action-item">
+                  <ArrowDown size={14} />
+                  <span>Cargas</span>
+                </button>
+                <button type="button" className="sheet-action-item">
+                  <Ruler size={14} />
+                  <span>Acotar</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
