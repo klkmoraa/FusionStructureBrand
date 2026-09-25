@@ -250,11 +250,11 @@ export const TOOLS: readonly Tool[] = [
     name: 'Elementos finitos',
     family: 'analisis',
     glyph: 'fem',
-    status: 'planeado',
+    status: 'experimental',
     role: 'campos, mallas y convergencia',
     summary:
       'Mallas 2D/3D con materiales lineales y después no lineales. Las familias estructural, mecánica y geotécnica no se fingen como un solo modelo constitutivo.',
-    today: 'Todavía no existe implementación.',
+    today: 'Elasticidad lineal 2D con TRI3/QUAD4, importación Gmsh 4.1 y exportación FEM JSON y VTK en FStructure.',
     next: 'Mallas, contactos, fronteras, etapas, adaptatividad, convergencia y campos de resultado.',
     gate: 'Patch tests, refinamiento de malla, conservación de equilibrio y comparación con soluciones analíticas.',
     reference: 'Ansys Mechanical, PLAXIS',
