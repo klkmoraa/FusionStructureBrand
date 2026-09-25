@@ -1,0 +1,12 @@
+{
+  "name": "@fusionstructure/brand",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Canon de marca de FusionStructure: sistema de diseño, tokens y SVG.",
+  "type": "module",
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "check": "node scripts/build-tokens.mjs --check && node scripts/check-site.mjs",
+    "serve": "python3 -m http.server 4173"
+  }
+}

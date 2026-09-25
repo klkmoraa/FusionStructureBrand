@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="calidad-del-resultado">
+  <title id="calidad-del-resultado">Calidad del resultado</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#F7F6F1" stroke="#1AA57A" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 10h36M6 26h36" stroke="#1AA57A" opacity=".5" stroke-dasharray="3 3"/><path d="M6 20c5 0 7-7 11-7s6 10 11 10 5-5 14-5" stroke="#1AA57A"/><path d="M16 35l5 5 10-10" stroke="#14171A"/>
+  </g>
+</svg>

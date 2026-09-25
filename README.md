@@ -1,42 +1,34 @@
-# FusionStructure Brandbook
+# FusionStructure · Canon de marca
 
-Repositorio oficial del **sistema de marca de FusionStructure**.
+La referencia única de la marca FusionStructure: el sistema de diseño, los tokens y los SVG.
 
-Este repositorio ya no contiene la landing del ecosistema. Su única responsabilidad es definir, documentar y entregar la identidad visual y verbal de FusionStructure.
+**Sitio:** https://klkmoraa.github.io/FusionStructureBrand/
 
-## Contenido
+| Ruta | Qué es |
+| --- | --- |
+| `index.html` | Sistema de diseño: 13 fichas (sistema, arquitectura, logos, familias, color, Día y Noche, forma, movimiento, componentes, iconos, herramientas, voz, estado). |
+| `tokens/tokens.json` | Fuente de todos los valores: color Día/Noche, familias, señales, estados, tipo, espacio, radio, materia y movimiento. |
+| `tokens/tokens.css` | Variables `--fs-*` generadas desde `tokens.json`. Se copia tal cual a cada producto. |
+| `svg/` | Paquete SVG v2: marca, familias, productos, 25 glifos y tiles. |
+| `media/` | Film de marca (10.8 s) y su póster. |
 
-- marca principal, lockups e isotipo;
-- acento **Aqua estructural**;
-- señales técnicas y colores semánticos;
-- tipografía y jerarquía;
-- iconografía y familias de herramientas;
-- material, profundidad y patrones de interfaz;
-- motion y comportamiento;
-- voz y microcopy;
-- mockups, referencias y entregables de handoff.
+## Familias
 
-La landing pública vive en **[FusionStructure](https://github.com/klkmoraa/FusionStructure)**.
+Cada producto hereda el canon y cambia sólo su acento. Su brandbook vive en su repo:
 
-## Desarrollo
+- **FStructure** (Análisis, `#ED4B46`): [app](https://klkmoraa.github.io/fstructure/) · [`docs/brandbook`](https://github.com/klkmoraa/fstructure/tree/main/docs/brandbook)
+- **FModel** (Modelo, `#7657D5`): [app](https://klkmoraa.github.io/FModel/) · [`docs/brandbook`](https://github.com/klkmoraa/FModel/tree/main/docs/brandbook)
 
-```bash
-cd brandbook-site
-npm ci
-npm run brand:assets
-npm run lint
-npm run dev
-```
+La landing pública vive en [FusionStructure](https://github.com/klkmoraa/FusionStructure).
 
-## Build estático
+## Trabajo
 
 ```bash
-cd brandbook-site
-NEXT_PUBLIC_BASE_PATH=/FusionStructureBrand/ npm run build:pages
+npm run tokens   # regenera tokens/tokens.css desde tokens.json
+npm run check    # tokens al día y sitio completo
+npm run serve    # http://localhost:4173
 ```
 
-GitHub Pages publica el brandbook directamente en la raíz del sitio del repositorio.
+Sin dependencias: sólo Node 24. Al hacer push a `main`, CI publica el sitio en la rama `gh-pages`.
 
-## Estado
-
-Experimental. El brandbook distingue identidad de marca, señales técnicas y estados de producto para evitar usar color decorativo como significado técnico.
+Lienzo editable (Claude Design): https://claude.ai/artifact/23YkfDwdyvGTLTwQ1LFznA

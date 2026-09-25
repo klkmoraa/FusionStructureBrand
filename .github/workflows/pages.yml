@@ -1,7 +1,9 @@
-name: Deploy Brandbook Pages
+name: Canon
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -9,54 +11,42 @@ permissions:
   contents: write
 
 concurrency:
-  group: brandbook-pages
+  group: brand-pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Build and publish gh-pages
+  check:
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - uses: actions/setup-node@v4
         with:
-          node-version: 22.13.0
-          cache: npm
-          cache-dependency-path: brandbook-site/package-lock.json
+          node-version-file: .nvmrc
+      - run: npm run check
 
-      - name: Install brandbook dependencies
-        working-directory: brandbook-site
-        run: npm ci
-
-      - name: Regenerate brand assets
-        working-directory: brandbook-site
-        run: npm run brand:assets
-
-      - name: Build static brandbook
-        working-directory: brandbook-site
-        env:
-          NEXT_PUBLIC_BASE_PATH: /FusionStructureBrand/
-        run: npm run build:pages
-
-      - name: Publish to gh-pages
+  publish:
+    name: Publish gh-pages
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish static site
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf ../brandbook-pages-output
-          mkdir -p ../brandbook-pages-output
-          cp -a brandbook-site/dist-pages/. ../brandbook-pages-output/
+          out=../brand-pages
+          mkdir -p "$out"
+          cp -a index.html media svg tokens "$out"/
+          touch "$out"/.nojekyll
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout --orphan pages-publish
-          git rm -rf .
-          git clean -fdx
-
-          cp -a ../brandbook-pages-output/. .
-          touch .nojekyll
+          git rm -rfq .
+          git clean -fdxq
+          cp -a "$out"/. .
           git add -A
-          git commit -m "deploy: brandbook ${GITHUB_SHA}"
+          git commit -m "deploy: canon ${GITHUB_SHA}"
           git push --force origin HEAD:gh-pages

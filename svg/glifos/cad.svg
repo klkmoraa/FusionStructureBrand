@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-m01-dibujo-cad">
+  <title id="fs-m01-dibujo-cad">FS-M01 Dibujo CAD</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 32 19 18l8 6 13-14" stroke="currentColor"/><path d="M19 11v14M12 18h14" stroke="currentColor" opacity=".45"/><circle cx="19" cy="18" r="3.4" stroke="currentColor"/><path d="M8 40h32M8 37v6M40 37v6" stroke="var(--fs-glyph-accent, #14171A)" opacity=".85"/><path d="M9 40l5-3v6zM39 40l-5-3v6z" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>

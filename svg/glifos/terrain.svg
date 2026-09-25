@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-c01-terreno">
+  <title id="fs-c01-terreno">FS-C01 Terreno</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 32c8-9 12 3 20-4s10-9 16-13" stroke="currentColor" opacity=".55"/><path d="M6 39c8-9 12 3 20-4s10-9 16-13" stroke="currentColor"/><path d="M8 12h32" stroke="var(--fs-glyph-accent, #14171A)"/><path d="M14 9v6M24 9v6M34 9v6" stroke="var(--fs-glyph-accent, #14171A)"/><circle cx="24" cy="12" r="3" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>

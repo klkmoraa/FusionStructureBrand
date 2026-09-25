@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="memoria-t-cnica">
+  <title id="memoria-t-cnica">Memoria técnica</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#1B1F22" stroke="#1AA57A" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6h16l8 8v28H12z" stroke="#1AA57A"/><path d="M28 6v8h8" stroke="#1AA57A"/><path d="M17 18h11M17 24h14" stroke="#1AA57A" opacity=".55"/><path d="M17 32h14" stroke="#1AA57A" opacity=".4"/><path d="M17 32c4 0 5 5 7 5s3-5 7-5" stroke="#F2F4F3"/>
+  </g>
+</svg>

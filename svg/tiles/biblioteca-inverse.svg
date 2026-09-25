@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="biblioteca-personal">
+  <title id="biblioteca-personal">Biblioteca personal</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#1B1F22" stroke="#1AA57A" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 8h12M14 8v12M8 20h12" stroke="#1AA57A"/><path d="M28 8h12v12H28z" stroke="#1AA57A"/><path d="M8 28v12h12" stroke="#F2F4F3"/><path d="M28 28h12M34 28v12" stroke="#1AA57A"/>
+  </g>
+</svg>

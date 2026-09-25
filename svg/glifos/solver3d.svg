@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-a02-solver-3d">
+  <title id="fs-a02-solver-3d">FS-A02 Solver 3D</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 6l16 9v18l-16 9-16-9V15z" stroke="currentColor"/><path d="M24 24l16-9M24 24 8 15" stroke="currentColor" opacity=".5"/><path d="M24 24v18" stroke="var(--fs-glyph-accent, #14171A)"/><circle cx="24" cy="24" r="3.2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>

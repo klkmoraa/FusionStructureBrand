@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="proyecto-local">
+  <title id="proyecto-local">Proyecto local</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 14v5M24 29v5M14 24h5M29 24h5" stroke="currentColor"/><rect x="19" y="19" width="10" height="10" rx="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><path d="M20 6h8v8h-8zM20 34h8v8h-8zM6 20h8v8H6zM34 20h8v8h-8z" stroke="currentColor"/>
+  </g>
+</svg>

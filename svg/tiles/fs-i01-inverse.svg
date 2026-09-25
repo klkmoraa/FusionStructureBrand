@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="fs-i01-conectores">
+  <title id="fs-i01-conectores">FS-I01 Conectores</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#1B1F22" stroke="#72A1FF" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 13h13v18H6zM29 13h13v18H29z" stroke="#72A1FF"/><path d="M19 19h10M29 25H19" stroke="#F2F4F3"/><path d="m26 16 3 3-3 3M22 22l-3 3 3 3" stroke="#F2F4F3"/><path d="M24 31v3" stroke="#72A1FF" opacity=".6"/><circle cx="24" cy="38" r="4" stroke="#72A1FF"/><path d="M22 38l2 2 3-4" stroke="#F2F4F3"/>
+  </g>
+</svg>

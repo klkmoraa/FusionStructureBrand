@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-m02-modelo-bim">
+  <title id="fs-m02-modelo-bim">FS-M02 Modelo BIM</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 12h32M8 24h32M8 36h32" stroke="currentColor"/><path d="M16 12v24M32 12v24" stroke="currentColor" opacity=".45"/><path d="M16 24h16v12H16z" fill="var(--fs-glyph-accent, #14171A)" stroke="none" opacity=".9"/><path d="M6 12v24M42 12v24" stroke="var(--fs-glyph-accent, #14171A)"/><circle cx="32" cy="12" r="2.6" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>

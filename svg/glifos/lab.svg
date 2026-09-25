@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-l03-laboratorio-reproducible">
+  <title id="fs-l03-laboratorio-reproducible">FS-L03 Laboratorio reproducible</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 9a15 15 0 1 1-13 7" stroke="currentColor"/><path d="M6 9v9h9" stroke="currentColor"/><path d="M18 26v6M24 21v11M30 26v6M36 29v3" stroke="var(--fs-glyph-accent, #14171A)"/><circle cx="24" cy="24" r="2.4" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>
