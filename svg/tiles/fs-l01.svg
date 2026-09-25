@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="fs-l01-aula-estructural">
+  <title id="fs-l01-aula-estructural">FS-L01 Aula estructural</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#F7F6F1" stroke="#C94A8F" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 15h30" stroke="#C94A8F"/><path d="M9 15c8 0 7 13 15 13s7-13 15-13" stroke="#C94A8F" opacity=".45" stroke-dasharray="3 3"/><path d="M9 15c8 0 7 21 15 21s7-21 15-21" stroke="#14171A"/><path d="M6 20l3-5 3 5zM36 20l3-5 3 5z" fill="#C94A8F" stroke="none"/><path d="M24 4v5" stroke="#C94A8F"/><path d="M21 8l3 4 3-4z" fill="#C94A8F" stroke="none"/>
+  </g>
+</svg>

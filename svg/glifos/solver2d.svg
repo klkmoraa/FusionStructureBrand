@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-a01-solver-2d">
+  <title id="fs-a01-solver-2d">FS-A01 Solver 2D</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 16h28M10 16v22M38 16v22" stroke="currentColor"/><path d="M6 42l4-4 4 4zM34 42l4-4 4 4z" fill="currentColor" stroke="none"/><circle cx="10" cy="16" r="2.4" fill="currentColor" stroke="none"/><circle cx="38" cy="16" r="2.4" fill="currentColor" stroke="none"/><path d="M16 5v5M24 5v5M32 5v5" stroke="var(--fs-glyph-accent, #14171A)"/><path d="M13 9l3 3 3-3zM21 9l3 3 3-3zM29 9l3 3 3-3z" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><path d="M12 22c6 0 7 6 12 6s6-6 12-6" stroke="var(--fs-glyph-accent, #14171A)"/>
+  </g>
+</svg>

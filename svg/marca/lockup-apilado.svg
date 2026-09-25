@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="132" viewBox="0 0 220 132" role="img" aria-labelledby="fusionstructure">
+  <title id="fusionstructure">FusionStructure</title>
+  <g transform="translate(86 0) scale(1)">
+    <path fill="#14171A" d="M8 5h9v38H8z M17 5h24v5.5L17 14z"/>
+    <path fill="#1AA57A" d="M17 21h17v5L17 30z"/>
+  </g>
+  <text x="110" y="90" text-anchor="middle" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-weight="600" font-size="26" letter-spacing="-0.4" fill="#14171A">FusionStructure</text>
+  <text x="110" y="112" text-anchor="middle" font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="9.5" letter-spacing="1.6" fill="#5C6A6F">MAKE COMPLEXITY LEGIBLE</text>
+</svg>

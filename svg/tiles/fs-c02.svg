@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="fs-c02-geotecnia">
+  <title id="fs-c02-geotecnia">FS-C02 Geotecnia</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#F7F6F1" stroke="#468C09" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 14h36" stroke="#468C09"/><path d="M6 25h36M6 36h36" stroke="#468C09" opacity=".5"/><path d="M9 20h5M33 20h6M9 31h5M33 31h6M9 41h7M32 41h7" stroke="#468C09" opacity=".4"/><path d="M21 10h6v30h-6z" fill="#14171A" stroke="none"/><path d="M17 10h14" stroke="#14171A"/><path d="M36 22l-3-4h6z" fill="#14171A" stroke="none"/>
+  </g>
+</svg>

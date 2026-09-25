@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-m03-detallado">
+  <title id="fs-m03-detallado">FS-M03 Detallado</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 8h14v32H17z" stroke="currentColor"/><path d="M31 16h11M31 32h11" stroke="currentColor" opacity=".8"/><path d="M6 16h11M6 32h11M11 16v16" stroke="var(--fs-glyph-accent, #14171A)" opacity=".55"/><circle cx="21" cy="14" r="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><circle cx="27" cy="14" r="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><circle cx="21" cy="24" r="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><circle cx="27" cy="24" r="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><circle cx="21" cy="34" r="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><circle cx="27" cy="34" r="2" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>

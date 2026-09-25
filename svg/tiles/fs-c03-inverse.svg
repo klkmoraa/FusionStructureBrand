@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="fs-c03-agua-y-drenaje">
+  <title id="fs-c03-agua-y-drenaje">FS-C03 Agua y drenaje</title>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#1B1F22" stroke="#72CF4A" stroke-opacity="0.35"/>
+  <g transform="translate(8 8)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 10v11a5 5 0 0 0 5 5h13a5 5 0 0 1 5 5v9" stroke="#72CF4A"/><path d="M31 26h9" stroke="#72CF4A"/><circle cx="8" cy="10" r="3.2" fill="#F2F4F3" stroke="none"/><circle cx="31" cy="40" r="3.2" fill="#F2F4F3" stroke="none"/><circle cx="26" cy="26" r="3" stroke="#F2F4F3"/><path d="M6 38c4-3 6 3 10 0s6 3 10 0" stroke="#F2F4F3" opacity=".7"/><path d="m13 15 4 4-4 4" stroke="#F2F4F3"/>
+  </g>
+</svg>

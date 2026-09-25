@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="intercambio-actual">
+  <title id="intercambio-actual">Intercambio actual</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 8h14v20H6z" stroke="currentColor"/><path d="M28 20h14v20H28z" stroke="currentColor"/><path d="M20 14h11m-3-3 3 3-3 3" stroke="var(--fs-glyph-accent, #14171A)"/><path d="M28 34H17m3-3-3 3 3 3" stroke="var(--fs-glyph-accent, #14171A)"/>
+  </g>
+</svg>

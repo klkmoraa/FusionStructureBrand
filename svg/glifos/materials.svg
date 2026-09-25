@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-a04-dise-o-por-materiales">
+  <title id="fs-a04-dise-o-por-materiales">FS-A04 Diseño por materiales</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 10h12M12 10v18M6 28h12" stroke="currentColor"/><path d="M22 40h20" stroke="currentColor" opacity=".5"/><rect x="24" y="12" width="7" height="28" rx="1" stroke="currentColor"/><rect x="34" y="20" width="7" height="20" rx="1" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/><path d="M22 12h20" stroke="var(--fs-glyph-accent, #14171A)" opacity=".7" stroke-dasharray="3 3"/>
+  </g>
+</svg>

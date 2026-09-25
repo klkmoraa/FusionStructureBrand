@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="asistencia-local">
+  <title id="asistencia-local">Asistencia local</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="9" width="36" height="30" rx="3" stroke="currentColor"/><path d="M6 16h36" stroke="currentColor" opacity=".5"/><path d="m13 23 5 4-5 4" stroke="var(--fs-glyph-accent, #14171A)"/><path d="M22 31h9" stroke="var(--fs-glyph-accent, #14171A)"/>
+  </g>
+</svg>

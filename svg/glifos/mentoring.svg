@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-l04-tutor-a-y-trayectoria">
+  <title id="fs-l04-tutor-a-y-trayectoria">FS-L04 Tutoría y trayectoria</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 38c6 0 6-12 14-12s8 8 14 8" stroke="currentColor"/><circle cx="8" cy="38" r="3" fill="currentColor" stroke="none"/><circle cx="22" cy="26" r="3" fill="currentColor" stroke="none"/><path d="M36 8v26" stroke="var(--fs-glyph-accent, #14171A)"/><path d="M36 9h9l-3 4 3 4h-9z" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>

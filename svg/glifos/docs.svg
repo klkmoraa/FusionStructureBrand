@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="fs-p01-documentos">
+  <title id="fs-p01-documentos">FS-P01 Documentos</title>
+  <g fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 6h14l7 7v21H16z" stroke="currentColor"/><path d="M30 6v7h7" stroke="currentColor"/><path d="M11 12v30h20" stroke="currentColor" opacity=".45"/><path d="M21 19h9M21 25h6" stroke="currentColor" opacity=".6"/><path d="M27 33a5 5 0 0 1 10 0c0 4-5 9-5 9s-5-5-5-9z" fill="var(--fs-glyph-accent, #14171A)" stroke="none"/>
+  </g>
+</svg>
